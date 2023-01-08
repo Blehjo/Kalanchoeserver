@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>KalanchoeAI_Backend</RootNamespace>
+    <UserSecretsId>278f2fad-e5ad-4eff-9afa-987410ae3705</UserSecretsId>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
@@ -43,11 +44,13 @@
     <None Remove="Microsoft.EntityFrameworkCore.Design" />
     <None Remove="Microsoft.VisualStudio.Web.CodeGeneration.Design" />
     <None Remove="Microsoft.EntityFrameworkCore.Sqlite" />
+    <None Remove="Completions\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="Data\" />
     <Folder Include="Migrations\" />
     <Folder Include="Models\" />
+    <Folder Include="Completions\" />
   </ItemGroup>
 </Project>
