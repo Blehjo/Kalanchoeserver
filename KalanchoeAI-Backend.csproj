@@ -44,13 +44,11 @@
     <None Remove="Microsoft.EntityFrameworkCore.Design" />
     <None Remove="Microsoft.VisualStudio.Web.CodeGeneration.Design" />
     <None Remove="Microsoft.EntityFrameworkCore.Sqlite" />
-    <None Remove="Completions\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="Data\" />
     <Folder Include="Migrations\" />
     <Folder Include="Models\" />
-    <Folder Include="Completions\" />
   </ItemGroup>
 </Project>
