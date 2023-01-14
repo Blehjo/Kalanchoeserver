@@ -4,16 +4,15 @@ using OpenAI.GPT3.ObjectModels.RequestModels;
 
 namespace KalanchoeAI_Backend
 {
-    public static class Completions
+    public static class GPTCompletions
     {
-        public static async Task RunSimpleCompletionTest(IOpenAIService sdk)
+        public static async Task ArtooTextResponse(IOpenAIService sdk, string prompt)
         {
             try
             {
                 var completionResult = await sdk.Completions.CreateCompletion(new CompletionCreateRequest()
                 {
-                    Prompt = "Once upon a time",
-                    //    PromptAsList = new []{"Once upon a time"},
+                    Prompt = prompt,
                     MaxTokens = 5,
                     LogProbs = 1,
                 }, Models.Davinci);
