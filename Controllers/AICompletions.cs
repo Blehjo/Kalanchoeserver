@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using OpenAI.GPT3;
+using OpenAI.GPT3.Interfaces;
 
 namespace KalanchoeAI_Backend.Controllers
 {
@@ -11,6 +13,10 @@ namespace KalanchoeAI_Backend.Controllers
     [ApiController]
     public class ChatgptController : ControllerBase
     {
+        //var openAiService = serviceProvider.GetRequiredService<IOpenAIService>();
+        //openAiService.SetDefaultEngineId(Engines.Davinci);
+        
+
         // GET: api/Chatgpt
         [HttpGet]
         public IEnumerable<string> Get()

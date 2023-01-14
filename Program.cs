@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using KalanchoeAI.Models;
 using OpenAI.GPT3.Extensions;
 using OpenAI.GPT3.Interfaces;
+using System.Configuration;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
