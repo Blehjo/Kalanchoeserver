@@ -13,6 +13,8 @@ namespace KalanchoeAI.Models
 
 		public string? PostValue { get; set; }
 
+		public string? MediaLink { get; set; }
+
         [DataType(DataType.Date)]
         public DateTime DatePosted { get; set; }
 
