@@ -33,7 +33,6 @@
   <ItemGroup>
     <None Remove="Controllers\" />
     <None Remove="Data\" />
-    <None Remove="Migrations\" />
     <None Remove="Models\" />
     <None Remove="Microsoft.EntityFrameworkCore" />
     <None Remove="OpenAI" />
@@ -49,7 +48,6 @@
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="Data\" />
-    <Folder Include="Migrations\" />
     <Folder Include="Models\" />
     <Folder Include="Completions\" />
   </ItemGroup>

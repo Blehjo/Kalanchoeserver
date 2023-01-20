@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace KalanchoeAI.Migrations
+namespace KalanchoeAIBackend.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
@@ -12,7 +12,7 @@ namespace KalanchoeAI.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "User",
+                name: "Users",
                 columns: table => new
                 {
                     UserId = table.Column<int>(type: "INTEGER", nullable: false)
@@ -27,11 +27,11 @@ namespace KalanchoeAI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_User", x => x.UserId);
+                    table.PrimaryKey("PK_Users", x => x.UserId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Chat",
+                name: "Chats",
                 columns: table => new
                 {
                     ChatId = table.Column<int>(type: "INTEGER", nullable: false)
@@ -42,16 +42,16 @@ namespace KalanchoeAI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Chat", x => x.ChatId);
+                    table.PrimaryKey("PK_Chats", x => x.ChatId);
                     table.ForeignKey(
-                        name: "FK_Chat_User_UserId",
+                        name: "FK_Chats_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "UserId");
                 });
 
             migrationBuilder.CreateTable(
-                name: "Community",
+                name: "Communities",
                 columns: table => new
                 {
                     CommunityId = table.Column<int>(type: "INTEGER", nullable: false)
@@ -63,16 +63,16 @@ namespace KalanchoeAI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Community", x => x.CommunityId);
+                    table.PrimaryKey("PK_Communities", x => x.CommunityId);
                     table.ForeignKey(
-                        name: "FK_Community_User_UserId",
+                        name: "FK_Communities_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "UserId");
                 });
 
             migrationBuilder.CreateTable(
-                name: "Follower",
+                name: "Followers",
                 columns: table => new
                 {
                     FollowerId = table.Column<int>(type: "INTEGER", nullable: false)
@@ -81,16 +81,16 @@ namespace KalanchoeAI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Follower", x => x.FollowerId);
+                    table.PrimaryKey("PK_Followers", x => x.FollowerId);
                     table.ForeignKey(
-                        name: "FK_Follower_User_UserId",
+                        name: "FK_Followers_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "UserId");
                 });
 
             migrationBuilder.CreateTable(
-                name: "Message",
+                name: "Messages",
                 columns: table => new
                 {
                     MessageId = table.Column<int>(type: "INTEGER", nullable: false)
@@ -101,16 +101,16 @@ namespace KalanchoeAI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Message", x => x.MessageId);
+                    table.PrimaryKey("PK_Messages", x => x.MessageId);
                     table.ForeignKey(
-                        name: "FK_Message_User_UserId",
+                        name: "FK_Messages_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "UserId");
                 });
 
             migrationBuilder.CreateTable(
-                name: "Panel",
+                name: "Panels",
                 columns: table => new
                 {
                     PanelId = table.Column<int>(type: "INTEGER", nullable: false)
@@ -121,36 +121,37 @@ namespace KalanchoeAI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Panel", x => x.PanelId);
+                    table.PrimaryKey("PK_Panels", x => x.PanelId);
                     table.ForeignKey(
-                        name: "FK_Panel_User_UserId",
+                        name: "FK_Panels_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "UserId");
                 });
 
             migrationBuilder.CreateTable(
-                name: "Post",
+                name: "Posts",
                 columns: table => new
                 {
                     PostId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     UserId = table.Column<int>(type: "INTEGER", nullable: true),
                     PostValue = table.Column<string>(type: "TEXT", nullable: true),
+                    MediaLink = table.Column<string>(type: "TEXT", nullable: true),
                     DatePosted = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Post", x => x.PostId);
+                    table.PrimaryKey("PK_Posts", x => x.PostId);
                     table.ForeignKey(
-                        name: "FK_Post_User_UserId",
+                        name: "FK_Posts_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "UserId");
                 });
 
             migrationBuilder.CreateTable(
-                name: "ChatComment",
+                name: "ChatComments",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -161,16 +162,16 @@ namespace KalanchoeAI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ChatComment", x => x.Id);
+                    table.PrimaryKey("PK_ChatComments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ChatComment_Chat_ChatId",
+                        name: "FK_ChatComments_Chats_ChatId",
                         column: x => x.ChatId,
-                        principalTable: "Chat",
+                        principalTable: "Chats",
                         principalColumn: "ChatId");
                 });
 
             migrationBuilder.CreateTable(
-                name: "Channel",
+                name: "Channels",
                 columns: table => new
                 {
                     ChannelId = table.Column<int>(type: "INTEGER", nullable: false)
@@ -181,16 +182,16 @@ namespace KalanchoeAI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Channel", x => x.ChannelId);
+                    table.PrimaryKey("PK_Channels", x => x.ChannelId);
                     table.ForeignKey(
-                        name: "FK_Channel_Community_CommunityId",
+                        name: "FK_Channels_Communities_CommunityId",
                         column: x => x.CommunityId,
-                        principalTable: "Community",
+                        principalTable: "Communities",
                         principalColumn: "CommunityId");
                 });
 
             migrationBuilder.CreateTable(
-                name: "Member",
+                name: "Members",
                 columns: table => new
                 {
                     MemberId = table.Column<int>(type: "INTEGER", nullable: false)
@@ -202,16 +203,16 @@ namespace KalanchoeAI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Member", x => x.MemberId);
+                    table.PrimaryKey("PK_Members", x => x.MemberId);
                     table.ForeignKey(
-                        name: "FK_Member_Community_CommunityId",
+                        name: "FK_Members_Communities_CommunityId",
                         column: x => x.CommunityId,
-                        principalTable: "Community",
+                        principalTable: "Communities",
                         principalColumn: "CommunityId");
                     table.ForeignKey(
-                        name: "FK_Member_User_UserId",
+                        name: "FK_Members_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "UserId");
                 });
 
@@ -229,14 +230,14 @@ namespace KalanchoeAI.Migrations
                 {
                     table.PrimaryKey("PK_Note", x => x.NoteId);
                     table.ForeignKey(
-                        name: "FK_Note_Panel_PanelId",
+                        name: "FK_Note_Panels_PanelId",
                         column: x => x.PanelId,
-                        principalTable: "Panel",
+                        principalTable: "Panels",
                         principalColumn: "PanelId");
                 });
 
             migrationBuilder.CreateTable(
-                name: "Comment",
+                name: "Comments",
                 columns: table => new
                 {
                     CommentId = table.Column<int>(type: "INTEGER", nullable: false)
@@ -248,21 +249,21 @@ namespace KalanchoeAI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Comment", x => x.CommentId);
+                    table.PrimaryKey("PK_Comments", x => x.CommentId);
                     table.ForeignKey(
-                        name: "FK_Comment_Post_PostId",
+                        name: "FK_Comments_Posts_PostId",
                         column: x => x.PostId,
-                        principalTable: "Post",
+                        principalTable: "Posts",
                         principalColumn: "PostId");
                     table.ForeignKey(
-                        name: "FK_Comment_User_UserId",
+                        name: "FK_Comments_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "UserId");
                 });
 
             migrationBuilder.CreateTable(
-                name: "ChannelComment",
+                name: "ChannelComments",
                 columns: table => new
                 {
                     ChannelCommentId = table.Column<int>(type: "INTEGER", nullable: false)
@@ -274,67 +275,67 @@ namespace KalanchoeAI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ChannelComment", x => x.ChannelCommentId);
+                    table.PrimaryKey("PK_ChannelComments", x => x.ChannelCommentId);
                     table.ForeignKey(
-                        name: "FK_ChannelComment_Channel_ChannelId",
+                        name: "FK_ChannelComments_Channels_ChannelId",
                         column: x => x.ChannelId,
-                        principalTable: "Channel",
+                        principalTable: "Channels",
                         principalColumn: "ChannelId");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Channel_CommunityId",
-                table: "Channel",
-                column: "CommunityId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ChannelComment_ChannelId",
-                table: "ChannelComment",
+                name: "IX_ChannelComments_ChannelId",
+                table: "ChannelComments",
                 column: "ChannelId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Chat_UserId",
-                table: "Chat",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ChatComment_ChatId",
-                table: "ChatComment",
-                column: "ChatId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Comment_PostId",
-                table: "Comment",
-                column: "PostId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Comment_UserId",
-                table: "Comment",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Community_UserId",
-                table: "Community",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Follower_UserId",
-                table: "Follower",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Member_CommunityId",
-                table: "Member",
+                name: "IX_Channels_CommunityId",
+                table: "Channels",
                 column: "CommunityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Member_UserId",
-                table: "Member",
+                name: "IX_ChatComments_ChatId",
+                table: "ChatComments",
+                column: "ChatId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Chats_UserId",
+                table: "Chats",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Message_UserId",
-                table: "Message",
+                name: "IX_Comments_PostId",
+                table: "Comments",
+                column: "PostId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_UserId",
+                table: "Comments",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Communities_UserId",
+                table: "Communities",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Followers_UserId",
+                table: "Followers",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Members_CommunityId",
+                table: "Members",
+                column: "CommunityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Members_UserId",
+                table: "Members",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Messages_UserId",
+                table: "Messages",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -343,13 +344,13 @@ namespace KalanchoeAI.Migrations
                 column: "PanelId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Panel_UserId",
-                table: "Panel",
+                name: "IX_Panels_UserId",
+                table: "Panels",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Post_UserId",
-                table: "Post",
+                name: "IX_Posts_UserId",
+                table: "Posts",
                 column: "UserId");
         }
 
@@ -357,43 +358,43 @@ namespace KalanchoeAI.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ChannelComment");
+                name: "ChannelComments");
 
             migrationBuilder.DropTable(
-                name: "ChatComment");
+                name: "ChatComments");
 
             migrationBuilder.DropTable(
-                name: "Comment");
+                name: "Comments");
 
             migrationBuilder.DropTable(
-                name: "Follower");
+                name: "Followers");
 
             migrationBuilder.DropTable(
-                name: "Member");
+                name: "Members");
 
             migrationBuilder.DropTable(
-                name: "Message");
+                name: "Messages");
 
             migrationBuilder.DropTable(
                 name: "Note");
 
             migrationBuilder.DropTable(
-                name: "Channel");
+                name: "Channels");
 
             migrationBuilder.DropTable(
-                name: "Chat");
+                name: "Chats");
 
             migrationBuilder.DropTable(
-                name: "Post");
+                name: "Posts");
 
             migrationBuilder.DropTable(
-                name: "Panel");
+                name: "Panels");
 
             migrationBuilder.DropTable(
-                name: "Community");
+                name: "Communities");
 
             migrationBuilder.DropTable(
-                name: "User");
+                name: "Users");
         }
     }
 }

@@ -8,10 +8,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace KalanchoeAI.Migrations
+namespace KalanchoeAIBackend.Migrations
 {
     [DbContext(typeof(KalanchoeAIDatabaseContext))]
-    [Migration("20221226043439_InitialCreate")]
+    [Migration("20230117185318_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -39,7 +39,7 @@ namespace KalanchoeAI.Migrations
 
                     b.HasIndex("CommunityId");
 
-                    b.ToTable("Channel");
+                    b.ToTable("Channels");
                 });
 
             modelBuilder.Entity("KalanchoeAI.Models.ChannelComment", b =>
@@ -64,7 +64,7 @@ namespace KalanchoeAI.Migrations
 
                     b.HasIndex("ChannelId");
 
-                    b.ToTable("ChannelComment");
+                    b.ToTable("ChannelComments");
                 });
 
             modelBuilder.Entity("KalanchoeAI.Models.Chat", b =>
@@ -86,7 +86,7 @@ namespace KalanchoeAI.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Chat");
+                    b.ToTable("Chats");
                 });
 
             modelBuilder.Entity("KalanchoeAI.Models.ChatComment", b =>
@@ -108,7 +108,7 @@ namespace KalanchoeAI.Migrations
 
                     b.HasIndex("ChatId");
 
-                    b.ToTable("ChatComment");
+                    b.ToTable("ChatComments");
                 });
 
             modelBuilder.Entity("KalanchoeAI.Models.Comment", b =>
@@ -135,7 +135,7 @@ namespace KalanchoeAI.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Comment");
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("KalanchoeAI.Models.Community", b =>
@@ -160,7 +160,7 @@ namespace KalanchoeAI.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Community");
+                    b.ToTable("Communities");
                 });
 
             modelBuilder.Entity("KalanchoeAI.Models.Follower", b =>
@@ -176,7 +176,7 @@ namespace KalanchoeAI.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Follower");
+                    b.ToTable("Followers");
                 });
 
             modelBuilder.Entity("KalanchoeAI.Models.Member", b =>
@@ -203,7 +203,7 @@ namespace KalanchoeAI.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Member");
+                    b.ToTable("Members");
                 });
 
             modelBuilder.Entity("KalanchoeAI.Models.Message", b =>
@@ -225,7 +225,7 @@ namespace KalanchoeAI.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Message");
+                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("KalanchoeAI.Models.Note", b =>
@@ -269,7 +269,7 @@ namespace KalanchoeAI.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Panel");
+                    b.ToTable("Panels");
                 });
 
             modelBuilder.Entity("KalanchoeAI.Models.Post", b =>
@@ -279,6 +279,9 @@ namespace KalanchoeAI.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("DatePosted")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("MediaLink")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PostValue")
@@ -291,7 +294,7 @@ namespace KalanchoeAI.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Post");
+                    b.ToTable("Posts");
                 });
 
             modelBuilder.Entity("KalanchoeAI.Models.User", b =>
@@ -323,7 +326,7 @@ namespace KalanchoeAI.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("User");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("KalanchoeAI.Models.Channel", b =>

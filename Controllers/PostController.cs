@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using KalanchoeAI.Data;
 using KalanchoeAI.Models;
+using Microsoft.AspNetCore.Cors;
 
 namespace KalanchoeAI.Controllers
 {
+    [EnableCors("MyPolicy")]
     [Route("api/[controller]")]
     [ApiController]
     public class PostController : ControllerBase
