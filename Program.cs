@@ -9,19 +9,21 @@ using OpenAI.GPT3.Interfaces;
 using System.Configuration;
 using System;
 
-//var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(
+    options.AddPolicy(name: MyAllowSpecificOrigins,
                       policy =>
                       {
                           policy.WithOrigins(
-                              "https://localhost:7028/",
-                              "https://localhost:44498/"
-                          );
+                              "https://localhost:7028",
+                              "https://localhost:44498"
+                          )
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
                       });
 });
 
@@ -38,7 +40,6 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<KalanchoeAIDatabaseContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("KalanchoeAIDatabaseContext") ?? throw new InvalidOperationException("Connection string 'KalanchoeAIDatabaseContext' not found.")));
 
-builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -54,7 +55,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseCors();
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthorization();
 

@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Cors;
 
 namespace KalanchoeAI.Controllers
 {
-    [EnableCors("MyPolicy")]
     [Route("api/[controller]")]
     [ApiController]
     public class PostController : ControllerBase
