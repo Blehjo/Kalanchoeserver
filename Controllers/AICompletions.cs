@@ -5,7 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OpenAI.GPT3;
+using OpenAI.GPT3.Managers;
+using OpenAI.GPT3.ObjectModels;
+using OpenAI.GPT3.ObjectModels.RequestModels;
+using OpenAI.GPT3.Extensions;
 using OpenAI.GPT3.Interfaces;
+using Azure;
+using Microsoft.Identity.Client;
 
 namespace KalanchoeAI_Backend.Controllers
 {
@@ -13,9 +19,11 @@ namespace KalanchoeAI_Backend.Controllers
     [ApiController]
     public class ChatgptController : ControllerBase
     {
-        //var openAiService = serviceProvider.GetRequiredService<IOpenAIService>();
-        //openAiService.SetDefaultEngineId(Engines.Davinci);
-        
+
+        string ApiKey = "";
+        string response = "";
+        string Organization = "";
+        IConfiguration _configuration;
 
         // GET: api/Chatgpt
         [HttpGet]
@@ -33,8 +41,34 @@ namespace KalanchoeAI_Backend.Controllers
 
         // POST: api/Chatgpt
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task PostAsync()
         {
+            var openAiService = new OpenAIService(new OpenAiOptions()
+            {
+                ApiKey = _configuration["OpenAIServiceOptions:ApiKey"],
+                Organization = _configuration["OpenAIServiceOptions:Organization"]
+            });
+
+            var completionResult = await openAiService.Completions
+            .CreateCompletion(new CompletionCreateRequest()
+            {
+                Prompt = "hello",
+                MaxTokens = 5
+            }, Models.Davinci);
+            if (completionResult.Successful)
+            {
+                response = completionResult
+                .Choices.FirstOrDefault()?.Text ?? "";
+            }
+            else
+            {
+                if (completionResult.Error == null)
+                {
+                    response = "Unknown Error";
+                }
+                response =
+                $"{completionResult.Error?.Code}: {completionResult.Error?.Message}";
+            }
         }
 
         // PUT: api/Chatgpt/5

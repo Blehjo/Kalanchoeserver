@@ -7,6 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using KalanchoeAI.Data;
 using KalanchoeAI.Models;
+using OpenAI.GPT3;
+using OpenAI.GPT3.Managers;
+using OpenAI.GPT3.ObjectModels;
+using OpenAI.GPT3.ObjectModels.RequestModels;
+using OpenAI.GPT3.Extensions;
+using OpenAI.GPT3.Interfaces;
+using Azure;
+using Microsoft.Identity.Client;
 
 namespace KalanchoeAI.Controllers
 {
@@ -14,6 +22,7 @@ namespace KalanchoeAI.Controllers
     [ApiController]
     public class ChatCommentController : ControllerBase
     {
+
         private readonly KalanchoeAIDatabaseContext _context;
 
         public ChatCommentController(KalanchoeAIDatabaseContext context)
@@ -86,10 +95,10 @@ namespace KalanchoeAI.Controllers
         [HttpPost]
         public async Task<ActionResult<ChatComment>> PostChatComment(ChatComment chatComment)
         {
-          if (_context.ChatComments == null)
-          {
+            if (_context.ChatComments == null)
+            {
               return Problem("Entity set 'KalanchoeAIDatabaseContext.ChatComments'  is null.");
-          }
+            }
             _context.ChatComments.Add(chatComment);
             await _context.SaveChangesAsync();
 
