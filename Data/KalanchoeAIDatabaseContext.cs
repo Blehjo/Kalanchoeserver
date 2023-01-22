@@ -27,5 +27,15 @@ namespace KalanchoeAI.Data
         public DbSet<KalanchoeAI.Models.Message> Messages { get; set; } 
         public DbSet<KalanchoeAI.Models.Panel> Panels { get; set; } 
         public DbSet<KalanchoeAI.Models.Note>? Note { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>().ToTable(nameof(User))
+                .HasMany(u => u.Chats)
+                .WithOne(c => c.User)
+                .OnDelete(DeleteBehavior.Delete);
+            modelBuilder.Entity<Student>().ToTable(nameof(Student));
+            modelBuilder.Entity<Instructor>().ToTable(nameof(Instructor));
+        }
     }
 }
