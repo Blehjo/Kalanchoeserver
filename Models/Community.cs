@@ -17,6 +17,8 @@ namespace KalanchoeAI.Models
 
         [Column(TypeName = "nvarchar(100)")]
         public string? Description { get; set; }
+        
+        public string? MediaLink { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime DateCreated { get; set; }
