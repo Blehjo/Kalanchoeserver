@@ -59,6 +59,7 @@ namespace KalanchoeAIBackend.Migrations
                     UserId = table.Column<int>(type: "INTEGER", nullable: true),
                     GroupName = table.Column<string>(type: "nvarchar(100)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    MediaLink = table.Column<string>(type: "TEXT", nullable: true),
                     DateCreated = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>

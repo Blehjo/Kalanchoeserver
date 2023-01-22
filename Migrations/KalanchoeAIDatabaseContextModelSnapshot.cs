@@ -150,6 +150,9 @@ namespace KalanchoeAIBackend.Migrations
                     b.Property<string>("GroupName")
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("MediaLink")
+                        .HasColumnType("TEXT");
+
                     b.Property<int?>("UserId")
                         .HasColumnType("INTEGER");
 

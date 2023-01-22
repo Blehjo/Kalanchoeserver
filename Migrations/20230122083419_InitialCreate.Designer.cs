@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KalanchoeAIBackend.Migrations
 {
     [DbContext(typeof(KalanchoeAIDatabaseContext))]
-    [Migration("20230117185318_InitialCreate")]
+    [Migration("20230122083419_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -152,6 +152,9 @@ namespace KalanchoeAIBackend.Migrations
 
                     b.Property<string>("GroupName")
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("MediaLink")
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("UserId")
                         .HasColumnType("INTEGER");
