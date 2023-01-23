@@ -56,7 +56,7 @@ namespace KalanchoeAI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPost(int? id, Post post)
         {
-            if (id != post.PostId)
+            if (id != post.Id)
             {
                 return BadRequest();
             }
@@ -94,7 +94,7 @@ namespace KalanchoeAI.Controllers
             _context.Posts.Add(post);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPost", new { id = post.PostId }, post);
+            return CreatedAtAction("GetPost", new { id = post.Id }, post);
         }
 
         // DELETE: api/Post/5
@@ -119,7 +119,7 @@ namespace KalanchoeAI.Controllers
 
         private bool PostExists(int? id)
         {
-            return (_context.Posts?.Any(e => e.PostId == id)).GetValueOrDefault();
+            return (_context.Posts?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

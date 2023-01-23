@@ -55,7 +55,7 @@ namespace KalanchoeAI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPanel(int id, Panel panel)
         {
-            if (id != panel.PanelId)
+            if (id != panel.Id)
             {
                 return BadRequest();
             }
@@ -93,7 +93,7 @@ namespace KalanchoeAI.Controllers
             _context.Panels.Add(panel);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPanel", new { id = panel.PanelId }, panel);
+            return CreatedAtAction("GetPanel", new { id = panel.Id }, panel);
         }
 
         // DELETE: api/Panel/5
@@ -118,7 +118,7 @@ namespace KalanchoeAI.Controllers
 
         private bool PanelExists(int id)
         {
-            return (_context.Panels?.Any(e => e.PanelId == id)).GetValueOrDefault();
+            return (_context.Panels?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

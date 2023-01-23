@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KalanchoeAIBackend.Migrations
 {
     [DbContext(typeof(KalanchoeAIDatabaseContext))]
-    [Migration("20230122083419_InitialCreate")]
+    [Migration("20230123002237_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -22,29 +22,31 @@ namespace KalanchoeAIBackend.Migrations
 
             modelBuilder.Entity("KalanchoeAI.Models.Channel", b =>
                 {
-                    b.Property<int>("ChannelId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<int?>("CommunityId")
+                        .IsRequired()
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("ChannelId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CommunityId");
 
-                    b.ToTable("Channels");
+                    b.ToTable("Channel", (string)null);
                 });
 
             modelBuilder.Entity("KalanchoeAI.Models.ChannelComment", b =>
                 {
-                    b.Property<int>("ChannelCommentId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -52,24 +54,28 @@ namespace KalanchoeAIBackend.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<int?>("ChannelId")
+                        .IsRequired()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("DatePosted")
+                    b.Property<DateTime>("DateCreated")
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("UserId")
+                        .IsRequired()
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("ChannelCommentId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ChannelId");
 
-                    b.ToTable("ChannelComments");
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ChannelComment", (string)null);
                 });
 
             modelBuilder.Entity("KalanchoeAI.Models.Chat", b =>
                 {
-                    b.Property<int>("ChatId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -80,13 +86,14 @@ namespace KalanchoeAIBackend.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<int?>("UserId")
+                        .IsRequired()
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("ChatId");
+                    b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Chats");
+                    b.ToTable("Chat", (string)null);
                 });
 
             modelBuilder.Entity("KalanchoeAI.Models.ChatComment", b =>
@@ -96,40 +103,43 @@ namespace KalanchoeAIBackend.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<int?>("ChatId")
+                        .IsRequired()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("ChatValue")
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<DateTime>("TimePosted")
+                    b.Property<DateTime>("DateCreated")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ChatId");
 
-                    b.ToTable("ChatComments");
+                    b.ToTable("ChatComment", (string)null);
                 });
 
             modelBuilder.Entity("KalanchoeAI.Models.Comment", b =>
                 {
-                    b.Property<int>("CommentId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("CommentValue")
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<DateTime>("DatePosted")
+                    b.Property<DateTime>("DateCreated")
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("PostId")
+                        .IsRequired()
                         .HasColumnType("INTEGER");
 
                     b.Property<int?>("UserId")
+                        .IsRequired()
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("CommentId");
+                    b.HasKey("Id");
 
                     b.HasIndex("PostId");
 
@@ -140,7 +150,7 @@ namespace KalanchoeAIBackend.Migrations
 
             modelBuilder.Entity("KalanchoeAI.Models.Community", b =>
                 {
-                    b.Property<int>("CommunityId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -148,114 +158,120 @@ namespace KalanchoeAIBackend.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("GroupName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("MediaLink")
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("UserId")
+                        .IsRequired()
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("CommunityId");
+                    b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Communities");
+                    b.ToTable("Community", (string)null);
                 });
 
             modelBuilder.Entity("KalanchoeAI.Models.Follower", b =>
                 {
-                    b.Property<int?>("FollowerId")
+                    b.Property<int>("FollowerId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<int?>("UserId")
+                        .IsRequired()
                         .HasColumnType("INTEGER");
 
                     b.HasKey("FollowerId");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Followers");
+                    b.ToTable("Follower", (string)null);
                 });
 
             modelBuilder.Entity("KalanchoeAI.Models.Member", b =>
                 {
-                    b.Property<int>("MemberId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<int?>("CommunityId")
+                        .IsRequired()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("DateJoined")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("DateLeft")
+                    b.Property<DateTime>("DateCreated")
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("UserId")
+                        .IsRequired()
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("MemberId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CommunityId");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Members");
+                    b.ToTable("Member", (string)null);
                 });
 
             modelBuilder.Entity("KalanchoeAI.Models.Message", b =>
                 {
-                    b.Property<int>("MessageId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("DatePosted")
+                    b.Property<DateTime>("DateCreated")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("MessageValue")
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<int?>("UserId")
+                        .IsRequired()
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("MessageId");
+                    b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Messages");
+                    b.ToTable("Message", (string)null);
                 });
 
             modelBuilder.Entity("KalanchoeAI.Models.Note", b =>
                 {
-                    b.Property<int>("NoteId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("DateAdded")
+                    b.Property<DateTime>("DateCreated")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NoteValue")
+                        .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<int?>("PanelId")
+                        .IsRequired()
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("NoteId");
+                    b.HasKey("Id");
 
                     b.HasIndex("PanelId");
 
-                    b.ToTable("Note");
+                    b.ToTable("Note", (string)null);
                 });
 
             modelBuilder.Entity("KalanchoeAI.Models.Panel", b =>
                 {
-                    b.Property<int>("PanelId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -266,22 +282,23 @@ namespace KalanchoeAIBackend.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<int?>("UserId")
+                        .IsRequired()
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("PanelId");
+                    b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Panels");
+                    b.ToTable("Panel", (string)null);
                 });
 
             modelBuilder.Entity("KalanchoeAI.Models.Post", b =>
                 {
-                    b.Property<int?>("PostId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("DatePosted")
+                    b.Property<DateTime>("DateCreated")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("MediaLink")
@@ -291,32 +308,33 @@ namespace KalanchoeAIBackend.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("UserId")
+                        .IsRequired()
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("PostId");
+                    b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Posts");
+                    b.ToTable("Post", (string)null);
                 });
 
             modelBuilder.Entity("KalanchoeAI.Models.User", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("About")
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("EmailAddress")
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime>("Joined")
-                        .HasColumnType("TEXT");
 
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(100)");
@@ -327,16 +345,18 @@ namespace KalanchoeAIBackend.Migrations
                     b.Property<string>("Username")
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("UserId");
+                    b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("User", (string)null);
                 });
 
             modelBuilder.Entity("KalanchoeAI.Models.Channel", b =>
                 {
                     b.HasOne("KalanchoeAI.Models.Community", "Community")
                         .WithMany("Channels")
-                        .HasForeignKey("CommunityId");
+                        .HasForeignKey("CommunityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Community");
                 });
@@ -345,16 +365,28 @@ namespace KalanchoeAIBackend.Migrations
                 {
                     b.HasOne("KalanchoeAI.Models.Channel", "Channel")
                         .WithMany("ChannelComments")
-                        .HasForeignKey("ChannelId");
+                        .HasForeignKey("ChannelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("KalanchoeAI.Models.User", "User")
+                        .WithMany("ChannelComments")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Channel");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("KalanchoeAI.Models.Chat", b =>
                 {
                     b.HasOne("KalanchoeAI.Models.User", "User")
                         .WithMany("Chats")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -363,7 +395,9 @@ namespace KalanchoeAIBackend.Migrations
                 {
                     b.HasOne("KalanchoeAI.Models.Chat", "Chat")
                         .WithMany("ChatComments")
-                        .HasForeignKey("ChatId");
+                        .HasForeignKey("ChatId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Chat");
                 });
@@ -372,11 +406,15 @@ namespace KalanchoeAIBackend.Migrations
                 {
                     b.HasOne("KalanchoeAI.Models.Post", "Post")
                         .WithMany("Comments")
-                        .HasForeignKey("PostId");
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("KalanchoeAI.Models.User", "User")
                         .WithMany("Comments")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Post");
 
@@ -387,7 +425,9 @@ namespace KalanchoeAIBackend.Migrations
                 {
                     b.HasOne("KalanchoeAI.Models.User", "User")
                         .WithMany("Communities")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -396,7 +436,9 @@ namespace KalanchoeAIBackend.Migrations
                 {
                     b.HasOne("KalanchoeAI.Models.User", "User")
                         .WithMany("Followers")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -405,11 +447,15 @@ namespace KalanchoeAIBackend.Migrations
                 {
                     b.HasOne("KalanchoeAI.Models.Community", "Community")
                         .WithMany("Members")
-                        .HasForeignKey("CommunityId");
+                        .HasForeignKey("CommunityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("KalanchoeAI.Models.User", "User")
                         .WithMany("Members")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Community");
 
@@ -420,7 +466,9 @@ namespace KalanchoeAIBackend.Migrations
                 {
                     b.HasOne("KalanchoeAI.Models.User", "User")
                         .WithMany("Messages")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -429,7 +477,9 @@ namespace KalanchoeAIBackend.Migrations
                 {
                     b.HasOne("KalanchoeAI.Models.Panel", "Panel")
                         .WithMany("Notes")
-                        .HasForeignKey("PanelId");
+                        .HasForeignKey("PanelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Panel");
                 });
@@ -438,7 +488,9 @@ namespace KalanchoeAIBackend.Migrations
                 {
                     b.HasOne("KalanchoeAI.Models.User", "User")
                         .WithMany("Panels")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -447,7 +499,9 @@ namespace KalanchoeAIBackend.Migrations
                 {
                     b.HasOne("KalanchoeAI.Models.User", "User")
                         .WithMany("Posts")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -481,6 +535,8 @@ namespace KalanchoeAIBackend.Migrations
 
             modelBuilder.Entity("KalanchoeAI.Models.User", b =>
                 {
+                    b.Navigation("ChannelComments");
+
                     b.Navigation("Chats");
 
                     b.Navigation("Comments");

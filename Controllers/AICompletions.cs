@@ -20,10 +20,10 @@ namespace KalanchoeAI_Backend.Controllers
     public class ChatgptController : ControllerBase
     {
 
-        string ApiKey = "";
-        string response = "";
-        string Organization = "";
-        IConfiguration _configuration;
+        //string ApiKey = "";
+        //string response = "";
+        //string Organization = "";
+        //IConfiguration _configuration;
 
         // GET: api/Chatgpt
         [HttpGet]
@@ -40,36 +40,36 @@ namespace KalanchoeAI_Backend.Controllers
         }
 
         // POST: api/Chatgpt
-        [HttpPost]
-        public async Task PostAsync()
-        {
-            var openAiService = new OpenAIService(new OpenAiOptions()
-            {
-                ApiKey = _configuration["OpenAIServiceOptions:ApiKey"],
-                Organization = _configuration["OpenAIServiceOptions:Organization"]
-            });
+        //[HttpPost]
+        //public async Task PostAsync()
+        //{
+        //    var openAiService = new OpenAIService(new OpenAiOptions()
+        //    {
+        //        ApiKey = _configuration["OpenAIServiceOptions:ApiKey"],
+        //        Organization = _configuration["OpenAIServiceOptions:Organization"]
+        //    });
 
-            var completionResult = await openAiService.Completions
-            .CreateCompletion(new CompletionCreateRequest()
-            {
-                Prompt = "hello",
-                MaxTokens = 5
-            }, Models.Davinci);
-            if (completionResult.Successful)
-            {
-                response = completionResult
-                .Choices.FirstOrDefault()?.Text ?? "";
-            }
-            else
-            {
-                if (completionResult.Error == null)
-                {
-                    response = "Unknown Error";
-                }
-                response =
-                $"{completionResult.Error?.Code}: {completionResult.Error?.Message}";
-            }
-        }
+        //    var completionResult = await openAiService.Completions
+        //    .CreateCompletion(new CompletionCreateRequest()
+        //    {
+        //        Prompt = "hello",
+        //        MaxTokens = 5
+        //    }, Models.Davinci);
+        //    if (completionResult.Successful)
+        //    {
+        //        response = completionResult
+        //        .Choices.FirstOrDefault()?.Text ?? "";
+        //    }
+        //    else
+        //    {
+        //        if (completionResult.Error == null)
+        //        {
+        //            response = "Unknown Error";
+        //        }
+        //        response =
+        //        $"{completionResult.Error?.Code}: {completionResult.Error?.Message}";
+        //    }
+        //}
 
         // PUT: api/Chatgpt/5
         [HttpPut("{id}")]

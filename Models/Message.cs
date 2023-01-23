@@ -1,24 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Xml.Linq;
 
 namespace KalanchoeAI.Models
 {
 	public class Message
 	{
-        [Key]
-        public int MessageId { get; set; }
+        public int Id { get; set; }
 
-		public int? UserId { get; set; }
+		public int UserId { get; set; }
 
-        [Column(TypeName = "nvarchar(100)")]
         public string? MessageValue { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime DatePosted { get; set; }
+        public DateTime DateCreated { get; set; } = DateTime.UtcNow;
 
-		public virtual User? User { get; set; }
+        public User User { get; set; }
 	}
 }
 

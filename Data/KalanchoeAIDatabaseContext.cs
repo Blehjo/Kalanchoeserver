@@ -33,9 +33,69 @@ namespace KalanchoeAI.Data
             modelBuilder.Entity<User>().ToTable(nameof(User))
                 .HasMany(u => u.Chats)
                 .WithOne(c => c.User)
-                .OnDelete(DeleteBehavior.Delete);
-            modelBuilder.Entity<Student>().ToTable(nameof(Student));
-            modelBuilder.Entity<Instructor>().ToTable(nameof(Instructor));
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<User>().ToTable(nameof(User))
+                .HasMany(u => u.Communities)
+                .WithOne(c => c.User)
+                .OnDelete(DeleteBehavior.Cascade); 
+            modelBuilder.Entity<User>().ToTable(nameof(User))
+                .HasMany(u => u.Followers)
+                .WithOne(f => f.User)
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<User>().ToTable(nameof(User))
+                .HasMany(u => u.Messages)
+                .WithOne(m => m.User)
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<User>().ToTable(nameof(User))
+                .HasMany(u => u.Panels)
+                .WithOne(p => p.User)
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<User>().ToTable(nameof(User))
+                .HasMany(u => u.Posts)
+                .WithOne(p => p.User)
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<User>().ToTable(nameof(User))
+                .HasMany(u => u.Members)
+                .WithOne(m => m.User)
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<User>().ToTable(nameof(User))
+                .HasMany(u => u.Comments)
+                .WithOne(c => c.User)
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<User>().ToTable(nameof(User))
+                .HasMany(u => u.ChannelComments)
+                .WithOne(c => c.User)
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Chat>().ToTable(nameof(Chat))
+                .HasMany(c => c.ChatComments)
+                .WithOne(c => c.Chat)
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Community>().ToTable(nameof(Community))
+                .HasMany(c => c.Channels)
+                .WithOne(c => c.Community)
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Community>().ToTable(nameof(Community))
+                .HasMany(c => c.Members)
+                .WithOne(m => m.Community)
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Panel>().ToTable(nameof(Panel))
+                .HasMany(p => p.Notes)
+                .WithOne(n => n.Panel)
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Post>().ToTable(nameof(Post))
+                .HasMany(p => p.Comments)
+                .WithOne(c => c.Post)
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Channel>().ToTable(nameof(Channel))
+                .HasMany(c => c.ChannelComments)
+                .WithOne(c => c.Channel)
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Note>().ToTable(nameof(Note));
+            modelBuilder.Entity<Message>().ToTable(nameof(Message));
+            modelBuilder.Entity<Member>().ToTable(nameof(Member));
+            modelBuilder.Entity<Follower>().ToTable(nameof(Follower));
+            modelBuilder.Entity<ChatComment>().ToTable(nameof(ChatComment));
+            modelBuilder.Entity<ChannelComment>().ToTable(nameof(ChannelComment));
         }
     }
 }

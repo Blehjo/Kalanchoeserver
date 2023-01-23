@@ -55,7 +55,7 @@ namespace KalanchoeAI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutNote(int id, Note note)
         {
-            if (id != note.NoteId)
+            if (id != note.Id)
             {
                 return BadRequest();
             }
@@ -93,7 +93,7 @@ namespace KalanchoeAI.Controllers
             _context.Note.Add(note);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetNote", new { id = note.NoteId }, note);
+            return CreatedAtAction("GetNote", new { id = note.Id }, note);
         }
 
         // DELETE: api/Note/5
@@ -118,7 +118,7 @@ namespace KalanchoeAI.Controllers
 
         private bool NoteExists(int id)
         {
-            return (_context.Note?.Any(e => e.NoteId == id)).GetValueOrDefault();
+            return (_context.Note?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

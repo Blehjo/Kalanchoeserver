@@ -1,26 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Xml.Linq;
 
 namespace KalanchoeAI.Models
 {
 	public class Channel
 	{
-        [Key]
-        public int ChannelId { get; set; }
+        public int Id { get; set; }
 
-		public int? CommunityId { get; set; }
+		public int CommunityId { get; set; }
 
-        [Column(TypeName = "nvarchar(100)")]
-        public string? Description { get; set; }
+        public string Description { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime DateCreated { get; set; }
+        public DateTime DateCreated { get; set; } = DateTime.UtcNow;
 
-		public virtual Community? Community { get; set; }
+        public Community Community { get; set; }
 
-		public virtual ICollection<ChannelComment>? ChannelComments { get; set; }
+		public ICollection<ChannelComment>? ChannelComments { get; set; }
 	}
 }
 
