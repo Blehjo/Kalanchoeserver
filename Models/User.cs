@@ -7,7 +7,7 @@ namespace KalanchoeAI.Models
 {
 	public class User
 	{
-        public int Id { get; set; }
+        public int UserId { get; set; }
 
         public string? Username { get; set; }
 
@@ -42,7 +42,7 @@ namespace KalanchoeAI.Models
 
         public ICollection<Message>? Messages { get; set; }
 
-        public ICollection<Panel>? Panels { get; set; }
+        public ICollection<Panel> Panels { get; set; }
 
         public ICollection<Follower>? Followers { get; set; }
 

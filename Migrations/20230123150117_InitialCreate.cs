@@ -12,70 +12,70 @@ namespace KalanchoeAIBackend.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "User",
+                name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                    UserId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Username = table.Column<string>(type: "nvarchar(100)", nullable: true),
-                    FirstName = table.Column<string>(type: "nvarchar(100)", nullable: true),
-                    EmailAddress = table.Column<string>(type: "nvarchar(100)", nullable: true),
-                    Password = table.Column<string>(type: "nvarchar(100)", nullable: true),
-                    About = table.Column<string>(type: "nvarchar(100)", nullable: true),
-                    ProfileImage = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    Username = table.Column<string>(type: "TEXT", nullable: true),
+                    FirstName = table.Column<string>(type: "TEXT", nullable: true),
+                    EmailAddress = table.Column<string>(type: "TEXT", nullable: true),
+                    Password = table.Column<string>(type: "TEXT", nullable: true),
+                    About = table.Column<string>(type: "TEXT", nullable: true),
+                    ProfileImage = table.Column<string>(type: "TEXT", nullable: true),
                     DateCreated = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_User", x => x.Id);
+                    table.PrimaryKey("PK_Users", x => x.UserId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Chat",
+                name: "Chats",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     UserId = table.Column<int>(type: "INTEGER", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    Title = table.Column<string>(type: "TEXT", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Chat", x => x.Id);
+                    table.PrimaryKey("PK_Chats", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Chat_User_UserId",
+                        name: "FK_Chats_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "User",
-                        principalColumn: "Id",
+                        principalTable: "Users",
+                        principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Community",
+                name: "Communities",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     UserId = table.Column<int>(type: "INTEGER", nullable: false),
-                    GroupName = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    GroupName = table.Column<string>(type: "TEXT", nullable: false),
+                    Description = table.Column<string>(type: "TEXT", nullable: false),
                     MediaLink = table.Column<string>(type: "TEXT", nullable: true),
                     DateCreated = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Community", x => x.Id);
+                    table.PrimaryKey("PK_Communities", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Community_User_UserId",
+                        name: "FK_Communities_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "User",
-                        principalColumn: "Id",
+                        principalTable: "Users",
+                        principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Follower",
+                name: "Followers",
                 columns: table => new
                 {
                     FollowerId = table.Column<int>(type: "INTEGER", nullable: false)
@@ -84,59 +84,59 @@ namespace KalanchoeAIBackend.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Follower", x => x.FollowerId);
+                    table.PrimaryKey("PK_Followers", x => x.FollowerId);
                     table.ForeignKey(
-                        name: "FK_Follower_User_UserId",
+                        name: "FK_Followers_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "User",
-                        principalColumn: "Id",
+                        principalTable: "Users",
+                        principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Message",
+                name: "Messages",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     UserId = table.Column<int>(type: "INTEGER", nullable: false),
-                    MessageValue = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    MessageValue = table.Column<string>(type: "TEXT", nullable: true),
                     DateCreated = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Message", x => x.Id);
+                    table.PrimaryKey("PK_Messages", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Message_User_UserId",
+                        name: "FK_Messages_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "User",
-                        principalColumn: "Id",
+                        principalTable: "Users",
+                        principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Panel",
+                name: "Panels",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Title = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    Title = table.Column<string>(type: "TEXT", nullable: true),
                     DateCreated = table.Column<DateTime>(type: "TEXT", nullable: false),
                     UserId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Panel", x => x.Id);
+                    table.PrimaryKey("PK_Panels", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Panel_User_UserId",
+                        name: "FK_Panels_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "User",
-                        principalColumn: "Id",
+                        principalTable: "Users",
+                        principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Post",
+                name: "Posts",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -148,59 +148,59 @@ namespace KalanchoeAIBackend.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Post", x => x.Id);
+                    table.PrimaryKey("PK_Posts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Post_User_UserId",
+                        name: "FK_Posts_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "User",
-                        principalColumn: "Id",
+                        principalTable: "Users",
+                        principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ChatComment",
+                name: "ChatComments",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     ChatId = table.Column<int>(type: "INTEGER", nullable: false),
-                    ChatValue = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    ChatValue = table.Column<string>(type: "TEXT", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ChatComment", x => x.Id);
+                    table.PrimaryKey("PK_ChatComments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ChatComment_Chat_ChatId",
+                        name: "FK_ChatComments_Chats_ChatId",
                         column: x => x.ChatId,
-                        principalTable: "Chat",
+                        principalTable: "Chats",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Channel",
+                name: "Channels",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     CommunityId = table.Column<int>(type: "INTEGER", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    Description = table.Column<string>(type: "TEXT", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Channel", x => x.Id);
+                    table.PrimaryKey("PK_Channels", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Channel_Community_CommunityId",
+                        name: "FK_Channels_Communities_CommunityId",
                         column: x => x.CommunityId,
-                        principalTable: "Community",
+                        principalTable: "Communities",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Member",
+                name: "Members",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -211,18 +211,18 @@ namespace KalanchoeAIBackend.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Member", x => x.Id);
+                    table.PrimaryKey("PK_Members", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Member_Community_CommunityId",
+                        name: "FK_Members_Communities_CommunityId",
                         column: x => x.CommunityId,
-                        principalTable: "Community",
+                        principalTable: "Communities",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Member_User_UserId",
+                        name: "FK_Members_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "User",
-                        principalColumn: "Id",
+                        principalTable: "Users",
+                        principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -233,16 +233,16 @@ namespace KalanchoeAIBackend.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     PanelId = table.Column<int>(type: "INTEGER", nullable: false),
-                    NoteValue = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    NoteValue = table.Column<string>(type: "TEXT", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Note", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Note_Panel_PanelId",
+                        name: "FK_Note_Panels_PanelId",
                         column: x => x.PanelId,
-                        principalTable: "Panel",
+                        principalTable: "Panels",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -255,78 +255,78 @@ namespace KalanchoeAIBackend.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     UserId = table.Column<int>(type: "INTEGER", nullable: false),
                     PostId = table.Column<int>(type: "INTEGER", nullable: false),
-                    CommentValue = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    CommentValue = table.Column<string>(type: "TEXT", nullable: true),
                     DateCreated = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Comments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Comments_Post_PostId",
+                        name: "FK_Comments_Posts_PostId",
                         column: x => x.PostId,
-                        principalTable: "Post",
+                        principalTable: "Posts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Comments_User_UserId",
+                        name: "FK_Comments_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "User",
-                        principalColumn: "Id",
+                        principalTable: "Users",
+                        principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ChannelComment",
+                name: "ChannelComments",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     ChannelId = table.Column<int>(type: "INTEGER", nullable: false),
                     UserId = table.Column<int>(type: "INTEGER", nullable: false),
-                    ChannelCommentValue = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    ChannelCommentValue = table.Column<string>(type: "TEXT", nullable: true),
                     DateCreated = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ChannelComment", x => x.Id);
+                    table.PrimaryKey("PK_ChannelComments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ChannelComment_Channel_ChannelId",
+                        name: "FK_ChannelComments_Channels_ChannelId",
                         column: x => x.ChannelId,
-                        principalTable: "Channel",
+                        principalTable: "Channels",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ChannelComment_User_UserId",
+                        name: "FK_ChannelComments_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "User",
-                        principalColumn: "Id",
+                        principalTable: "Users",
+                        principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Channel_CommunityId",
-                table: "Channel",
-                column: "CommunityId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ChannelComment_ChannelId",
-                table: "ChannelComment",
+                name: "IX_ChannelComments_ChannelId",
+                table: "ChannelComments",
                 column: "ChannelId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ChannelComment_UserId",
-                table: "ChannelComment",
+                name: "IX_ChannelComments_UserId",
+                table: "ChannelComments",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Chat_UserId",
-                table: "Chat",
-                column: "UserId");
+                name: "IX_Channels_CommunityId",
+                table: "Channels",
+                column: "CommunityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ChatComment_ChatId",
-                table: "ChatComment",
+                name: "IX_ChatComments_ChatId",
+                table: "ChatComments",
                 column: "ChatId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Chats_UserId",
+                table: "Chats",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_PostId",
@@ -339,28 +339,28 @@ namespace KalanchoeAIBackend.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Community_UserId",
-                table: "Community",
+                name: "IX_Communities_UserId",
+                table: "Communities",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Follower_UserId",
-                table: "Follower",
+                name: "IX_Followers_UserId",
+                table: "Followers",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Member_CommunityId",
-                table: "Member",
+                name: "IX_Members_CommunityId",
+                table: "Members",
                 column: "CommunityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Member_UserId",
-                table: "Member",
+                name: "IX_Members_UserId",
+                table: "Members",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Message_UserId",
-                table: "Message",
+                name: "IX_Messages_UserId",
+                table: "Messages",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -369,13 +369,13 @@ namespace KalanchoeAIBackend.Migrations
                 column: "PanelId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Panel_UserId",
-                table: "Panel",
+                name: "IX_Panels_UserId",
+                table: "Panels",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Post_UserId",
-                table: "Post",
+                name: "IX_Posts_UserId",
+                table: "Posts",
                 column: "UserId");
         }
 
@@ -383,43 +383,43 @@ namespace KalanchoeAIBackend.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ChannelComment");
+                name: "ChannelComments");
 
             migrationBuilder.DropTable(
-                name: "ChatComment");
+                name: "ChatComments");
 
             migrationBuilder.DropTable(
                 name: "Comments");
 
             migrationBuilder.DropTable(
-                name: "Follower");
+                name: "Followers");
 
             migrationBuilder.DropTable(
-                name: "Member");
+                name: "Members");
 
             migrationBuilder.DropTable(
-                name: "Message");
+                name: "Messages");
 
             migrationBuilder.DropTable(
                 name: "Note");
 
             migrationBuilder.DropTable(
-                name: "Channel");
+                name: "Channels");
 
             migrationBuilder.DropTable(
-                name: "Chat");
+                name: "Chats");
 
             migrationBuilder.DropTable(
-                name: "Post");
+                name: "Posts");
 
             migrationBuilder.DropTable(
-                name: "Panel");
+                name: "Panels");
 
             migrationBuilder.DropTable(
-                name: "Community");
+                name: "Communities");
 
             migrationBuilder.DropTable(
-                name: "User");
+                name: "Users");
         }
     }
 }

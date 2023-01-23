@@ -55,7 +55,7 @@ namespace KalanchoeAI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(int id, User user)
         {
-            if (id != user.Id)
+            if (id != user.UserId)
             {
                 return BadRequest();
             }
@@ -93,7 +93,7 @@ namespace KalanchoeAI.Controllers
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+            return CreatedAtAction("GetUser", new { id = user.UserId }, user);
         }
 
         // DELETE: api/User/5
@@ -118,7 +118,7 @@ namespace KalanchoeAI.Controllers
 
         private bool UserExists(int id)
         {
-            return (_context.Users?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Users?.Any(e => e.UserId == id)).GetValueOrDefault();
         }
     }
 }
