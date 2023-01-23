@@ -42,7 +42,7 @@ namespace KalanchoeAI.Models
 
         public ICollection<Message>? Messages { get; set; }
 
-        public ICollection<Panel> Panels { get; set; }
+        public ICollection<Panel>? Panels { get; set; }
 
         public ICollection<Follower>? Followers { get; set; }
 

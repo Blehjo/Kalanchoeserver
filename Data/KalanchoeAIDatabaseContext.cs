@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using KalanchoeAI.Models;
+using System.Reflection.Metadata;
 
 namespace KalanchoeAI.Data
 {
@@ -31,8 +32,11 @@ namespace KalanchoeAI.Data
             modelBuilder.Entity<Panel>()
                 .HasOne(p => p.User)
                 .WithMany(u => u.Panels)
-                .HasForeignKey(p => p.UserId)
+                .HasForeignKey(p => p.UserForeignKey)
                 .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Panel>()
+                .Navigation(b => b.User)
+                .UsePropertyAccessMode(PropertyAccessMode.Property);
             //modelBuilder.Entity<User>()
             //    .HasMany(u => u.Chats)
             //    .WithOne(c => c.User)

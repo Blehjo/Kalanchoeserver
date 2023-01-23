@@ -14,7 +14,7 @@ namespace KalanchoeAI.Models
         [DataType(DataType.Date)]
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;
 
-        public int UserId { get; set; }
+        public int UserForeignKey { get; set; }
         public User User { get; set; }
 
 		public ICollection<Note>? Notes { get; set; }
