@@ -32,7 +32,7 @@ namespace KalanchoeAI.Data
             modelBuilder.Entity<Panel>()
                 .HasOne(p => p.User)
                 .WithMany(u => u.Panels)
-                .HasForeignKey(p => p.UserForeignKey)
+                .HasForeignKey(p => p.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<Panel>()
                 .Navigation(b => b.User)
