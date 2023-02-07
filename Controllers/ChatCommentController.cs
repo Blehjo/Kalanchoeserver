@@ -5,8 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using KalanchoeAI.Data;
-using KalanchoeAI.Models;
 using OpenAI.GPT3;
 using OpenAI.GPT3.Managers;
 using OpenAI.GPT3.ObjectModels;
@@ -15,8 +13,10 @@ using OpenAI.GPT3.Extensions;
 using OpenAI.GPT3.Interfaces;
 using Azure;
 using Microsoft.Identity.Client;
+using KalanchoeAI_Backend.Data;
+using KalanchoeAI_Backend.Models;
 
-namespace KalanchoeAI.Controllers
+namespace KalanchoeAI_Backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

@@ -1,17 +1,31 @@
-﻿using KalanchoeAI.Data;
+﻿using KalanchoeAI_Backend  .Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using KalanchoeAI.Models;
+using KalanchoeAI_Backend.Models;
 using OpenAI.GPT3.Extensions;
 using OpenAI.GPT3.Interfaces;
 using System.Configuration;
 using System;
+using KalanchoeAI_Backend.Helpers;
+using KalanchoeAI_Backend.Services;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
+
+{
+    var services = builder.Services;
+    services.AddCors();
+    services.AddControllers();
+
+    // configure strongly typed settings object
+    services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+
+    // configure DI for application services
+    services.AddScoped<IUserService, UserService>();
+}
 
 builder.Services.AddCors(options =>
 {
@@ -22,6 +36,7 @@ builder.Services.AddCors(options =>
                               "https://localhost:7028",
                               "https://localhost:44498"
                           )
+                          .AllowAnyOrigin()
                           .AllowAnyHeader()
                           .AllowAnyMethod();
                       });

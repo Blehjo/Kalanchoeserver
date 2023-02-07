@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace KalanchoeAI.Models
+namespace KalanchoeAI_Backend.Models
 {
 	public class Note
 	{

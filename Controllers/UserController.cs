@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using KalanchoeAI.Data;
-using KalanchoeAI.Models;
+using KalanchoeAI_Backend.Data;
+using KalanchoeAI_Backend.Models;
 
-namespace KalanchoeAI.Controllers
+namespace KalanchoeAI_Backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

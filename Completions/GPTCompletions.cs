@@ -2,7 +2,7 @@
 using OpenAI.GPT3.ObjectModels;
 using OpenAI.GPT3.ObjectModels.RequestModels;
 
-namespace KalanchoeAI_Backend
+namespace KalanchoeAI_Backend.Completions
 {
     public static class GPTCompletions
     {
@@ -15,7 +15,7 @@ namespace KalanchoeAI_Backend
                     Prompt = prompt,
                     MaxTokens = 5,
                     LogProbs = 1,
-                }, Models.Davinci);
+                }, OpenAI.Engine.Davinci);
 
                 if (completionResult.Successful)
                 {

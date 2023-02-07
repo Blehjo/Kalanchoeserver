@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
-namespace KalanchoeAI.Models
+namespace KalanchoeAI_Backend.Models
 {
 	public class User
 	{

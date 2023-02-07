@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "vl5dGcnVWdMO5xMMAkYXlpWb1e42GBCv5AlyBjr9o7Dda2TqX0ZjlpO/LUzO0K8D+OSfMqokNP7fd4+oFXOtdA==",
+  "dgSpecHash": "Q74l1phF+9FZV4Ppy+lpcKRzZkZoHvr4h1s1P7ndjIKrQ5pbaUztSrFrpc1PBcygDftMq/7v/mdKwX5TK5GRAg==",
   "success": true,
   "projectFilePath": "/Users/blehjo/projects/KalanchoeAI/KalanchoeAI-Backend/KalanchoeAI-Backend.csproj",
   "expectedPackageFiles": [
@@ -36,9 +36,9 @@
     "/Users/blehjo/.nuget/packages/microsoft.data.sqlite.core/7.0.1/microsoft.data.sqlite.core.7.0.1.nupkg.sha512",
     "/Users/blehjo/.nuget/packages/microsoft.diasymreader/1.4.0/microsoft.diasymreader.1.4.0.nupkg.sha512",
     "/Users/blehjo/.nuget/packages/microsoft.dotnet.scaffolding.shared/7.0.1/microsoft.dotnet.scaffolding.shared.7.0.1.nupkg.sha512",
-    "/Users/blehjo/.nuget/packages/microsoft.entityframeworkcore/7.0.1/microsoft.entityframeworkcore.7.0.1.nupkg.sha512",
-    "/Users/blehjo/.nuget/packages/microsoft.entityframeworkcore.abstractions/7.0.1/microsoft.entityframeworkcore.abstractions.7.0.1.nupkg.sha512",
-    "/Users/blehjo/.nuget/packages/microsoft.entityframeworkcore.analyzers/7.0.1/microsoft.entityframeworkcore.analyzers.7.0.1.nupkg.sha512",
+    "/Users/blehjo/.nuget/packages/microsoft.entityframeworkcore/7.0.2/microsoft.entityframeworkcore.7.0.2.nupkg.sha512",
+    "/Users/blehjo/.nuget/packages/microsoft.entityframeworkcore.abstractions/7.0.2/microsoft.entityframeworkcore.abstractions.7.0.2.nupkg.sha512",
+    "/Users/blehjo/.nuget/packages/microsoft.entityframeworkcore.analyzers/7.0.2/microsoft.entityframeworkcore.analyzers.7.0.2.nupkg.sha512",
     "/Users/blehjo/.nuget/packages/microsoft.entityframeworkcore.design/7.0.1/microsoft.entityframeworkcore.design.7.0.1.nupkg.sha512",
     "/Users/blehjo/.nuget/packages/microsoft.entityframeworkcore.relational/7.0.1/microsoft.entityframeworkcore.relational.7.0.1.nupkg.sha512",
     "/Users/blehjo/.nuget/packages/microsoft.entityframeworkcore.sqlite/7.0.1/microsoft.entityframeworkcore.sqlite.7.0.1.nupkg.sha512",

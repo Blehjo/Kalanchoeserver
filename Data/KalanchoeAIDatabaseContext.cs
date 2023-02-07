@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using KalanchoeAI.Models;
+using KalanchoeAI_Backend.Models;
 using System.Reflection.Metadata;
 
-namespace KalanchoeAI.Data
+namespace KalanchoeAI_Backend.Data
 {
 	public class KalanchoeAIDatabaseContext : DbContext
 	{
