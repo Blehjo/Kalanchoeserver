@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace KalanchoeAI_Backend.Models
+namespace KalanchoeAI_Backend.Models.Users
 {
 	public class AuthenticateRequest
 	{

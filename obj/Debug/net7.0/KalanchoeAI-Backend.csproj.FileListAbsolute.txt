@@ -307,3 +307,6 @@
 /Users/blehjo/projects/KalanchoeAI/KalanchoeAI-Backend/obj/Debug/net7.0/KalanchoeAI-Backend.genruntimeconfig.cache
 /Users/blehjo/projects/KalanchoeAI/KalanchoeAI-Backend/obj/Debug/net7.0/ref/KalanchoeAI-Backend.dll
 /Users/blehjo/projects/KalanchoeAI/KalanchoeAI-Backend/bin/Debug/net7.0/omnisharp.json
+/Users/blehjo/projects/KalanchoeAI/KalanchoeAI-Backend/bin/Debug/net7.0/AutoMapper.dll
+/Users/blehjo/projects/KalanchoeAI/KalanchoeAI-Backend/bin/Debug/net7.0/BCrypt.Net-Next.dll
+/Users/blehjo/projects/KalanchoeAI/KalanchoeAI-Backend/bin/Debug/net7.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll

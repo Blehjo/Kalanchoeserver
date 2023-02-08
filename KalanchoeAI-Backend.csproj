@@ -28,6 +28,10 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.1" />
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -47,6 +51,15 @@
     <None Remove="Helpers\" />
     <None Remove="Entities\" />
     <None Remove="Services\" />
+    <None Remove="Authorization\" />
+    <None Remove="AutoMapper" />
+    <None Remove="Models\Users\" />
+    <None Remove="BCrypt" />
+    <None Remove="BCrypt.Net-Core" />
+    <None Remove="BCrypt.Net" />
+    <None Remove="BCrypt.Net-Next" />
+    <None Remove="Microsoft.AspNetCore.Session" />
+    <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -56,5 +69,7 @@
     <Folder Include="Helpers\" />
     <Folder Include="Entities\" />
     <Folder Include="Services\" />
+    <Folder Include="Authorization\" />
+    <Folder Include="Models\Users\" />
   </ItemGroup>
 </Project>

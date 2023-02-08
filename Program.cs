@@ -1,46 +1,42 @@
-﻿using KalanchoeAI_Backend  .Data;
+﻿using KalanchoeAI_Backend.Data;
+using Microsoft.AspNetCore.Session;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using KalanchoeAI_Backend.Models;
+using KalanchoeAI_Backend.Models.Users;
 using OpenAI.GPT3.Extensions;
 using OpenAI.GPT3.Interfaces;
 using System.Configuration;
-using System;
 using KalanchoeAI_Backend.Helpers;
 using KalanchoeAI_Backend.Services;
-
-var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+using KalanchoeAI_Backend.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 {
     var services = builder.Services;
+    var env = builder.Environment;
+
+    // use sql server db in production and sqlite db in development
+    if (env.IsProduction())
+        services.AddDbContext<DataContext>();
+    else
+        services.AddDbContext<DataContext, SqliteDataContext>();
+
     services.AddCors();
     services.AddControllers();
+
+    // configure automapper with all automapper profiles from this assembly
+    services.AddAutoMapper(typeof(Program));
 
     // configure strongly typed settings object
     services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 
     // configure DI for application services
+    services.AddScoped<IJwtUtils, JwtUtils>();
     services.AddScoped<IUserService, UserService>();
 }
-
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy(name: MyAllowSpecificOrigins,
-                      policy =>
-                      {
-                          policy.WithOrigins(
-                              "https://localhost:7028",
-                              "https://localhost:44498"
-                          )
-                          .AllowAnyOrigin()
-                          .AllowAnyHeader()
-                          .AllowAnyMethod();
-                      });
-});
 
 builder.Configuration
     .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
@@ -61,6 +57,12 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var dataContext = scope.ServiceProvider.GetRequiredService<DataContext>();
+    dataContext.Database.Migrate();
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -70,13 +72,24 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseCors(MyAllowSpecificOrigins);
+{
+    // global cors policy
+    app.UseCors(x => x
+        .AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader());
+
+    // global error handler
+    app.UseMiddleware<ErrorHandlerMiddleware>();
+
+    // custom jwt auth middleware
+    app.UseMiddleware<KalanchoeAI_Backend.Authorization.JwtMiddleware>();
+
+    app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller}/{action=Index}/{id?}");
+}
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller}/{action=Index}/{id?}");
-
 app.Run();
-

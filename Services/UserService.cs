@@ -1,11 +1,10 @@
-﻿using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
+﻿using AutoMapper;
+using BCrypt.Net;
+using KalanchoeAI_Backend.Authorization;
 using KalanchoeAI_Backend.Helpers;
 using KalanchoeAI_Backend.Entities;
-using KalanchoeAI_Backend.Models;
+using KalanchoeAI_Backend.Models.Users;
+
 
 namespace KalanchoeAI_Backend.Services
 {
@@ -14,61 +13,100 @@ namespace KalanchoeAI_Backend.Services
         AuthenticateResponse Authenticate(AuthenticateRequest model);
         IEnumerable<UserInfo> GetAll();
         UserInfo GetById(int id);
+        void Register(RegisterRequest model);
+        void Update(int id, UpdateRequest model);
+        void Delete(int id);
     }
 
     public class UserService : IUserService
     {
-        // users hardcoded for simplicity, store in a db with hashed passwords in production applications
-        private List<UserInfo> _users = new List<UserInfo>
-    {
-        new UserInfo { Id = 1, FirstName = "Test", LastName = "User", Username = "test", Password = "test" }
-    };
+        private DataContext _context;
+        private IJwtUtils _jwtUtils;
+        private readonly IMapper _mapper;
 
-        private readonly AppSettings _appSettings;
-
-        public UserService(IOptions<AppSettings> appSettings)
+        public UserService(
+            DataContext context,
+            IJwtUtils jwtUtils,
+            IMapper mapper)
         {
-            _appSettings = appSettings.Value;
+            _context = context;
+            _jwtUtils = jwtUtils;
+            _mapper = mapper;
         }
 
         public AuthenticateResponse Authenticate(AuthenticateRequest model)
         {
-            var user = _users.SingleOrDefault(x => x.Username == model.Username && x.Password == model.Password);
+            var user = _context.Users.SingleOrDefault(x => x.Username == model.Username);
 
-            // return null if user not found
-            if (user == null) return null;
+            // validate
+            if (user == null || !BCrypt.Net.BCrypt.Verify(model.Password, user.Password))
+                throw new AppException("Username or password is incorrect");
 
-            // authentication successful so generate jwt token
-            var token = generateJwtToken(user);
-
-            return new AuthenticateResponse(user, token);
+            // authentication successful
+            var response = _mapper.Map<AuthenticateResponse>(user);
+            response.Token = _jwtUtils.GenerateToken(user);
+            return response;
         }
 
         public IEnumerable<UserInfo> GetAll()
         {
-            return _users;
+            return _context.Users;
         }
 
         public UserInfo GetById(int id)
         {
-            return _users.FirstOrDefault(x => x.Id == id);
+            return getUser(id);
+        }
+
+        public void Register(RegisterRequest model)
+        {
+            // validate
+            if (_context.Users.Any(x => x.Username == model.Username))
+                throw new AppException("Username '" + model.Username + "' is already taken");
+
+            // map model to new user object
+            var user = _mapper.Map<UserInfo>(model);
+
+            // hash password
+            user.Password = BCrypt.Net.BCrypt.HashPassword(model.Password);
+
+            // save user
+            _context.Users.Add(user);
+            _context.SaveChanges();
+        }
+
+        public void Update(int id, UpdateRequest model)
+        {
+            var user = getUser(id);
+
+            // validate
+            if (model.Username != user.Username && _context.Users.Any(x => x.Username == model.Username))
+                throw new AppException("Username '" + model.Username + "' is already taken");
+
+            // hash password if it was entered
+            if (!string.IsNullOrEmpty(model.Password))
+                user.Password = BCrypt.Net.BCrypt.HashPassword(model.Password);
+
+            // copy model to user and save
+            _mapper.Map(model, user);
+            _context.Users.Update(user);
+            _context.SaveChanges();
+        }
+
+        public void Delete(int id)
+        {
+            var user = getUser(id);
+            _context.Users.Remove(user);
+            _context.SaveChanges();
         }
 
         // helper methods
 
-        private string generateJwtToken(UserInfo user)
+        private UserInfo getUser(int id)
         {
-            // generate token that is valid for 7 days
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
-                Expires = DateTime.UtcNow.AddDays(7),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token);
+            var user = _context.Users.Find(id);
+            if (user == null) throw new KeyNotFoundException("User not found");
+            return user;
         }
     }
 }

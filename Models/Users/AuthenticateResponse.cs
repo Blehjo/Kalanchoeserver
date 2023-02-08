@@ -1,6 +1,6 @@
 ﻿using KalanchoeAI_Backend.Entities;
 
-namespace KalanchoeAI_Backend.Models
+namespace KalanchoeAI_Backend.Models.Users
 {
 	public class AuthenticateResponse
 	{
@@ -9,16 +9,6 @@ namespace KalanchoeAI_Backend.Models
         public string LastName { get; set; }
         public string Username { get; set; }
         public string Token { get; set; }
-
-
-        public AuthenticateResponse(UserInfo user, string token)
-        {
-            Id = user.Id;
-            FirstName = user.FirstName;
-            LastName = user.LastName;
-            Username = user.Username;
-            Token = token;
-        }
     }
 }
 
