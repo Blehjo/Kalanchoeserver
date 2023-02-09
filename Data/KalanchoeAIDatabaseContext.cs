@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using KalanchoeAI_Backend.Entities;
 using KalanchoeAI_Backend.Models;
+using KalanchoeAI_Backend.Models.Users;
 using System.Reflection.Metadata;
 
 namespace KalanchoeAI_Backend.Data
@@ -24,6 +26,11 @@ namespace KalanchoeAI_Backend.Data
         public DbSet<Message> Messages { get; set; }
         public DbSet<Panel> Panels { get; set; } 
         public DbSet<Note> Note { get; set; }
+        public DbSet<UserInfo> UserInfo { get; set; }
+        //public DbSet<AuthenticateRequest> AuthenticateRequests { get; set; }
+        //public DbSet<AuthenticateResponse> AuthenticateResponses { get; set; }
+        //public DbSet<RegisterRequest> RegisterRequests { get; set; }
+        //public DbSet<UpdateRequest> UpdateRequests { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -37,73 +44,6 @@ namespace KalanchoeAI_Backend.Data
             modelBuilder.Entity<Panel>()
                 .Navigation(b => b.User)
                 .UsePropertyAccessMode(PropertyAccessMode.Property);
-            //modelBuilder.Entity<User>()
-            //    .HasMany(u => u.Chats)
-            //    .WithOne(c => c.User)
-            //    .OnDelete(DeleteBehavior.Cascade);
-            //modelBuilder.Entity<User>()
-            //    .HasMany(u => u.Communities)
-            //    .WithOne(c => c.User)
-            //    .OnDelete(DeleteBehavior.Cascade);
-            //modelBuilder.Entity<User>()
-            //    .HasMany(u => u.Followers)
-            //    .WithOne(f => f.User)
-            //    .OnDelete(DeleteBehavior.Cascade);
-            //modelBuilder.Entity<User>()
-            //    .HasMany(u => u.Messages)
-            //    .WithOne(m => m.User)
-            //    .OnDelete(DeleteBehavior.Cascade);
-            //modelBuilder.Entity<Panel>()
-            //    .HasOne(p => p.User)
-            //    .WithMany(u => u.Panels)
-            //    .HasForeignKey(p => p.UserId)
-            //    .OnDelete(DeleteBehavior.Cascade);
-            //modelBuilder.Entity<User>()
-            //    .HasMany(u => u.Posts)
-            //    .WithOne(p => p.User)
-            //    .OnDelete(DeleteBehavior.Cascade);
-            //modelBuilder.Entity<User>()
-            //    .HasMany(u => u.Members)
-            //    .WithOne(m => m.User)
-            //    .OnDelete(DeleteBehavior.Cascade);
-            //modelBuilder.Entity<User>()
-            //    .HasMany(u => u.Comments)
-            //    .WithOne(c => c.User)
-            //    .OnDelete(DeleteBehavior.Cascade);
-            //modelBuilder.Entity<User>()
-            //    .HasMany(u => u.ChannelComments)
-            //    .WithOne(c => c.User)
-            //    .OnDelete(DeleteBehavior.Cascade);
-            //modelBuilder.Entity<Chat>()
-            //    .HasMany(c => c.ChatComments)
-            //    .WithOne(c => c.Chat)
-            //    .OnDelete(DeleteBehavior.Cascade);
-            //modelBuilder.Entity<Community>()
-            //    .HasMany(c => c.Channels)
-            //    .WithOne(c => c.Community)
-            //    .OnDelete(DeleteBehavior.Cascade);
-            //modelBuilder.Entity<Community>()
-            //    .HasMany(c => c.Members)
-            //    .WithOne(m => m.Community)
-            //    .OnDelete(DeleteBehavior.Cascade);
-            //modelBuilder.Entity<Panel>()
-            //    .HasMany(p => p.Notes)
-            //    .WithOne(n => n.Panel)
-            //    .OnDelete(DeleteBehavior.Cascade);
-            //modelBuilder.Entity<Post>()
-            //    .HasMany(p => p.Comments)
-            //    .WithOne(c => c.Post)
-            //    .OnDelete(DeleteBehavior.Cascade);
-            //modelBuilder.Entity<Channel>()
-            //    .HasMany(c => c.ChannelComments)
-            //    .WithOne(c => c.Channel)
-            //    .OnDelete(DeleteBehavior.Cascade);
-            //modelBuilder.Entity<Note>();
-            //modelBuilder.Entity<Message>();
-            //modelBuilder.Entity<Member>();
-            //modelBuilder.Entity<Follower>();
-            //modelBuilder.Entity<ChatComment>();
-            //modelBuilder.Entity<ChannelComment>();
         }
     }
 }

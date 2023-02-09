@@ -4,7 +4,7 @@ using KalanchoeAI_Backend.Authorization;
 using KalanchoeAI_Backend.Helpers;
 using KalanchoeAI_Backend.Entities;
 using KalanchoeAI_Backend.Models.Users;
-
+using KalanchoeAI_Backend.Data;
 
 namespace KalanchoeAI_Backend.Services
 {
@@ -20,12 +20,12 @@ namespace KalanchoeAI_Backend.Services
 
     public class UserService : IUserService
     {
-        private DataContext _context;
+        private KalanchoeAIDatabaseContext _context;
         private IJwtUtils _jwtUtils;
         private readonly IMapper _mapper;
 
         public UserService(
-            DataContext context,
+            KalanchoeAIDatabaseContext context,
             IJwtUtils jwtUtils,
             IMapper mapper)
         {
@@ -36,7 +36,7 @@ namespace KalanchoeAI_Backend.Services
 
         public AuthenticateResponse Authenticate(AuthenticateRequest model)
         {
-            var user = _context.Users.SingleOrDefault(x => x.Username == model.Username);
+            var user = _context.UserInfo.SingleOrDefault(x => x.Username == model.Username);
 
             // validate
             if (user == null || !BCrypt.Net.BCrypt.Verify(model.Password, user.Password))
@@ -50,7 +50,7 @@ namespace KalanchoeAI_Backend.Services
 
         public IEnumerable<UserInfo> GetAll()
         {
-            return _context.Users;
+            return _context.UserInfo;
         }
 
         public UserInfo GetById(int id)
@@ -71,7 +71,7 @@ namespace KalanchoeAI_Backend.Services
             user.Password = BCrypt.Net.BCrypt.HashPassword(model.Password);
 
             // save user
-            _context.Users.Add(user);
+            _context.UserInfo.Add(user);
             _context.SaveChanges();
         }
 
@@ -89,14 +89,14 @@ namespace KalanchoeAI_Backend.Services
 
             // copy model to user and save
             _mapper.Map(model, user);
-            _context.Users.Update(user);
+            _context.UserInfo.Update(user);
             _context.SaveChanges();
         }
 
         public void Delete(int id)
         {
             var user = getUser(id);
-            _context.Users.Remove(user);
+            _context.UserInfo.Remove(user);
             _context.SaveChanges();
         }
 
@@ -104,7 +104,7 @@ namespace KalanchoeAI_Backend.Services
 
         private UserInfo getUser(int id)
         {
-            var user = _context.Users.Find(id);
+            var user = _context.UserInfo.Find(id);
             if (user == null) throw new KeyNotFoundException("User not found");
             return user;
         }

@@ -19,10 +19,10 @@ var builder = WebApplication.CreateBuilder(args);
     var env = builder.Environment;
 
     // use sql server db in production and sqlite db in development
-    if (env.IsProduction())
-        services.AddDbContext<DataContext>();
-    else
-        services.AddDbContext<DataContext, SqliteDataContext>();
+    //if (env.IsProduction())
+    //    services.AddDbContext<DataContext>();
+    //else
+    //    services.AddDbContext<DataContext, SqliteDataContext>();
 
     services.AddCors();
     services.AddControllers();
@@ -57,11 +57,11 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
-    var dataContext = scope.ServiceProvider.GetRequiredService<DataContext>();
-    dataContext.Database.Migrate();
-}
+//using (var scope = app.Services.CreateScope())
+//{
+//    var dataContext = scope.ServiceProvider.GetRequiredService<DataContext>();
+//    dataContext.Database.Migrate();
+//}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

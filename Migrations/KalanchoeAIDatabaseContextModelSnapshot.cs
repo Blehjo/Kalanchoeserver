@@ -15,9 +15,36 @@ namespace KalanchoeAIBackend.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "7.0.1");
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.2");
 
-            modelBuilder.Entity("KalanchoeAI.Models.Channel", b =>
+            modelBuilder.Entity("KalanchoeAI_Backend.Entities.UserInfo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserInfo");
+                });
+
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.Channel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -40,7 +67,7 @@ namespace KalanchoeAIBackend.Migrations
                     b.ToTable("Channels");
                 });
 
-            modelBuilder.Entity("KalanchoeAI.Models.ChannelComment", b =>
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.ChannelComment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -67,7 +94,7 @@ namespace KalanchoeAIBackend.Migrations
                     b.ToTable("ChannelComments");
                 });
 
-            modelBuilder.Entity("KalanchoeAI.Models.Chat", b =>
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.Chat", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -90,7 +117,7 @@ namespace KalanchoeAIBackend.Migrations
                     b.ToTable("Chats");
                 });
 
-            modelBuilder.Entity("KalanchoeAI.Models.ChatComment", b =>
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.ChatComment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -113,7 +140,7 @@ namespace KalanchoeAIBackend.Migrations
                     b.ToTable("ChatComments");
                 });
 
-            modelBuilder.Entity("KalanchoeAI.Models.Comment", b =>
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.Comment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -140,7 +167,7 @@ namespace KalanchoeAIBackend.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("KalanchoeAI.Models.Community", b =>
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.Community", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -170,7 +197,7 @@ namespace KalanchoeAIBackend.Migrations
                     b.ToTable("Communities");
                 });
 
-            modelBuilder.Entity("KalanchoeAI.Models.Follower", b =>
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.Follower", b =>
                 {
                     b.Property<int>("FollowerId")
                         .ValueGeneratedOnAdd()
@@ -186,7 +213,7 @@ namespace KalanchoeAIBackend.Migrations
                     b.ToTable("Followers");
                 });
 
-            modelBuilder.Entity("KalanchoeAI.Models.Member", b =>
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.Member", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -210,7 +237,7 @@ namespace KalanchoeAIBackend.Migrations
                     b.ToTable("Members");
                 });
 
-            modelBuilder.Entity("KalanchoeAI.Models.Message", b =>
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.Message", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -232,7 +259,7 @@ namespace KalanchoeAIBackend.Migrations
                     b.ToTable("Messages");
                 });
 
-            modelBuilder.Entity("KalanchoeAI.Models.Note", b =>
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.Note", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -255,7 +282,7 @@ namespace KalanchoeAIBackend.Migrations
                     b.ToTable("Note");
                 });
 
-            modelBuilder.Entity("KalanchoeAI.Models.Panel", b =>
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.Panel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -277,7 +304,7 @@ namespace KalanchoeAIBackend.Migrations
                     b.ToTable("Panels");
                 });
 
-            modelBuilder.Entity("KalanchoeAI.Models.Post", b =>
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.Post", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -302,7 +329,7 @@ namespace KalanchoeAIBackend.Migrations
                     b.ToTable("Posts");
                 });
 
-            modelBuilder.Entity("KalanchoeAI.Models.User", b =>
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.User", b =>
                 {
                     b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
@@ -334,9 +361,9 @@ namespace KalanchoeAIBackend.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("KalanchoeAI.Models.Channel", b =>
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.Channel", b =>
                 {
-                    b.HasOne("KalanchoeAI.Models.Community", "Community")
+                    b.HasOne("KalanchoeAI_Backend.Models.Community", "Community")
                         .WithMany("Channels")
                         .HasForeignKey("CommunityId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -345,15 +372,15 @@ namespace KalanchoeAIBackend.Migrations
                     b.Navigation("Community");
                 });
 
-            modelBuilder.Entity("KalanchoeAI.Models.ChannelComment", b =>
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.ChannelComment", b =>
                 {
-                    b.HasOne("KalanchoeAI.Models.Channel", "Channel")
+                    b.HasOne("KalanchoeAI_Backend.Models.Channel", "Channel")
                         .WithMany("ChannelComments")
                         .HasForeignKey("ChannelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("KalanchoeAI.Models.User", "User")
+                    b.HasOne("KalanchoeAI_Backend.Models.User", "User")
                         .WithMany("ChannelComments")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -364,9 +391,9 @@ namespace KalanchoeAIBackend.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("KalanchoeAI.Models.Chat", b =>
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.Chat", b =>
                 {
-                    b.HasOne("KalanchoeAI.Models.User", "User")
+                    b.HasOne("KalanchoeAI_Backend.Models.User", "User")
                         .WithMany("Chats")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -375,9 +402,9 @@ namespace KalanchoeAIBackend.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("KalanchoeAI.Models.ChatComment", b =>
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.ChatComment", b =>
                 {
-                    b.HasOne("KalanchoeAI.Models.Chat", "Chat")
+                    b.HasOne("KalanchoeAI_Backend.Models.Chat", "Chat")
                         .WithMany("ChatComments")
                         .HasForeignKey("ChatId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -386,15 +413,15 @@ namespace KalanchoeAIBackend.Migrations
                     b.Navigation("Chat");
                 });
 
-            modelBuilder.Entity("KalanchoeAI.Models.Comment", b =>
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.Comment", b =>
                 {
-                    b.HasOne("KalanchoeAI.Models.Post", "Post")
+                    b.HasOne("KalanchoeAI_Backend.Models.Post", "Post")
                         .WithMany("Comments")
                         .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("KalanchoeAI.Models.User", "User")
+                    b.HasOne("KalanchoeAI_Backend.Models.User", "User")
                         .WithMany("Comments")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -405,9 +432,9 @@ namespace KalanchoeAIBackend.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("KalanchoeAI.Models.Community", b =>
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.Community", b =>
                 {
-                    b.HasOne("KalanchoeAI.Models.User", "User")
+                    b.HasOne("KalanchoeAI_Backend.Models.User", "User")
                         .WithMany("Communities")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -416,9 +443,9 @@ namespace KalanchoeAIBackend.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("KalanchoeAI.Models.Follower", b =>
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.Follower", b =>
                 {
-                    b.HasOne("KalanchoeAI.Models.User", "User")
+                    b.HasOne("KalanchoeAI_Backend.Models.User", "User")
                         .WithMany("Followers")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -427,15 +454,15 @@ namespace KalanchoeAIBackend.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("KalanchoeAI.Models.Member", b =>
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.Member", b =>
                 {
-                    b.HasOne("KalanchoeAI.Models.Community", "Community")
+                    b.HasOne("KalanchoeAI_Backend.Models.Community", "Community")
                         .WithMany("Members")
                         .HasForeignKey("CommunityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("KalanchoeAI.Models.User", "User")
+                    b.HasOne("KalanchoeAI_Backend.Models.User", "User")
                         .WithMany("Members")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -446,9 +473,9 @@ namespace KalanchoeAIBackend.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("KalanchoeAI.Models.Message", b =>
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.Message", b =>
                 {
-                    b.HasOne("KalanchoeAI.Models.User", "User")
+                    b.HasOne("KalanchoeAI_Backend.Models.User", "User")
                         .WithMany("Messages")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -457,9 +484,9 @@ namespace KalanchoeAIBackend.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("KalanchoeAI.Models.Note", b =>
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.Note", b =>
                 {
-                    b.HasOne("KalanchoeAI.Models.Panel", "Panel")
+                    b.HasOne("KalanchoeAI_Backend.Models.Panel", "Panel")
                         .WithMany("Notes")
                         .HasForeignKey("PanelId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -468,9 +495,9 @@ namespace KalanchoeAIBackend.Migrations
                     b.Navigation("Panel");
                 });
 
-            modelBuilder.Entity("KalanchoeAI.Models.Panel", b =>
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.Panel", b =>
                 {
-                    b.HasOne("KalanchoeAI.Models.User", "User")
+                    b.HasOne("KalanchoeAI_Backend.Models.User", "User")
                         .WithMany("Panels")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -479,9 +506,9 @@ namespace KalanchoeAIBackend.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("KalanchoeAI.Models.Post", b =>
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.Post", b =>
                 {
-                    b.HasOne("KalanchoeAI.Models.User", "User")
+                    b.HasOne("KalanchoeAI_Backend.Models.User", "User")
                         .WithMany("Posts")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -490,34 +517,34 @@ namespace KalanchoeAIBackend.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("KalanchoeAI.Models.Channel", b =>
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.Channel", b =>
                 {
                     b.Navigation("ChannelComments");
                 });
 
-            modelBuilder.Entity("KalanchoeAI.Models.Chat", b =>
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.Chat", b =>
                 {
                     b.Navigation("ChatComments");
                 });
 
-            modelBuilder.Entity("KalanchoeAI.Models.Community", b =>
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.Community", b =>
                 {
                     b.Navigation("Channels");
 
                     b.Navigation("Members");
                 });
 
-            modelBuilder.Entity("KalanchoeAI.Models.Panel", b =>
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.Panel", b =>
                 {
                     b.Navigation("Notes");
                 });
 
-            modelBuilder.Entity("KalanchoeAI.Models.Post", b =>
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.Post", b =>
                 {
                     b.Navigation("Comments");
                 });
 
-            modelBuilder.Entity("KalanchoeAI.Models.User", b =>
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.User", b =>
                 {
                     b.Navigation("ChannelComments");
 
