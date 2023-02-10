@@ -15,6 +15,20 @@ namespace KalanchoeAI_Backend.Models.Users
 
         [Required]
         public string Password { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
+        private DateTime DateOfBirth { get; set; }
+
+        [Required]
+        [DataType(DataType.EmailAddress)]
+        public string? EmailAddress { get; set; }
+
+        [Required]
+        public string? About { get; set; }
+
+        [Required]
+        public string? ProfileImage { get; set; }
     }
 }
 

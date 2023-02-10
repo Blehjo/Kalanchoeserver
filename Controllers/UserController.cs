@@ -1,16 +1,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using KalanchoeAI_Backend.Data;
 using KalanchoeAI_Backend.Models;
+using KalanchoeAI_Backend.Authorization;
+using KalanchoeAI_Backend.Helpers;
 
 namespace KalanchoeAI_Backend.Controllers
 {
-    [Route("api/[controller]")]
+    [Authorization.Authorize]
     [ApiController]
+    [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
         private readonly KalanchoeAIDatabaseContext _context;
@@ -21,6 +26,7 @@ namespace KalanchoeAI_Backend.Controllers
         }
 
         // GET: api/User
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
@@ -32,6 +38,7 @@ namespace KalanchoeAI_Backend.Controllers
         }
 
         // GET: api/User/5
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
         {

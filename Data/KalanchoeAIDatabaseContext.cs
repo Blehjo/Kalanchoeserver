@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using KalanchoeAI_Backend.Entities;
 using KalanchoeAI_Backend.Models;
 using KalanchoeAI_Backend.Models.Users;
 using System.Reflection.Metadata;
@@ -26,11 +25,6 @@ namespace KalanchoeAI_Backend.Data
         public DbSet<Message> Messages { get; set; }
         public DbSet<Panel> Panels { get; set; } 
         public DbSet<Note> Note { get; set; }
-        public DbSet<UserInfo> UserInfo { get; set; }
-        //public DbSet<AuthenticateRequest> AuthenticateRequests { get; set; }
-        //public DbSet<AuthenticateResponse> AuthenticateResponses { get; set; }
-        //public DbSet<RegisterRequest> RegisterRequests { get; set; }
-        //public DbSet<UpdateRequest> UpdateRequests { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

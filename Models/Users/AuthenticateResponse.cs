@@ -1,4 +1,4 @@
-﻿using KalanchoeAI_Backend.Entities;
+﻿using KalanchoeAI_Backend.Models;
 
 namespace KalanchoeAI_Backend.Models.Users
 {

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KalanchoeAIBackend.Migrations
 {
     [DbContext(typeof(KalanchoeAIDatabaseContext))]
-    [Migration("20230209212154_InitialCreate")]
+    [Migration("20230209223142_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -19,33 +19,6 @@ namespace KalanchoeAIBackend.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.2");
-
-            modelBuilder.Entity("KalanchoeAI_Backend.Entities.UserInfo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UserInfo");
-                });
 
             modelBuilder.Entity("KalanchoeAI_Backend.Models.Channel", b =>
                 {

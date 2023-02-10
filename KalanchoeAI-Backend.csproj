@@ -49,7 +49,6 @@
     <None Remove="Microsoft.EntityFrameworkCore.Sqlite" />
     <None Remove="Completions\" />
     <None Remove="Helpers\" />
-    <None Remove="Entities\" />
     <None Remove="Services\" />
     <None Remove="Authorization\" />
     <None Remove="AutoMapper" />
@@ -67,7 +66,6 @@
     <Folder Include="Models\" />
     <Folder Include="Completions\" />
     <Folder Include="Helpers\" />
-    <Folder Include="Entities\" />
     <Folder Include="Services\" />
     <Folder Include="Authorization\" />
     <Folder Include="Models\Users\" />

@@ -22,6 +22,7 @@ namespace KalanchoeAI_Backend.Models
         [DataType(DataType.EmailAddress)]
         public string? EmailAddress { get; set; }
 
+        [JsonIgnore]
         public string? Password { get; set; }
 
         public string? About { get; set; }

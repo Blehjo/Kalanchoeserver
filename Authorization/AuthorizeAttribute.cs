@@ -1,4 +1,4 @@
-﻿using KalanchoeAI_Backend.Entities;
+﻿using KalanchoeAI_Backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
@@ -15,7 +15,7 @@ namespace KalanchoeAI_Backend.Authorization
                 return;
 
             // authorization
-            var user = (UserInfo)context.HttpContext.Items["UserInfo"];
+            var user = (User)context.HttpContext.Items["User"];
             if (user == null)
                 context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
         }

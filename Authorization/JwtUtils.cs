@@ -1,5 +1,5 @@
 ﻿using KalanchoeAI_Backend.Helpers;
-using KalanchoeAI_Backend.Entities;
+using KalanchoeAI_Backend.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -10,7 +10,7 @@ namespace KalanchoeAI_Backend.Authorization
 {
     public interface IJwtUtils
     {
-        public string GenerateToken(UserInfo user);
+        public string GenerateToken(User user);
         public int? ValidateToken(string token);
     }
 
@@ -23,14 +23,14 @@ namespace KalanchoeAI_Backend.Authorization
             _appSettings = appSettings.Value;
         }
 
-        public string GenerateToken(UserInfo user)
+        public string GenerateToken(User user)
         {
             // generate token that is valid for 7 days
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
+                Subject = new ClaimsIdentity(new[] { new Claim("id", user.UserId.ToString()) }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };

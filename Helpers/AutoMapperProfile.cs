@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using KalanchoeAI_Backend.Entities;
+using KalanchoeAI_Backend.Models;
 using KalanchoeAI_Backend.Models.Users;
 
 namespace KalanchoeAI_Backend.Helpers
@@ -9,13 +9,13 @@ namespace KalanchoeAI_Backend.Helpers
         public AutoMapperProfile()
         {
             // User -> AuthenticateResponse
-            CreateMap<UserInfo, AuthenticateResponse>();
+            CreateMap<User, AuthenticateResponse>();
 
             // RegisterRequest -> User
-            CreateMap<RegisterRequest, UserInfo>();
+            CreateMap<RegisterRequest, User>();
 
             // UpdateRequest -> User
-            CreateMap<UpdateRequest, UserInfo>()
+            CreateMap<UpdateRequest, User>()
                 .ForAllMembers(x => x.Condition(
                     (src, dest, prop) =>
                     {
