@@ -18,12 +18,6 @@ var builder = WebApplication.CreateBuilder(args);
     var services = builder.Services;
     var env = builder.Environment;
 
-    // use sql server db in production and sqlite db in development
-    //if (env.IsProduction())
-    //    services.AddDbContext<DataContext>();
-    //else
-    //    services.AddDbContext<DataContext, SqliteDataContext>();
-
     services.AddCors();
     services.AddControllers();
 
@@ -45,7 +39,6 @@ builder.Configuration
 builder.Services.AddOpenAIService();
 
 // Add services to the container.
-//builder.Services.AddControllersWithViews();
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<KalanchoeAIDatabaseContext>(options =>
@@ -56,12 +49,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-
-//using (var scope = app.Services.CreateScope())
-//{
-//    var dataContext = scope.ServiceProvider.GetRequiredService<DataContext>();
-//    dataContext.Database.Migrate();
-//}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -75,8 +62,9 @@ app.UseHttpsRedirection();
 {
     // global cors policy
     app.UseCors(x => x
-        .AllowAnyOrigin()
+        .WithOrigins("https://localhost:44498")
         .AllowAnyMethod()
+        .AllowCredentials()
         .AllowAnyHeader());
 
     // global error handler
