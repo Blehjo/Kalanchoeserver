@@ -32,6 +32,10 @@ namespace KalanchoeAI_Backend.Controllers
         public IActionResult Authenticate(AuthenticateRequest model)
         {
             var response = _userService.Authenticate(model);
+
+            HttpContext.Response.Cookies.Append("token", response.Token,
+                new Microsoft.AspNetCore.Http.CookieOptions { Expires = DateTime.Now.AddMinutes(120) });
+
             return Ok(response);
         }
 
