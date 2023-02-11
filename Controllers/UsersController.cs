@@ -5,6 +5,7 @@ using KalanchoeAI_Backend.Authorization;
 using KalanchoeAI_Backend.Helpers;
 using KalanchoeAI_Backend.Models.Users;
 using KalanchoeAI_Backend.Services;
+using KalanchoeAI_Backend.Models;
 
 namespace KalanchoeAI_Backend.Controllers
 {
@@ -36,6 +37,8 @@ namespace KalanchoeAI_Backend.Controllers
             HttpContext.Response.Cookies.Append("token", response.Token,
                 new Microsoft.AspNetCore.Http.CookieOptions { Expires = DateTime.Now.AddMinutes(120) });
 
+            HttpContext.Response.Cookies.Append("user", response.Id.ToString());
+
             return Ok(response);
         }
 
@@ -57,7 +60,7 @@ namespace KalanchoeAI_Backend.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            var user = _userService.GetById(id);
+            var user = HttpContext.Items["User"];
             return Ok(user);
         }
 
