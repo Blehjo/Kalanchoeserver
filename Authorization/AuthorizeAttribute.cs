@@ -17,7 +17,7 @@ namespace KalanchoeAI_Backend.Authorization
             // authorization
             var user = (User)context.HttpContext.Items["User"];
             if (user == null)
-                context.Result = new JsonResult(new { message = $"User: {user}" }) { StatusCode = StatusCodes.Status401Unauthorized };
+                context.Result = new JsonResult(new { message = "Unauthorized user" }) { StatusCode = StatusCodes.Status401Unauthorized };
         }
     }
 }

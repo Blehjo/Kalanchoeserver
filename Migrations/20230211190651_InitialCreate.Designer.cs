@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KalanchoeAIBackend.Migrations
 {
     [DbContext(typeof(KalanchoeAIDatabaseContext))]
-    [Migration("20230209223142_InitialCreate")]
+    [Migration("20230211190651_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

@@ -28,16 +28,16 @@ namespace KalanchoeAI_Backend.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Panel>()
-                .Property<int>("UserId");
-            modelBuilder.Entity<Panel>()
-                .HasOne(p => p.User)
-                .WithMany(u => u.Panels)
-                .HasForeignKey(p => p.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
-            modelBuilder.Entity<Panel>()
-                .Navigation(b => b.User)
-                .UsePropertyAccessMode(PropertyAccessMode.Property);
+            //modelBuilder.Entity<Panel>()
+            //    .Property<int>("UserId");
+            //modelBuilder.Entity<Panel>()
+            //    .HasOne(p => p.User)
+            //    .WithMany(u => u.Panels)
+            //    .HasForeignKey(p => p.UserId)
+            //    .OnDelete(DeleteBehavior.Cascade);
+            //modelBuilder.Entity<Panel>()
+            //    .Navigation(b => b.User)
+            //    .UsePropertyAccessMode(PropertyAccessMode.Property);
         }
     }
 }
