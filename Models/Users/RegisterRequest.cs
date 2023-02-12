@@ -22,13 +22,13 @@ namespace KalanchoeAI_Backend.Models.Users
 
         [Required]
         [DataType(DataType.EmailAddress)]
-        public string? EmailAddress { get; set; }
+        public string EmailAddress { get; set; }
 
         [Required]
-        public string? About { get; set; }
+        public string About { get; set; }
 
         [Required]
-        public string? ProfileImage { get; set; }
+        public string ProfileImage { get; set; }
     }
 }
 

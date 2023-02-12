@@ -14,10 +14,10 @@ namespace KalanchoeAI_Backend.Models
 
         public string? FirstName { get; set; }
 
-        private string? LastName { get; set; }
+        public string? LastName { get; set; }
 
         [DataType(DataType.Date)]
-        private DateTime DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
 
         [DataType(DataType.EmailAddress)]
         public string? EmailAddress { get; set; }

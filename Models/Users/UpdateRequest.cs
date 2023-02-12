@@ -16,11 +16,11 @@ namespace KalanchoeAI_Backend.Models.Users
         private DateTime DateOfBirth { get; set; }
 
         [DataType(DataType.EmailAddress)]
-        public string? EmailAddress { get; set; }
+        public string EmailAddress { get; set; }
 
-        public string? About { get; set; }
+        public string About { get; set; }
 
-        public string? ProfileImage { get; set; }
+        public string ProfileImage { get; set; }
     }
 }
 
