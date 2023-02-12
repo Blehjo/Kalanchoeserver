@@ -39,8 +39,11 @@ namespace KalanchoeAI_Backend.Services
             var user = _context.Users.SingleOrDefault(x => x.Username == model.Username);
 
             // validate
-            if (user == null || !BCrypt.Net.BCrypt.Verify(model.Password, user.Password))
-                throw new AppException("Username or password is incorrect");
+            if (user == null)
+                throw new AppException("User does not exist");
+
+            if (!BCrypt.Net.BCrypt.Verify(model.Password, user.Password))
+                throw new AppException("Password is incorrect");
 
             // authentication successful
             var response = _mapper.Map<AuthenticateResponse>(user);
