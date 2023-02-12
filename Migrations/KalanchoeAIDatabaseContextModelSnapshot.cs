@@ -470,13 +470,11 @@ namespace KalanchoeAIBackend.Migrations
 
             modelBuilder.Entity("KalanchoeAI_Backend.Models.Panel", b =>
                 {
-                    b.HasOne("KalanchoeAI_Backend.Models.User", "User")
+                    b.HasOne("KalanchoeAI_Backend.Models.User", null)
                         .WithMany("Panels")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("KalanchoeAI_Backend.Models.Post", b =>

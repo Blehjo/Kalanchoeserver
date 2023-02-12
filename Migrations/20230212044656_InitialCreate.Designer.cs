@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KalanchoeAIBackend.Migrations
 {
     [DbContext(typeof(KalanchoeAIDatabaseContext))]
-    [Migration("20230211190651_InitialCreate")]
+    [Migration("20230212044656_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -473,13 +473,11 @@ namespace KalanchoeAIBackend.Migrations
 
             modelBuilder.Entity("KalanchoeAI_Backend.Models.Panel", b =>
                 {
-                    b.HasOne("KalanchoeAI_Backend.Models.User", "User")
+                    b.HasOne("KalanchoeAI_Backend.Models.User", null)
                         .WithMany("Panels")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("KalanchoeAI_Backend.Models.Post", b =>

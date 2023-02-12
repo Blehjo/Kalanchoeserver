@@ -50,6 +50,23 @@ namespace KalanchoeAI_Backend.Controllers
             return Ok(new { message = "Registration successful" });
         }
 
+        [AllowAnonymous]
+        [HttpPost("logout")]
+        public IActionResult Logout()
+        {
+            var token = HttpContext.Request.Cookies["token"];
+
+            var user = HttpContext.Request.Cookies["user"];
+
+            if (token != null && user != null)
+            {
+                HttpContext.Response.Cookies.Delete("token");
+                HttpContext.Response.Cookies.Delete("user");
+            }
+
+            return Ok(new { message = "Logout successful" });
+        }
+
         [HttpGet]
         public IActionResult GetAll()
         {
