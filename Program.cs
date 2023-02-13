@@ -11,6 +11,7 @@ using System.Configuration;
 using KalanchoeAI_Backend.Helpers;
 using KalanchoeAI_Backend.Services;
 using KalanchoeAI_Backend.Authorization;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,7 +40,10 @@ builder.Configuration
 builder.Services.AddOpenAIService();
 
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
 
 builder.Services.AddDbContext<KalanchoeAIDatabaseContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("KalanchoeAIDatabaseContext") ?? throw new InvalidOperationException("Connection string 'KalanchoeAIDatabaseContext' not found.")));

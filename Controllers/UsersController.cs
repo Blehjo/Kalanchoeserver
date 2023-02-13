@@ -74,8 +74,8 @@ namespace KalanchoeAI_Backend.Controllers
             return Ok(users);
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        [HttpGet("data")]
+        public IActionResult GetById()
         {
             var user = HttpContext.Items["User"];
             return Ok(user);

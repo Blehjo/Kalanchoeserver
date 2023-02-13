@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -48,6 +48,30 @@ namespace KalanchoeAI_Backend.Controllers
             }
 
             return panel;
+        }
+
+        // GET: api/Panel/users
+        [HttpGet("users")]
+        public async Task<ActionResult<Panel>> GetUserPanel()
+        {
+            if (_context.Panels == null)
+            {
+                return NotFound();
+            }
+
+            var user = HttpContext.Request.Cookies["user"];
+
+            int userId = Int32.Parse(user);
+
+            //var panel = await _context.Panels.FindAsync(user);
+            var panels = _context.Panels.Where(p => p.UserId == userId);
+
+            if (panels == null)
+            {
+                return NotFound();
+            }
+
+            return panels;
         }
 
         // PUT: api/Panel/5

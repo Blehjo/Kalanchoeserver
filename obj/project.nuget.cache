@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "VtXzx1gEfk997u+Yo2gxKIVs79I4SKcEg1E3++P/XYWkvaZ/+tl88hrTNPLvG/TTzkhQzWXhdknT75uk1M9yyA==",
+  "dgSpecHash": "zPSA+Pc7Ov/Evc8sI0DB69HynhX7+e3Li0cQRbKELok/UPgsqJgNbJz54MKS9QGwgflJGFY2ZZd/YJLDmRNR4A==",
   "success": true,
   "projectFilePath": "/Users/blehjo/projects/KalanchoeAI/KalanchoeAI-Backend/KalanchoeAI-Backend.csproj",
   "expectedPackageFiles": [
@@ -19,6 +19,8 @@
     "/Users/blehjo/.nuget/packages/microsoft.aspnetcore.hosting.server.abstractions/2.2.0/microsoft.aspnetcore.hosting.server.abstractions.2.2.0.nupkg.sha512",
     "/Users/blehjo/.nuget/packages/microsoft.aspnetcore.http.abstractions/2.2.0/microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
     "/Users/blehjo/.nuget/packages/microsoft.aspnetcore.http.features/2.2.0/microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
+    "/Users/blehjo/.nuget/packages/microsoft.aspnetcore.jsonpatch/7.0.2/microsoft.aspnetcore.jsonpatch.7.0.2.nupkg.sha512",
+    "/Users/blehjo/.nuget/packages/microsoft.aspnetcore.mvc.newtonsoftjson/7.0.2/microsoft.aspnetcore.mvc.newtonsoftjson.7.0.2.nupkg.sha512",
     "/Users/blehjo/.nuget/packages/microsoft.aspnetcore.openapi/7.0.1/microsoft.aspnetcore.openapi.7.0.1.nupkg.sha512",
     "/Users/blehjo/.nuget/packages/microsoft.aspnetcore.razor.language/6.0.11/microsoft.aspnetcore.razor.language.6.0.11.nupkg.sha512",
     "/Users/blehjo/.nuget/packages/microsoft.aspnetcore.session/2.2.0/microsoft.aspnetcore.session.2.2.0.nupkg.sha512",
@@ -97,7 +99,7 @@
     "/Users/blehjo/.nuget/packages/mono.texttemplating/2.2.1/mono.texttemplating.2.2.1.nupkg.sha512",
     "/Users/blehjo/.nuget/packages/netstandard.library/1.6.1/netstandard.library.1.6.1.nupkg.sha512",
     "/Users/blehjo/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512",
-    "/Users/blehjo/.nuget/packages/newtonsoft.json.bson/1.0.1/newtonsoft.json.bson.1.0.1.nupkg.sha512",
+    "/Users/blehjo/.nuget/packages/newtonsoft.json.bson/1.0.2/newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "/Users/blehjo/.nuget/packages/nuget.common/6.3.1/nuget.common.6.3.1.nupkg.sha512",
     "/Users/blehjo/.nuget/packages/nuget.configuration/6.3.1/nuget.configuration.6.3.1.nupkg.sha512",
     "/Users/blehjo/.nuget/packages/nuget.dependencyresolver.core/6.3.1/nuget.dependencyresolver.core.6.3.1.nupkg.sha512",

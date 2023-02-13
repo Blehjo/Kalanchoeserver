@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KalanchoeAIBackend.Migrations
 {
     [DbContext(typeof(KalanchoeAIDatabaseContext))]
-    [Migration("20230212044656_InitialCreate")]
+    [Migration("20230213192615_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -295,7 +295,7 @@ namespace KalanchoeAIBackend.Migrations
                     b.Property<string>("PostValue")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
@@ -317,10 +317,16 @@ namespace KalanchoeAIBackend.Migrations
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("TEXT");
 
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("EmailAddress")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("FirstName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LastName")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Password")
@@ -473,22 +479,20 @@ namespace KalanchoeAIBackend.Migrations
 
             modelBuilder.Entity("KalanchoeAI_Backend.Models.Panel", b =>
                 {
-                    b.HasOne("KalanchoeAI_Backend.Models.User", null)
-                        .WithMany("Panels")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("KalanchoeAI_Backend.Models.Post", b =>
-                {
                     b.HasOne("KalanchoeAI_Backend.Models.User", "User")
-                        .WithMany("Posts")
+                        .WithMany("Panels")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.Post", b =>
+                {
+                    b.HasOne("KalanchoeAI_Backend.Models.User", null)
+                        .WithMany("Posts")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("KalanchoeAI_Backend.Models.Channel", b =>
