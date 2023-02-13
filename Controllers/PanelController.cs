@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -64,7 +64,7 @@ namespace KalanchoeAI_Backend.Controllers
             int userId = Int32.Parse(user);
 
             //var panel = await _context.Panels.FindAsync(user);
-            var panels = _context.Panels.Where(p => p.UserId == userId);
+            var panels =  _context.Panels.ToListAsync(). .Where(p => p.UserId == userId);
 
             if (panels == null)
             {
