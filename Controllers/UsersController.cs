@@ -47,6 +47,13 @@ namespace KalanchoeAI_Backend.Controllers
         public IActionResult Register(RegisterRequest model)
         {
             _userService.Register(model);
+
+            AuthenticateRequest authenticateModel = new AuthenticateRequest();
+
+            authenticateModel.Username = model.Username;
+            authenticateModel.Password = model.Password;
+
+            Authenticate(authenticateModel);
             return Ok(new { message = "Registration successful" });
         }
 
