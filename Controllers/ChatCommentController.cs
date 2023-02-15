@@ -64,7 +64,7 @@ namespace KalanchoeAI_Backend.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutChatComment(int id, ChatComment chatComment)
         {
-            if (id != chatComment.Id)
+            if (id != chatComment.ChatCommentId)
             {
                 return BadRequest();
             }
@@ -102,7 +102,7 @@ namespace KalanchoeAI_Backend.Controllers
             _context.ChatComments.Add(chatComment);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetChatComment", new { id = chatComment.Id }, chatComment);
+            return CreatedAtAction("GetChatComment", new { id = chatComment.ChatCommentId }, chatComment);
         }
 
         // DELETE: api/ChatComment/5
@@ -127,7 +127,7 @@ namespace KalanchoeAI_Backend.Controllers
 
         private bool ChatCommentExists(int id)
         {
-            return (_context.ChatComments?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.ChatComments?.Any(e => e.ChatCommentId == id)).GetValueOrDefault();
         }
     }
 }

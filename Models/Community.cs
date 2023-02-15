@@ -7,9 +7,7 @@ namespace KalanchoeAI_Backend.Models
 {
 	public class Community
 	{
-        public int Id { get; set; }
-
-		public int UserId { get; set; }
+        public int CommunityId { get; set; }
 
         public string GroupName { get; set; }
 
@@ -20,6 +18,7 @@ namespace KalanchoeAI_Backend.Models
         [DataType(DataType.Date)]
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;
 
+        public int UserId { get; set; }
         public User User { get; set; }
 
 		public ICollection<Member>? Members { get; set; }

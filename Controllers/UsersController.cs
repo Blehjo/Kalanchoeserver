@@ -37,7 +37,7 @@ namespace KalanchoeAI_Backend.Controllers
             HttpContext.Response.Cookies.Append("token", response.Token,
                 new Microsoft.AspNetCore.Http.CookieOptions { Expires = DateTime.Now.AddMinutes(120) });
 
-            HttpContext.Response.Cookies.Append("user", response.Id.ToString());
+            HttpContext.Response.Cookies.Append("user", response.UserId.ToString());
 
             return Ok(response);
         }

@@ -7,20 +7,18 @@ namespace KalanchoeAI_Backend.Models
 {
 	public class Comment
 	{
-        public int Id { get; set; }
-
-		public int UserId { get; set; }
-
-		public int PostId { get; set; }
+        public int CommentId { get; set; }
 
         public string? CommentValue { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;
 
+        public int UserId { get; set; }
         public User User { get; set; }
 
-		public Post Post { get; set; }
+        public int PostId { get; set; }
+        public Post Post { get; set; }
 	}
 }
 

@@ -55,7 +55,7 @@ namespace KalanchoeAI_Backend.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCommunity(int id, Community community)
         {
-            if (id != community.Id)
+            if (id != community.CommunityId)
             {
                 return BadRequest();
             }
@@ -93,7 +93,7 @@ namespace KalanchoeAI_Backend.Controllers
             _context.Communities.Add(community);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCommunity", new { id = community.Id }, community);
+            return CreatedAtAction("GetCommunity", new { id = community.CommunityId }, community);
         }
 
         // DELETE: api/Community/5
@@ -118,7 +118,7 @@ namespace KalanchoeAI_Backend.Controllers
 
         private bool CommunityExists(int id)
         {
-            return (_context.Communities?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Communities?.Any(e => e.CommunityId == id)).GetValueOrDefault();
         }
     }
 }

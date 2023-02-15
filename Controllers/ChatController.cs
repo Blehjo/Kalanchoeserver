@@ -55,7 +55,7 @@ namespace KalanchoeAI_Backend.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutChat(int id, Chat chat)
         {
-            if (id != chat.Id)
+            if (id != chat.ChatId)
             {
                 return BadRequest();
             }
@@ -93,7 +93,7 @@ namespace KalanchoeAI_Backend.Controllers
             _context.Chats.Add(chat);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetChat", new { id = chat.Id }, chat);
+            return CreatedAtAction("GetChat", new { id = chat.ChatId }, chat);
         }
 
         // DELETE: api/Chat/5
@@ -118,7 +118,7 @@ namespace KalanchoeAI_Backend.Controllers
 
         private bool ChatExists(int id)
         {
-            return (_context.Chats?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Chats?.Any(e => e.ChatId == id)).GetValueOrDefault();
         }
     }
 }

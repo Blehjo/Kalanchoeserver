@@ -7,15 +7,14 @@ namespace KalanchoeAI_Backend.Models
 {
 	public class ChatComment
 	{
-        public int Id { get; set; }
-
-		public int ChatId { get; set; }
+        public int ChatCommentId { get; set; }
 
         public string ChatValue { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;
 
+        public int ChatId { get; set; }
         public Chat Chat { get; set; }
 	}
 }

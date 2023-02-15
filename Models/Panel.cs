@@ -8,7 +8,7 @@ namespace KalanchoeAI_Backend.Models
 {
 	public class Panel
 	{
-        public int Id { get; set; }
+        public int PanelId { get; set; }
 
         public string? Title { get; set; }
 
@@ -16,7 +16,7 @@ namespace KalanchoeAI_Backend.Models
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;
 
         public int UserId { get; set; }
-        public User User { get; set; }
+        public User? User { get; set; }
 
         public ICollection<Note>? Notes { get; set; }
     }

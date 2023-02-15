@@ -55,7 +55,7 @@ namespace KalanchoeAI_Backend.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutMember(int id, Member member)
         {
-            if (id != member.Id)
+            if (id != member.MemberId)
             {
                 return BadRequest();
             }
@@ -93,7 +93,7 @@ namespace KalanchoeAI_Backend.Controllers
             _context.Members.Add(member);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetMember", new { id = member.Id }, member);
+            return CreatedAtAction("GetMember", new { id = member.MemberId }, member);
         }
 
         // DELETE: api/Member/5
@@ -118,7 +118,7 @@ namespace KalanchoeAI_Backend.Controllers
 
         private bool MemberExists(int id)
         {
-            return (_context.Members?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Members?.Any(e => e.MemberId == id)).GetValueOrDefault();
         }
     }
 }

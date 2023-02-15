@@ -19,7 +19,7 @@ namespace KalanchoeAIBackend.Migrations
 
             modelBuilder.Entity("KalanchoeAI_Backend.Models.Channel", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ChannelId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -33,7 +33,7 @@ namespace KalanchoeAIBackend.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Id");
+                    b.HasKey("ChannelId");
 
                     b.HasIndex("CommunityId");
 
@@ -42,7 +42,7 @@ namespace KalanchoeAIBackend.Migrations
 
             modelBuilder.Entity("KalanchoeAI_Backend.Models.ChannelComment", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ChannelCommentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -58,7 +58,7 @@ namespace KalanchoeAIBackend.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("Id");
+                    b.HasKey("ChannelCommentId");
 
                     b.HasIndex("ChannelId");
 
@@ -69,7 +69,7 @@ namespace KalanchoeAIBackend.Migrations
 
             modelBuilder.Entity("KalanchoeAI_Backend.Models.Chat", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ChatId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -83,7 +83,7 @@ namespace KalanchoeAIBackend.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("Id");
+                    b.HasKey("ChatId");
 
                     b.HasIndex("UserId");
 
@@ -92,7 +92,7 @@ namespace KalanchoeAIBackend.Migrations
 
             modelBuilder.Entity("KalanchoeAI_Backend.Models.ChatComment", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ChatCommentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -106,7 +106,7 @@ namespace KalanchoeAIBackend.Migrations
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Id");
+                    b.HasKey("ChatCommentId");
 
                     b.HasIndex("ChatId");
 
@@ -115,7 +115,7 @@ namespace KalanchoeAIBackend.Migrations
 
             modelBuilder.Entity("KalanchoeAI_Backend.Models.Comment", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CommentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -131,7 +131,7 @@ namespace KalanchoeAIBackend.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("Id");
+                    b.HasKey("CommentId");
 
                     b.HasIndex("PostId");
 
@@ -142,7 +142,7 @@ namespace KalanchoeAIBackend.Migrations
 
             modelBuilder.Entity("KalanchoeAI_Backend.Models.Community", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CommunityId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -163,7 +163,7 @@ namespace KalanchoeAIBackend.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("Id");
+                    b.HasKey("CommunityId");
 
                     b.HasIndex("UserId");
 
@@ -188,7 +188,7 @@ namespace KalanchoeAIBackend.Migrations
 
             modelBuilder.Entity("KalanchoeAI_Backend.Models.Member", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("MemberId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -201,7 +201,7 @@ namespace KalanchoeAIBackend.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("Id");
+                    b.HasKey("MemberId");
 
                     b.HasIndex("CommunityId");
 
@@ -212,7 +212,7 @@ namespace KalanchoeAIBackend.Migrations
 
             modelBuilder.Entity("KalanchoeAI_Backend.Models.Message", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("MessageId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -225,7 +225,7 @@ namespace KalanchoeAIBackend.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("Id");
+                    b.HasKey("MessageId");
 
                     b.HasIndex("UserId");
 
@@ -234,7 +234,7 @@ namespace KalanchoeAIBackend.Migrations
 
             modelBuilder.Entity("KalanchoeAI_Backend.Models.Note", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("NoteId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -248,7 +248,7 @@ namespace KalanchoeAIBackend.Migrations
                     b.Property<int>("PanelId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("Id");
+                    b.HasKey("NoteId");
 
                     b.HasIndex("PanelId");
 
@@ -257,7 +257,7 @@ namespace KalanchoeAIBackend.Migrations
 
             modelBuilder.Entity("KalanchoeAI_Backend.Models.Panel", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("PanelId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -270,7 +270,7 @@ namespace KalanchoeAIBackend.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("Id");
+                    b.HasKey("PanelId");
 
                     b.HasIndex("UserId");
 
@@ -279,7 +279,7 @@ namespace KalanchoeAIBackend.Migrations
 
             modelBuilder.Entity("KalanchoeAI_Backend.Models.Post", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("PostId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -292,10 +292,10 @@ namespace KalanchoeAIBackend.Migrations
                     b.Property<string>("PostValue")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("Id");
+                    b.HasKey("PostId");
 
                     b.HasIndex("UserId");
 
@@ -487,9 +487,13 @@ namespace KalanchoeAIBackend.Migrations
 
             modelBuilder.Entity("KalanchoeAI_Backend.Models.Post", b =>
                 {
-                    b.HasOne("KalanchoeAI_Backend.Models.User", null)
+                    b.HasOne("KalanchoeAI_Backend.Models.User", "User")
                         .WithMany("Posts")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("KalanchoeAI_Backend.Models.Channel", b =>

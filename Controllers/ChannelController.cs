@@ -55,7 +55,7 @@ namespace KalanchoeAI_Backend.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutChannel(int id, Channel channel)
         {
-            if (id != channel.Id)
+            if (id != channel.ChannelId)
             {
                 return BadRequest();
             }
@@ -93,7 +93,7 @@ namespace KalanchoeAI_Backend.Controllers
             _context.Channels.Add(channel);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetChannel", new { id = channel.Id }, channel);
+            return CreatedAtAction("GetChannel", new { id = channel.ChannelId }, channel);
         }
 
         // DELETE: api/Channel/5
@@ -118,7 +118,7 @@ namespace KalanchoeAI_Backend.Controllers
 
         private bool ChannelExists(int id)
         {
-            return (_context.Channels?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Channels?.Any(e => e.ChannelId == id)).GetValueOrDefault();
         }
     }
 }

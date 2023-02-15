@@ -7,15 +7,14 @@ namespace KalanchoeAI_Backend.Models
 {
 	public class Channel
 	{
-        public int Id { get; set; }
-
-		public int CommunityId { get; set; }
+        public int ChannelId { get; set; }
 
         public string Description { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;
 
+        public int CommunityId { get; set; }
         public Community Community { get; set; }
 
 		public ICollection<ChannelComment>? ChannelComments { get; set; }

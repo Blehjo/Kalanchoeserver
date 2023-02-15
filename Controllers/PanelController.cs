@@ -52,7 +52,7 @@ namespace KalanchoeAI_Backend.Controllers
 
         // GET: api/Panel/users
         [HttpGet("users")]
-        public async Task<ActionResult<Panel>> GetUserPanel()
+        public async Task<ActionResult<IEnumerable<Panel>>> GetUserPanel()
         {
             if (_context.Panels == null)
             {
@@ -63,15 +63,7 @@ namespace KalanchoeAI_Backend.Controllers
 
             int userId = Int32.Parse(user);
 
-            //var panel = await _context.Panels.FindAsync(user);
-            var panels =  _context.Panels.ToListAsync(). .Where(p => p.UserId == userId);
-
-            if (panels == null)
-            {
-                return NotFound();
-            }
-
-            return panels;
+            return await _context.Panels.Where(p => p.UserId == userId).ToListAsync();
         }
 
         // PUT: api/Panel/5
@@ -79,7 +71,7 @@ namespace KalanchoeAI_Backend.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPanel(int id, Panel panel)
         {
-            if (id != panel.Id)
+            if (id != panel.PanelId)
             {
                 return BadRequest();
             }
@@ -114,10 +106,13 @@ namespace KalanchoeAI_Backend.Controllers
           {
               return Problem("Entity set 'KalanchoeAIDatabaseContext.Panels'  is null.");
           }
+
+            panel.UserId = Int32.Parse(HttpContext.Request.Cookies["user"]);
+
             _context.Panels.Add(panel);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPanel", new { id = panel.Id }, panel);
+            return CreatedAtAction("GetPanel", new { id = panel.PanelId }, panel);
         }
 
         // DELETE: api/Panel/5
@@ -142,7 +137,7 @@ namespace KalanchoeAI_Backend.Controllers
 
         private bool PanelExists(int id)
         {
-            return (_context.Panels?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Panels?.Any(e => e.PanelId == id)).GetValueOrDefault();
         }
     }
 }
