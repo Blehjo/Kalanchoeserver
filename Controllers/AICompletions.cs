@@ -12,18 +12,19 @@ using OpenAI.GPT3.Extensions;
 using OpenAI.GPT3.Interfaces;
 using Azure;
 using Microsoft.Identity.Client;
+using KalanchoeAI_Backend.Models;
 
 namespace KalanchoeAI_Backend.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class ChatgptController : ControllerBase
     {
 
-        //string ApiKey = "";
-        //string response = "";
-        //string Organization = "";
-        //IConfiguration _configuration;
+        private string ApiKey;
+        private string response;
+        private string Organization;
+        private IConfiguration _configuration;
 
         // GET: api/Chatgpt
         [HttpGet]
@@ -40,36 +41,37 @@ namespace KalanchoeAI_Backend.Controllers
         }
 
         // POST: api/Chatgpt
-        //[HttpPost]
-        //public async Task PostAsync()
-        //{
-        //    var openAiService = new OpenAIService(new OpenAiOptions()
-        //    {
-        //        ApiKey = _configuration["OpenAIServiceOptions:ApiKey"],
-        //        Organization = _configuration["OpenAIServiceOptions:Organization"]
-        //    });
+        [HttpPost]
+        public async Task<ActionResult<string>> PostAsync(Models.Prompt prompt)
+        {
+            var openAiService = new OpenAIService(new OpenAiOptions()
+            {
+                ApiKey = "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"
+            });
 
-        //    var completionResult = await openAiService.Completions
-        //    .CreateCompletion(new CompletionCreateRequest()
-        //    {
-        //        Prompt = "hello",
-        //        MaxTokens = 5
-        //    }, Models.Davinci);
-        //    if (completionResult.Successful)
-        //    {
-        //        response = completionResult
-        //        .Choices.FirstOrDefault()?.Text ?? "";
-        //    }
-        //    else
-        //    {
-        //        if (completionResult.Error == null)
-        //        {
-        //            response = "Unknown Error";
-        //        }
-        //        response =
-        //        $"{completionResult.Error?.Code}: {completionResult.Error?.Message}";
-        //    }
-        //}
+            var completionResult = await openAiService.Completions
+            .CreateCompletion(new CompletionCreateRequest()
+            {
+                Prompt = prompt.Request,
+                MaxTokens = 50
+            }, OpenAI.Engine.Davinci);
+            if (completionResult.Successful)
+            {
+                response = completionResult
+                .Choices.FirstOrDefault()?.Text ?? "";
+                return response;
+            }
+            else
+            {
+                if (completionResult.Error == null)
+                {
+                    response = "Unknown Error";
+                }
+                response =
+                $"{completionResult.Error?.Code}: {completionResult.Error?.Message}";
+                return response;
+            }
+        }
 
         // PUT: api/Chatgpt/5
         [HttpPut("{id}")]
