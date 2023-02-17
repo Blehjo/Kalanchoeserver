@@ -24,7 +24,7 @@ namespace KalanchoeAI_Backend.Controllers
         private string ApiKey;
         private string response;
         private string Organization;
-        private IConfiguration _configuration;
+        private IConfiguration configuration;
 
         // GET: api/Chatgpt
         [HttpGet]
@@ -40,13 +40,69 @@ namespace KalanchoeAI_Backend.Controllers
             return "value";
         }
 
-        // POST: api/Chatgpt
-        [HttpPost]
-        public async Task<ActionResult<string>> PostAsync(Models.Prompt prompt)
+        [HttpPost("completion")]
+        public async Task<ActionResult<string>> PostCompletion(Models.Prompt prompt)
         {
             var openAiService = new OpenAIService(new OpenAiOptions()
             {
-                ApiKey = "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"
+                ApiKey = 
+            });
+
+            var completionResult = await openAiService.Completions
+            .CreateCompletion(new CompletionCreateRequest()
+            {
+                Prompt = prompt.Request,
+                MaxTokens = 50
+            }, OpenAI.Engine.Davinci);
+            if (completionResult.Successful)
+            {
+                response = completionResult
+                .Choices.FirstOrDefault()?.Text ?? "";
+                return response;
+            }
+            else
+            {
+                if (completionResult.Error == null)
+                {
+                    response = "Unknown Error";
+                }
+                response =
+                $"{completionResult.Error?.Code}: {completionResult.Error?.Message}";
+                return response;
+            }
+        }
+
+        // POST: api/Chatgpt
+        [HttpPost("dalle")]
+        public async Task<ActionResult<string>> PostDalle(Models.Prompt prompt)
+        {
+            var openAiService = new OpenAIService(new OpenAiOptions()
+            {
+                ApiKey = 
+            });
+
+            var imageResult = await openAiService.Image.CreateImage(new ImageCreateRequest
+            {
+                Prompt = prompt.Request,
+                N = 2,
+                Size = StaticValues.ImageStatics.Size.Size256,
+                ResponseFormat = StaticValues.ImageStatics.ResponseFormat.Url,
+                User = "TestUser"
+            });
+            if (imageResult.Successful)
+            {
+                Console.WriteLine(string.Join("\n", imageResult.Results.Select(r => r.Url)));
+                return string.Join("\n", imageResult.Results.Select(r => r.Url));
+            }
+            return "Try again";
+        }
+
+        [HttpPost("code")]
+        public async Task<ActionResult<string>> PostCode(Models.Prompt prompt)
+        {
+            var openAiService = new OpenAIService(new OpenAiOptions()
+            {
+                ApiKey = 
             });
 
             var completionResult = await openAiService.Completions

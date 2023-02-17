@@ -15,7 +15,7 @@ namespace KalanchoeAI_Backend.Models
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;
 
         public int ChatId { get; set; }
-        public Chat Chat { get; set; }
+        public Chat? Chat { get; set; }
 	}
 }
 

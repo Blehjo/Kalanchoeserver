@@ -31,13 +31,24 @@ namespace KalanchoeAI_Backend.Controllers
         }
 
         // GET: api/ChatComment
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<ChatComment>>> GetChatComments()
+        [HttpGet("user/{id}")]
+        public async Task<ActionResult<IEnumerable<ChatComment>>> GetUserChatComments(int id)
         {
           if (_context.ChatComments == null)
           {
               return NotFound();
           }
+            return await _context.ChatComments.Where(c => c.ChatId == id).ToListAsync();
+        }
+
+        // GET: api/ChatComment
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<ChatComment>>> GetChatComments()
+        {
+            if (_context.ChatComments == null)
+            {
+                return NotFound();
+            }
             return await _context.ChatComments.ToListAsync();
         }
 

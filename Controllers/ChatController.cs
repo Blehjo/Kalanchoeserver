@@ -32,6 +32,18 @@ namespace KalanchoeAI_Backend.Controllers
             return await _context.Chats.ToListAsync();
         }
 
+        [HttpGet("user")]
+        public async Task<ActionResult<IEnumerable<Chat>>> GetUserChats()
+        {
+            if (_context.Chats == null)
+            {
+                return NotFound();
+            }
+            var userId = Int32.Parse(HttpContext.Request.Cookies["user"]);
+
+            return await _context.Chats.Where(c => c.UserId == userId).ToListAsync();
+        }
+
         // GET: api/Chat/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Chat>> GetChat(int id)
@@ -90,6 +102,7 @@ namespace KalanchoeAI_Backend.Controllers
           {
               return Problem("Entity set 'KalanchoeAIDatabaseContext.Chats'  is null.");
           }
+            chat.UserId = Int32.Parse(HttpContext.Request.Cookies["user"]);
             _context.Chats.Add(chat);
             await _context.SaveChangesAsync();
 
