@@ -45,14 +45,14 @@ namespace KalanchoeAI_Backend.Controllers
         {
             var openAiService = new OpenAIService(new OpenAiOptions()
             {
-                ApiKey = 
+                ApiKey = "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"
             });
 
             var completionResult = await openAiService.Completions
             .CreateCompletion(new CompletionCreateRequest()
             {
                 Prompt = prompt.Request,
-                MaxTokens = 50
+                MaxTokens = 256
             }, OpenAI.Engine.Davinci);
             if (completionResult.Successful)
             {
@@ -78,14 +78,14 @@ namespace KalanchoeAI_Backend.Controllers
         {
             var openAiService = new OpenAIService(new OpenAiOptions()
             {
-                ApiKey = 
+                ApiKey = "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"
             });
 
             var imageResult = await openAiService.Image.CreateImage(new ImageCreateRequest
             {
                 Prompt = prompt.Request,
-                N = 2,
-                Size = StaticValues.ImageStatics.Size.Size256,
+                N = 4,
+                Size = StaticValues.ImageStatics.Size.Size512,
                 ResponseFormat = StaticValues.ImageStatics.ResponseFormat.Url,
                 User = "TestUser"
             });
@@ -102,15 +102,15 @@ namespace KalanchoeAI_Backend.Controllers
         {
             var openAiService = new OpenAIService(new OpenAiOptions()
             {
-                ApiKey = 
+                ApiKey = "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"
             });
 
             var completionResult = await openAiService.Completions
             .CreateCompletion(new CompletionCreateRequest()
             {
                 Prompt = prompt.Request,
-                MaxTokens = 50
-            }, OpenAI.Engine.Davinci);
+                MaxTokens = 256,
+            }, OpenAI.GPT3.ObjectModels.Models.CodeDavinciV2);
             if (completionResult.Successful)
             {
                 response = completionResult

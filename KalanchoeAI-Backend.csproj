@@ -48,7 +48,6 @@
     <None Remove="Microsoft.EntityFrameworkCore.Design" />
     <None Remove="Microsoft.VisualStudio.Web.CodeGeneration.Design" />
     <None Remove="Microsoft.EntityFrameworkCore.Sqlite" />
-    <None Remove="Completions\" />
     <None Remove="Helpers\" />
     <None Remove="Services\" />
     <None Remove="Authorization\" />
@@ -66,7 +65,6 @@
     <Folder Include="Controllers\" />
     <Folder Include="Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Completions\" />
     <Folder Include="Helpers\" />
     <Folder Include="Services\" />
     <Folder Include="Authorization\" />
