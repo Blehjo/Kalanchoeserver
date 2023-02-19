@@ -23,6 +23,7 @@ namespace KalanchoeAI_Backend.Data
         public DbSet<Channel> Channels { get; set; }
         public DbSet<ChannelComment> ChannelComments { get; set; }
         public DbSet<Message> Messages { get; set; }
+        public DbSet<MessageComment> MessageComments { get; set; }
         public DbSet<Panel> Panels { get; set; } 
         public DbSet<Note> Note { get; set; }
 

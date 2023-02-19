@@ -29,7 +29,9 @@ namespace KalanchoeAI_Backend.Controllers
           {
               return NotFound();
           }
-            return await _context.Messages.ToListAsync();
+            var userId = Int32.Parse(HttpContext.Request.Cookies["user"]);
+
+            return await _context.Messages.Where(m => m.UserId == userId).ToListAsync();
         }
 
         // GET: api/Message/5
