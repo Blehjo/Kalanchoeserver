@@ -102,7 +102,7 @@ namespace KalanchoeAI_Backend.Controllers
         {
             var openAiService = new OpenAIService(new OpenAiOptions()
             {
-                ApiKey =
+                ApiKey = 
             });
 
             var completionResult = await openAiService.Completions

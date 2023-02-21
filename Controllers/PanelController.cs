@@ -50,6 +50,17 @@ namespace KalanchoeAI_Backend.Controllers
             return panel;
         }
 
+        [HttpGet("user/{id}")]
+        public async Task<ActionResult<IEnumerable<Panel>>> GetSingleUserPanels(int id)
+        {
+            if (_context.Panels == null)
+            {
+                return NotFound();
+            }
+
+            return await _context.Panels.Where(p => p.UserId == id).ToListAsync();
+        }
+
         // GET: api/Panel/users
         [HttpGet("users")]
         public async Task<ActionResult<IEnumerable<Panel>>> GetUserPanel()

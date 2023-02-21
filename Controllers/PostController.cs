@@ -51,6 +51,17 @@ namespace KalanchoeAI_Backend.Controllers
             return post;
         }
 
+        [HttpGet("user/{id}")]
+        public async Task<ActionResult<IEnumerable<Post>>> GetSingleUserPosts(int id)
+        {
+            if (_context.Posts == null)
+            {
+                return NotFound();
+            }
+
+            return await _context.Posts.Where(p => p.UserId == id).ToListAsync();
+        }
+
         // PUT: api/Post/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]

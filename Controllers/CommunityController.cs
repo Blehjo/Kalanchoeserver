@@ -50,6 +50,17 @@ namespace KalanchoeAI_Backend.Controllers
             return community;
         }
 
+        [HttpGet("user/{id}")]
+        public async Task<ActionResult<IEnumerable<Community>>> GetSingleUserCommunities(int id)
+        {
+            if (_context.Communities == null)
+            {
+                return NotFound();
+            }
+
+            return await _context.Communities.Where(c => c.UserId == id).ToListAsync();
+        }
+
         // PUT: api/Community/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]

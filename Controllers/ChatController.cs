@@ -44,6 +44,17 @@ namespace KalanchoeAI_Backend.Controllers
             return await _context.Chats.Where(c => c.UserId == userId).ToListAsync();
         }
 
+        [HttpGet("user/{id}")]
+        public async Task<ActionResult<IEnumerable<Chat>>> GetSingleUserChats(int id)
+        {
+            if (_context.Chats == null)
+            {
+                return NotFound();
+            }
+
+            return await _context.Chats.Where(c => c.UserId == id).ToListAsync();
+        }
+
         // GET: api/Chat/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Chat>> GetChat(int id)
