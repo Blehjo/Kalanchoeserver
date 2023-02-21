@@ -91,6 +91,7 @@ namespace KalanchoeAI_Backend.Controllers
           {
               return Problem("Entity set 'KalanchoeAIDatabaseContext.Posts'  is null.");
           }
+            post.UserId = Int32.Parse(HttpContext.Request.Cookies["user"]);
             _context.Posts.Add(post);
             await _context.SaveChangesAsync();
 

@@ -34,20 +34,13 @@ namespace KalanchoeAI_Backend.Controllers
 
         // GET: api/ChannelComment/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ChannelComment>> GetChannelComment(int id)
+        public async Task<ActionResult<IEnumerable<ChannelComment>>> GetChannelComment(int id)
         {
           if (_context.ChannelComments == null)
           {
               return NotFound();
           }
-            var channelComment = await _context.ChannelComments.FindAsync(id);
-
-            if (channelComment == null)
-            {
-                return NotFound();
-            }
-
-            return channelComment;
+            return await _context.ChannelComments.Where(c => c.ChannelId == id).ToListAsync();
         }
 
         // PUT: api/ChannelComment/5
@@ -90,6 +83,8 @@ namespace KalanchoeAI_Backend.Controllers
           {
               return Problem("Entity set 'KalanchoeAIDatabaseContext.ChannelComments'  is null.");
           }
+
+            channelComment.UserId = Int32.Parse(HttpContext.Request.Cookies["user"]);
             _context.ChannelComments.Add(channelComment);
             await _context.SaveChangesAsync();
 

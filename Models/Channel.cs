@@ -15,7 +15,7 @@ namespace KalanchoeAI_Backend.Models
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;
 
         public int CommunityId { get; set; }
-        public Community Community { get; set; }
+        public Community? Community { get; set; }
 
 		public ICollection<ChannelComment>? ChannelComments { get; set; }
 	}

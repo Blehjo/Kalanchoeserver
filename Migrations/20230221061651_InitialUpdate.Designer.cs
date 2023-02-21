@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KalanchoeAIBackend.Migrations
 {
     [DbContext(typeof(KalanchoeAIDatabaseContext))]
-    [Migration("20230219204929_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20230221061651_InitialUpdate")]
+    partial class InitialUpdate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,6 +50,7 @@ namespace KalanchoeAIBackend.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("ChannelCommentValue")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("ChannelId")
@@ -179,6 +180,9 @@ namespace KalanchoeAIBackend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("FollowerUser")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
 
@@ -233,6 +237,29 @@ namespace KalanchoeAIBackend.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Messages");
+                });
+
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.MessageComment", b =>
+                {
+                    b.Property<int>("MessageCommentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("MessageId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("MessageValue")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("MessageCommentId");
+
+                    b.HasIndex("MessageId");
+
+                    b.ToTable("MessageComments");
                 });
 
             modelBuilder.Entity("KalanchoeAI_Backend.Models.Note", b =>
@@ -466,6 +493,17 @@ namespace KalanchoeAIBackend.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.MessageComment", b =>
+                {
+                    b.HasOne("KalanchoeAI_Backend.Models.Message", "Message")
+                        .WithMany("MessageComments")
+                        .HasForeignKey("MessageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Message");
+                });
+
             modelBuilder.Entity("KalanchoeAI_Backend.Models.Note", b =>
                 {
                     b.HasOne("KalanchoeAI_Backend.Models.Panel", "Panel")
@@ -514,6 +552,11 @@ namespace KalanchoeAIBackend.Migrations
                     b.Navigation("Channels");
 
                     b.Navigation("Members");
+                });
+
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.Message", b =>
+                {
+                    b.Navigation("MessageComments");
                 });
 
             modelBuilder.Entity("KalanchoeAI_Backend.Models.Panel", b =>

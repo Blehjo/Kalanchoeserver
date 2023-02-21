@@ -90,6 +90,8 @@ namespace KalanchoeAI_Backend.Controllers
           {
               return Problem("Entity set 'KalanchoeAIDatabaseContext.Communities'  is null.");
           }
+
+            community.UserId = Int32.Parse(HttpContext.Request.Cookies["user"]);
             _context.Communities.Add(community);
             await _context.SaveChangesAsync();
 

@@ -3,6 +3,7 @@ using System;
 using KalanchoeAI_Backend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KalanchoeAIBackend.Migrations
 {
     [DbContext(typeof(KalanchoeAIDatabaseContext))]
-    partial class KalanchoeAIDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230220005141_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.2");
@@ -47,7 +50,6 @@ namespace KalanchoeAIBackend.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("ChannelCommentValue")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("ChannelId")
@@ -175,9 +177,6 @@ namespace KalanchoeAIBackend.Migrations
                 {
                     b.Property<int>("FollowerId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("FollowerUser")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("UserId")

@@ -15,7 +15,7 @@ namespace KalanchoeAI_Backend.Models
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;
 
         public int UserId { get; set; }
-        public User User { get; set; }
+        public User? User { get; set; }
 
         public ICollection<MessageComment>? MessageComments { get; set; }
 	}

@@ -19,6 +19,7 @@
           "Microsoft.EntityFrameworkCore.Design": "7.0.1",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.1",
           "Microsoft.EntityFrameworkCore.Sqlite": "7.0.1",
+          "Microsoft.EntityFrameworkCore.Tools": "7.0.0-preview.6.22329.4",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "7.0.1",
           "OpenAI": "1.2.0",
           "OpenAI-DotNet": "3.0.1",
@@ -1143,6 +1144,11 @@
             "assemblyVersion": "7.0.1.0",
             "fileVersion": "7.0.122.55819"
           }
+        }
+      },
+      "Microsoft.EntityFrameworkCore.Tools/7.0.0-preview.6.22329.4": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Design": "7.0.1"
         }
       },
       "Microsoft.Extensions.ApiDescription.Server/6.0.5": {},
@@ -3095,6 +3101,13 @@
       "sha512": "sha512-bO01yAzgXNoJNbtHfrRFOpJxcP8R0bP5yrCTVULOXVR9MQVbpehqt94R19vwE+Bw+9P3xHZdotBTDucwR4rxLg==",
       "path": "microsoft.entityframeworkcore.sqlserver/7.0.1",
       "hashPath": "microsoft.entityframeworkcore.sqlserver.7.0.1.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore.Tools/7.0.0-preview.6.22329.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-alvGqBKRzkpIlQXnxD2TSlKbVXuT513kqzMPMBvMj6aVtIGBSsnqIOIXOL+wnpG1dQCRPE9YgjI+FpFyEeALYA==",
+      "path": "microsoft.entityframeworkcore.tools/7.0.0-preview.6.22329.4",
+      "hashPath": "microsoft.entityframeworkcore.tools.7.0.0-preview.6.22329.4.nupkg.sha512"
     },
     "Microsoft.Extensions.ApiDescription.Server/6.0.5": {
       "type": "package",

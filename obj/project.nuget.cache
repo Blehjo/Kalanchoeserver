@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "zPSA+Pc7Ov/Evc8sI0DB69HynhX7+e3Li0cQRbKELok/UPgsqJgNbJz54MKS9QGwgflJGFY2ZZd/YJLDmRNR4A==",
+  "dgSpecHash": "K6PnIGZP63ccabo9NIocfJQgP8ot7rmLU0FDl4D6ipOGae6i9nTyo0jNNfnTZGQVLZgkao96AFWiJpKh9qeSTw==",
   "success": true,
   "projectFilePath": "/Users/blehjo/projects/KalanchoeAI/KalanchoeAI-Backend/KalanchoeAI-Backend.csproj",
   "expectedPackageFiles": [
@@ -57,6 +57,7 @@
     "/Users/blehjo/.nuget/packages/microsoft.entityframeworkcore.sqlite/7.0.1/microsoft.entityframeworkcore.sqlite.7.0.1.nupkg.sha512",
     "/Users/blehjo/.nuget/packages/microsoft.entityframeworkcore.sqlite.core/7.0.1/microsoft.entityframeworkcore.sqlite.core.7.0.1.nupkg.sha512",
     "/Users/blehjo/.nuget/packages/microsoft.entityframeworkcore.sqlserver/7.0.1/microsoft.entityframeworkcore.sqlserver.7.0.1.nupkg.sha512",
+    "/Users/blehjo/.nuget/packages/microsoft.entityframeworkcore.tools/7.0.0-preview.6.22329.4/microsoft.entityframeworkcore.tools.7.0.0-preview.6.22329.4.nupkg.sha512",
     "/Users/blehjo/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "/Users/blehjo/.nuget/packages/microsoft.extensions.caching.abstractions/7.0.0/microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
     "/Users/blehjo/.nuget/packages/microsoft.extensions.caching.memory/7.0.0/microsoft.extensions.caching.memory.7.0.0.nupkg.sha512",

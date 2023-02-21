@@ -10,8 +10,10 @@ namespace KalanchoeAI_Backend.Models
 	{
 		public int FollowerId { get; set; }
 
+		public int FollowerUser { get; set; }
+
         public int UserId { get; set; }
-        public User User { get; set; }
+        public User? User { get; set; }
 	}
 }
 

@@ -229,6 +229,27 @@ namespace KalanchoeAIBackend.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MessageComments",
+                columns: table => new
+                {
+                    MessageCommentId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    MessageValue = table.Column<string>(type: "TEXT", nullable: false),
+                    DateCreated = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    MessageId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MessageComments", x => x.MessageCommentId);
+                    table.ForeignKey(
+                        name: "FK_MessageComments_Messages_MessageId",
+                        column: x => x.MessageId,
+                        principalTable: "Messages",
+                        principalColumn: "MessageId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Note",
                 columns: table => new
                 {
@@ -361,6 +382,11 @@ namespace KalanchoeAIBackend.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_MessageComments_MessageId",
+                table: "MessageComments",
+                column: "MessageId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Messages_UserId",
                 table: "Messages",
                 column: "UserId");
@@ -400,7 +426,7 @@ namespace KalanchoeAIBackend.Migrations
                 name: "Members");
 
             migrationBuilder.DropTable(
-                name: "Messages");
+                name: "MessageComments");
 
             migrationBuilder.DropTable(
                 name: "Note");
@@ -413,6 +439,9 @@ namespace KalanchoeAIBackend.Migrations
 
             migrationBuilder.DropTable(
                 name: "Posts");
+
+            migrationBuilder.DropTable(
+                name: "Messages");
 
             migrationBuilder.DropTable(
                 name: "Panels");
