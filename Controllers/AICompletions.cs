@@ -26,20 +26,6 @@ namespace KalanchoeAI_Backend.Controllers
         private string Organization;
         private IConfiguration configuration;
 
-        // GET: api/Chatgpt
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET: api/Chatgpt/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
         [HttpPost("completion")]
         public async Task<ActionResult<string>> PostCompletion(Models.Prompt prompt)
         {
@@ -127,18 +113,6 @@ namespace KalanchoeAI_Backend.Controllers
                 $"{completionResult.Error?.Code}: {completionResult.Error?.Message}";
                 return response;
             }
-        }
-
-        // PUT: api/Chatgpt/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE: api/Chatgpt/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }

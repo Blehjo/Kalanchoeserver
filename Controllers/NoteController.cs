@@ -50,6 +50,17 @@ namespace KalanchoeAI_Backend.Controllers
             return note;
         }
 
+        [HttpGet("user/{id}")]
+        public async Task<ActionResult<IEnumerable<Note>>> GetSingleUserNotes(int id)
+        {
+            if (_context.Note == null)
+            {
+                return NotFound();
+            }
+
+            return await _context.Note.Where(n => n.PanelId == id).ToListAsync();
+        }
+
         // PUT: api/Note/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
