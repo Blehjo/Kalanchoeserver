@@ -50,6 +50,17 @@ namespace KalanchoeAI_Backend.Controllers
             return channel;
         }
 
+        [HttpGet("community/{id}")]
+        public async Task<ActionResult<IEnumerable<Channel>>> GetSingleCommunityChannels(int id)
+        {
+            if (_context.Channels == null)
+            {
+                return NotFound();
+            }
+
+            return await _context.Channels.Where(c => c.CommunityId == id).ToListAsync();
+        }
+
         // PUT: api/Channel/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
