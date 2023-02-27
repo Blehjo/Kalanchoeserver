@@ -90,6 +90,7 @@ namespace KalanchoeAI_Backend.Controllers
           {
               return Problem("Entity set 'KalanchoeAIDatabaseContext.Members'  is null.");
           }
+            member.UserId = Int32.Parse(HttpContext.Request.Cookies["user"]);
             _context.Members.Add(member);
             await _context.SaveChangesAsync();
 

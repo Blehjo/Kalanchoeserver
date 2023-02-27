@@ -50,6 +50,17 @@ namespace KalanchoeAI_Backend.Controllers
             return comment;
         }
 
+        // GET: api/Comment/5
+        [HttpGet("post/{id}")]
+        public async Task<ActionResult<IEnumerable<Comment>>> GetPostComments(int id)
+        {
+            if (_context.Comments == null)
+            {
+                return NotFound();
+            }
+            return await _context.Comments.Where(c => c.PostId == id).ToListAsync();
+        }
+
         // PUT: api/Comment/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -90,6 +101,7 @@ namespace KalanchoeAI_Backend.Controllers
           {
               return Problem("Entity set 'KalanchoeAIDatabaseContext.Comments'  is null.");
           }
+            comment.UserId = Int32.Parse(HttpContext.Request.Cookies["user"]);
             _context.Comments.Add(comment);
             await _context.SaveChangesAsync();
 

@@ -31,7 +31,7 @@ namespace KalanchoeAI_Backend.Controllers
         {
             var openAiService = new OpenAIService(new OpenAiOptions()
             {
-                ApiKey = "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"
+                ApiKey = 
             });
 
             var completionResult = await openAiService.Completions
@@ -64,7 +64,7 @@ namespace KalanchoeAI_Backend.Controllers
         {
             var openAiService = new OpenAIService(new OpenAiOptions()
             {
-                ApiKey = "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"
+                ApiKey = 
             });
 
             var imageResult = await openAiService.Image.CreateImage(new ImageCreateRequest
@@ -88,7 +88,7 @@ namespace KalanchoeAI_Backend.Controllers
         {
             var openAiService = new OpenAIService(new OpenAiOptions()
             {
-                ApiKey = "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"
+                ApiKey = 
             });
 
             var completionResult = await openAiService.Completions
