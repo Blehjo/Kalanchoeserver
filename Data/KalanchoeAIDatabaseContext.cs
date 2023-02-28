@@ -26,6 +26,7 @@ namespace KalanchoeAI_Backend.Data
         public DbSet<MessageComment> MessageComments { get; set; }
         public DbSet<Panel> Panels { get; set; } 
         public DbSet<Note> Note { get; set; }
+        public DbSet<Saved> Saved { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
