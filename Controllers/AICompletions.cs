@@ -29,9 +29,13 @@ namespace KalanchoeAI_Backend.Controllers
         [HttpPost("completion")]
         public async Task<ActionResult<string>> PostCompletion(Models.Prompt prompt)
         {
+            var config = new ConfigurationBuilder()
+                .AddUserSecrets<Program>()
+                .Build();
+            string apiKey = config["OpenAiService:ApiKey"];
             var openAiService = new OpenAIService(new OpenAiOptions()
             {
-                ApiKey = 
+                ApiKey = apiKey
             });
 
             var completionResult = await openAiService.Completions
@@ -62,9 +66,13 @@ namespace KalanchoeAI_Backend.Controllers
         [HttpPost("dalle")]
         public async Task<ActionResult<string>> PostDalle(Models.Prompt prompt)
         {
+            var config = new ConfigurationBuilder()
+                .AddUserSecrets<Program>()
+                .Build();
+            string apiKey = config["OpenAiService:ApiKey"];
             var openAiService = new OpenAIService(new OpenAiOptions()
             {
-                ApiKey = 
+                ApiKey = apiKey
             });
 
             var imageResult = await openAiService.Image.CreateImage(new ImageCreateRequest
@@ -86,9 +94,14 @@ namespace KalanchoeAI_Backend.Controllers
         [HttpPost("code")]
         public async Task<ActionResult<string>> PostCode(Models.Prompt prompt)
         {
+            var config = new ConfigurationBuilder()
+                .AddUserSecrets<Program>()
+                .Build();
+            string apiKey = config["OpenAiService:ApiKey"];
+
             var openAiService = new OpenAIService(new OpenAiOptions()
             {
-                ApiKey = 
+                ApiKey = apiKey
             });
 
             var completionResult = await openAiService.Completions
