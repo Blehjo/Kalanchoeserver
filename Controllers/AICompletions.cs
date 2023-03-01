@@ -127,5 +127,42 @@ namespace KalanchoeAI_Backend.Controllers
                 return response;
             }
         }
+
+        [HttpPost("chat")]
+        public async Task<ActionResult<string>> PostChat(Models.Prompt prompt)
+        {
+            var config = new ConfigurationBuilder()
+                .AddUserSecrets<Program>()
+                .Build();
+            string apiKey = config["OpenAiService:ApiKey"];
+
+            var openAiService = new OpenAIService(new OpenAiOptions()
+            {
+                ApiKey = apiKey
+            });
+
+            var completionResult = await openAiService.Completions
+            .CreateCompletion(new CompletionCreateRequest()
+            {
+                Prompt = prompt.Request,
+                MaxTokens = 256,
+            }, "gpt-3.5-turbo");
+            if (completionResult.Successful)
+            {
+                response = completionResult
+                .Choices.FirstOrDefault()?.Text ?? "";
+                return response;
+            }
+            else
+            {
+                if (completionResult.Error == null)
+                {
+                    response = "Unknown Error";
+                }
+                response =
+                $"{completionResult.Error?.Code}: {completionResult.Error?.Message}";
+                return response;
+            }
+        }
     }
 }
