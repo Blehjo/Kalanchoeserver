@@ -164,5 +164,44 @@ namespace KalanchoeAI_Backend.Controllers
                 return response;
             }
         }
+
+        [HttpPost("artoo")]
+        public async Task<ActionResult<string>> Artoo(Models.Prompt prompt)
+        {
+            var config = new ConfigurationBuilder()
+                .AddUserSecrets<Program>()
+                .Build();
+            string apiKey = config["OpenAiService:ApiKey"];
+
+            var openAiService = new OpenAIService(new OpenAiOptions()
+            {
+                ApiKey = apiKey
+            });
+
+            var completionResult = await openAiService.ChatCompletion.CreateCompletion(new ChatCompletionCreateRequest
+            {
+                Messages = new List<ChatMessage>
+            {
+                ChatMessage.FromUser(prompt.Request)
+            },
+                Model = OpenAI.GPT3.ObjectModels.Models.ChatGpt3_5Turbo,
+                MaxTokens = 256
+            });
+            if (completionResult.Successful)
+            {
+                response = completionResult.Choices.First().Message.Content;
+                return response;
+            }
+            else
+            {
+                if (completionResult.Error == null)
+                {
+                    response = "Unknown Error";
+                }
+                response =
+                $"{completionResult.Error?.Code}: {completionResult.Error?.Message}";
+                return response;
+            }
+        }
     }
 }
