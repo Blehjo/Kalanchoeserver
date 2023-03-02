@@ -13,6 +13,8 @@ using KalanchoeAI_Backend.Services;
 using KalanchoeAI_Backend.Authorization;
 using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 var builder = WebApplication.CreateBuilder(args);
 
 {
@@ -38,6 +40,18 @@ builder.Configuration
     .AddEnvironmentVariables();
 
 builder.Services.AddOpenAIService();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      builder =>
+                      {
+                          builder.WithOrigins("https://kalanchoeai.azurewebsites.net")
+                          .AllowAnyMethod()
+                          .AllowCredentials()
+                          .AllowAnyHeader();
+                      });
+});
 
 // Add services to the container.
 builder.Services.AddControllers()
@@ -65,11 +79,12 @@ app.UseHttpsRedirection();
 
 {
     // global cors policy
-    app.UseCors(x => x
-        .WithOrigins("https://localhost:44498")
-        .AllowAnyMethod()
-        .AllowCredentials()
-        .AllowAnyHeader());
+    //app.UseCors(x => x
+    //    .WithOrigins("https://kalanchoeai.azurewebsites.net")
+    //    .AllowAnyMethod()
+    //    .AllowCredentials()
+    //    .AllowAnyHeader());
+    app.UseCors(MyAllowSpecificOrigins);
 
     // global error handler
     app.UseMiddleware<ErrorHandlerMiddleware>();
