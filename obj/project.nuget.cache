@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ntRIRhNOrWBg/yCkXHatM7ACEft0dTAsDOxCz0NcKifrsq46yZCCdObsGvtalM4Wn+hfzVsXJSFsGnjuUv8UeQ==",
+  "dgSpecHash": "GrNrcHSwa+eeayA/dMIjekhJ4jFfP049KC20/dhg6MD3U9RYsh1THJx3F/faJTb87KAoOsjRl8e5xYPvCoclqg==",
   "success": true,
   "projectFilePath": "/Users/blehjo/projects/KalanchoeAI/KalanchoeAI-Backend/KalanchoeAI-Backend.csproj",
   "expectedPackageFiles": [
@@ -9,7 +9,7 @@
     "/Users/blehjo/.nuget/packages/azure.core/1.24.0/azure.core.1.24.0.nupkg.sha512",
     "/Users/blehjo/.nuget/packages/azure.identity/1.6.0/azure.identity.1.6.0.nupkg.sha512",
     "/Users/blehjo/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
-    "/Users/blehjo/.nuget/packages/betalgo.openai.gpt3/6.6.3/betalgo.openai.gpt3.6.6.3.nupkg.sha512",
+    "/Users/blehjo/.nuget/packages/betalgo.openai.gpt3/6.7.0/betalgo.openai.gpt3.6.7.0.nupkg.sha512",
     "/Users/blehjo/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/blehjo/.nuget/packages/microsoft.aspnet.webapi.client/5.2.9/microsoft.aspnet.webapi.client.5.2.9.nupkg.sha512",
     "/Users/blehjo/.nuget/packages/microsoft.aspnetcore.cryptography.internal/2.2.0/microsoft.aspnetcore.cryptography.internal.2.2.0.nupkg.sha512",

@@ -88,7 +88,7 @@
           }
         }
       },
-      "Betalgo.OpenAI.GPT3/6.6.3": {
+      "Betalgo.OpenAI.GPT3/6.7.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNet.WebApi.Client": "5.2.9",
@@ -4451,16 +4451,16 @@
         "readme.md"
       ]
     },
-    "Betalgo.OpenAI.GPT3/6.6.3": {
-      "sha512": "4tuqNbXdA24uiOI/BJX7x7N8LcSevgSTfjEEMgUf1g+rScb8cGkShxVNL/RMRuEX2KWn+jvdTvDzp7wzdwLF4Q==",
+    "Betalgo.OpenAI.GPT3/6.7.0": {
+      "sha512": "snKAS8mqBIjyxlMdq1yOv7VwVtlqprUPtqkGmxVcoO+n9bXOuoDEJnXRfxFMceudS9UKQYT8kGFmXiWoOTThUQ==",
       "type": "package",
-      "path": "betalgo.openai.gpt3/6.6.3",
+      "path": "betalgo.openai.gpt3/6.7.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "OpenAI-Betalgo.png",
         "Readme.md",
-        "betalgo.openai.gpt3.6.6.3.nupkg.sha512",
+        "betalgo.openai.gpt3.6.7.0.nupkg.sha512",
         "betalgo.openai.gpt3.nuspec",
         "lib/net6.0/OpenAI.GPT3.dll",
         "lib/net6.0/OpenAI.GPT3.xml"
@@ -12147,7 +12147,7 @@
       "AutoMapper >= 12.0.1",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.0",
       "BCrypt.Net-Next >= 4.0.3",
-      "Betalgo.OpenAI.GPT3 >= 6.6.3",
+      "Betalgo.OpenAI.GPT3 >= 6.7.0",
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 7.0.2",
       "Microsoft.AspNetCore.OpenApi >= 7.0.1",
       "Microsoft.AspNetCore.Session >= 2.2.0",
@@ -12215,7 +12215,7 @@
           },
           "Betalgo.OpenAI.GPT3": {
             "target": "Package",
-            "version": "[6.6.3, )"
+            "version": "[6.7.0, )"
           },
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
             "target": "Package",
