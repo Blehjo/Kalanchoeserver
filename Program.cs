@@ -21,7 +21,6 @@ var builder = WebApplication.CreateBuilder(args);
     var services = builder.Services;
     var env = builder.Environment;
 
-    services.AddCors();
     services.AddControllers();
 
     // configure automapper with all automapper profiles from this assembly
@@ -43,13 +42,13 @@ builder.Services.AddOpenAIService();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: MyAllowSpecificOrigins,
-                      builder =>
+    options.AddPolicy(MyAllowSpecificOrigins,
+                      policy =>
                       {
-                          builder.WithOrigins("https://kalanchoeai.azurewebsites.net")
+                          policy.WithOrigins("https://kalanchoeai.azurewebsites.net")
+                          .AllowAnyHeader()
                           .AllowAnyMethod()
-                          .AllowCredentials()
-                          .AllowAnyHeader();
+                          .AllowCredentials();
                       });
 });
 
@@ -77,15 +76,15 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-{
-    // global cors policy
-    //app.UseCors(x => x
-    //    .WithOrigins("https://kalanchoeai.azurewebsites.net")
-    //    .AllowAnyMethod()
-    //    .AllowCredentials()
-    //    .AllowAnyHeader());
-    app.UseCors(MyAllowSpecificOrigins);
+app.UseStaticFiles();
 
+app.UseRouting();
+
+app.UseCors(MyAllowSpecificOrigins);
+
+app.UseAuthorization();
+
+{
     // global error handler
     app.UseMiddleware<ErrorHandlerMiddleware>();
 
@@ -97,6 +96,6 @@ app.UseHttpsRedirection();
     pattern: "{controller}/{action=Index}/{id?}");
 }
 
-app.UseAuthorization();
+app.MapControllers();
 
 app.Run();
