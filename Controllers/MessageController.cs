@@ -31,7 +31,9 @@ namespace KalanchoeAI_Backend.Controllers
           }
             var userId = Int32.Parse(HttpContext.Request.Cookies["user"]);
 
-            return await _context.Messages.Where(m => m.UserId == userId).ToListAsync();
+            var user = await _context.Users.FindAsync(userId);
+
+            return await _context.Messages.Where(m => m.UserId == userId || m.MessageValue == user.Username).ToListAsync();
         }
 
         // GET: api/Message/5
@@ -92,6 +94,15 @@ namespace KalanchoeAI_Backend.Controllers
           {
               return Problem("Entity set 'KalanchoeAIDatabaseContext.Messages'  is null.");
           }
+
+            var returnedMessage = await _context.Messages.FindAsync(message.MessageValue);
+            var userId = Int32.Parse(Request.Cookies["user"]);
+
+            if (returnedMessage != null && returnedMessage.UserId == userId)
+            {
+                return returnedMessage;
+            }
+
             _context.Messages.Add(message);
             await _context.SaveChangesAsync();
 
