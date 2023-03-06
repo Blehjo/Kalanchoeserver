@@ -45,7 +45,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy(MyAllowSpecificOrigins,
                       policy =>
                       {
-                          policy.WithOrigins("https://kalanchoeai.azurewebsites.net")
+                          policy.WithOrigins("https://kalanchoeai.azurewebsites.net", "https://localhost:44498")
                           .AllowAnyHeader()
                           .AllowAnyMethod()
                           .AllowCredentials();

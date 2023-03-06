@@ -33,6 +33,7 @@ namespace KalanchoeAI_Backend.Controllers
                 .AddUserSecrets<Program>()
                 .Build();
             string apiKey = config["OpenAiService:ApiKey"];
+
             var openAiService = new OpenAIService(new OpenAiOptions()
             {
                 ApiKey = apiKey
@@ -70,6 +71,7 @@ namespace KalanchoeAI_Backend.Controllers
                 .AddUserSecrets<Program>()
                 .Build();
             string apiKey = config["OpenAiService:ApiKey"];
+
             var openAiService = new OpenAIService(new OpenAiOptions()
             {
                 ApiKey = apiKey
@@ -171,6 +173,7 @@ namespace KalanchoeAI_Backend.Controllers
             var config = new ConfigurationBuilder()
                 .AddUserSecrets<Program>()
                 .Build();
+
             string apiKey = config["OpenAiService:ApiKey"];
 
             var openAiService = new OpenAIService(new OpenAiOptions()

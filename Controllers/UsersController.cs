@@ -7,6 +7,7 @@ using KalanchoeAI_Backend.Models.Users;
 using KalanchoeAI_Backend.Services;
 using KalanchoeAI_Backend.Models;
 using Microsoft.AspNetCore.Http;
+using Azure;
 
 namespace KalanchoeAI_Backend.Controllers
 {
@@ -35,11 +36,6 @@ namespace KalanchoeAI_Backend.Controllers
         {
             var response = _userService.Authenticate(model);
 
-            //HttpContext.Response.Cookies.Append("token", response.Token,
-            //    new Microsoft.AspNetCore.Http.CookieOptions { Expires = DateTime.Now.AddMinutes(120) });
-
-            //HttpContext.Response.Cookies.Append("user", response.UserId.ToString());    
-
             var cookieOptions = new CookieOptions
             {
                 // Set the secure flag, which Chrome's changes will require for SameSite none.
@@ -57,11 +53,7 @@ namespace KalanchoeAI_Backend.Controllers
                 // SameSite = SameSiteMode.Unspecified
             };
 
-            // Add the cookie to the response cookie collection
-            Response.Cookies.Append("MyCookie", "cookieValue", cookieOptions);
-        
-
-        cookieOptions.Expires = DateTime.Now.AddDays(1);
+            cookieOptions.Expires = DateTime.Now.AddDays(1);
 
             cookieOptions.Path = "/";
 
@@ -91,14 +83,36 @@ namespace KalanchoeAI_Backend.Controllers
         [HttpPost("logout")]
         public IActionResult Logout()
         {
-            var token = HttpContext.Request.Cookies["token"];
+            var token = Request.Cookies["token"];
 
-            var user = HttpContext.Request.Cookies["user"];
+            var user = Request.Cookies["user"];
 
             if (token != null && user != null)
             {
-                HttpContext.Response.Cookies.Delete("token");
-                HttpContext.Response.Cookies.Delete("user");
+                var cookieOptions = new CookieOptions
+                {
+                    // Set the secure flag, which Chrome's changes will require for SameSite none.
+                    // Note this will also require you to be running on HTTPS.
+                    Secure = true,
+
+                    // Set the cookie to HTTP only which is good practice unless you really do need
+                    // to access it client side in scripts.
+                    HttpOnly = true,
+
+                    // Add the SameSite attribute, this will emit the attribute with a value of none.
+                    SameSite = SameSiteMode.None
+
+                    // The client should follow its default cookie policy.
+                    // SameSite = SameSiteMode.Unspecified
+                };
+
+                cookieOptions.Expires = DateTime.Now.AddDays(-1);
+
+                cookieOptions.Path = "/";
+
+                Response.Cookies.Append("token", token, cookieOptions);
+
+                Response.Cookies.Append("user", user, cookieOptions);
             }
 
             return Ok(new { message = "Logout successful" });

@@ -101,6 +101,7 @@ namespace KalanchoeAI_Backend.Controllers
           {
               return Problem("Entity set 'KalanchoeAIDatabaseContext.Channels'  is null.");
           }
+
             _context.Channels.Add(channel);
             await _context.SaveChangesAsync();
 
