@@ -312,3 +312,4 @@
 /Users/blehjo/projects/KalanchoeAI/KalanchoeAI-Backend/bin/Debug/net7.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 /Users/blehjo/projects/KalanchoeAI/KalanchoeAI-Backend/bin/Debug/net7.0/Microsoft.AspNetCore.JsonPatch.dll
 /Users/blehjo/projects/KalanchoeAI/KalanchoeAI-Backend/bin/Debug/net7.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+/Users/blehjo/projects/KalanchoeAI/KalanchoeAI-Backend/bin/Debug/net7.0/KalanchoeAI-Backend.staticwebassets.runtime.json

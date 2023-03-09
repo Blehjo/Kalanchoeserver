@@ -38,6 +38,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
   </ItemGroup>
 
   <ItemGroup>
@@ -75,5 +76,15 @@
     <Folder Include="Services\" />
     <Folder Include="Authorization\" />
     <Folder Include="Models\Users\" />
+    <Folder Include="wwwroot\" />
+    <Folder Include="wwwroot\Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\" />
+    <Content Remove="wwwroot\Images\_DSC2706.JPG" />
+    <Content Remove="wwwroot\Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\Images\_DSC2706.JPG" />
   </ItemGroup>
 </Project>

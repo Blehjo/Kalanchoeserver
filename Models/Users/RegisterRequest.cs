@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
 
 namespace KalanchoeAI_Backend.Models.Users
 {
@@ -28,7 +29,6 @@ namespace KalanchoeAI_Backend.Models.Users
         public string About { get; set; }
 
         [Required]
-        public string ProfileImage { get; set; }
+        public IFormFile ProfileImage { get; set; }
     }
 }
-

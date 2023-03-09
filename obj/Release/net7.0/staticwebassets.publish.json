@@ -1,11 +1,19 @@
 {
   "Version": 1,
-  "Hash": "6qVqEZc/HYMbsDgYMfFGPgA6N7FDC3mRwOdX2+lZ098=",
+  "Hash": "Q/kwLI7JPfVN6FvIBjhsNePTf+609lEIQ5GuC11cq5I=",
   "Source": "KalanchoeAI-Backend",
   "BasePath": "_content/KalanchoeAI-Backend",
   "Mode": "Default",
   "ManifestType": "Publish",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "KalanchoeAI-Backend/wwwroot",
+      "Source": "KalanchoeAI-Backend",
+      "ContentRoot": "/Users/blehjo/projects/KalanchoeAI/KalanchoeAI-Backend/wwwroot/",
+      "BasePath": "_content/KalanchoeAI-Backend",
+      "Pattern": "**"
+    }
+  ],
   "Assets": []
 }

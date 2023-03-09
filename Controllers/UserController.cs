@@ -96,7 +96,19 @@ namespace KalanchoeAI_Backend.Controllers
           {
               return Problem("Entity set 'KalanchoeAIDatabaseContext.Users'  is null.");
           }
+
+            if (user.ProfileImage != null)
+            {
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "_" + String.Format("{0:d}", (DateTime.Now.Ticks / 10) % 100000000) + user.ProfileImage.FileName);
+
+                using (Stream stream = new FileStream(path, FileMode.Create))
+                {
+                    user.ProfileImage.CopyTo(stream);
+                }
+            }
+
             _context.Users.Add(user);
+
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetUser", new { id = user.UserId }, user);

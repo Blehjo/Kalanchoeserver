@@ -313,9 +313,6 @@ namespace KalanchoeAIBackend.Migrations
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("MediaLink")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("PostValue")
                         .HasColumnType("TEXT");
 
@@ -339,9 +336,6 @@ namespace KalanchoeAIBackend.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Link")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("MediaLink")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
@@ -382,9 +376,6 @@ namespace KalanchoeAIBackend.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Password")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ProfileImage")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Username")

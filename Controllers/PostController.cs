@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Cors;
 using KalanchoeAI_Backend.Data;
 using KalanchoeAI_Backend.Models;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.AspNetCore.Hosting;
 
 namespace KalanchoeAI_Backend.Controllers
 {
@@ -102,8 +104,21 @@ namespace KalanchoeAI_Backend.Controllers
           {
               return Problem("Entity set 'KalanchoeAIDatabaseContext.Posts'  is null.");
           }
+
+            if (post.MediaLink != null)
+            {
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", post.MediaLink.FileName);
+
+                using (Stream stream = new FileStream(path, FileMode.Create))
+                {
+                    post.MediaLink.CopyTo(stream);
+                }
+            }
+
             post.UserId = Int32.Parse(HttpContext.Request.Cookies["user"]);
+
             _context.Posts.Add(post);
+
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetPost", new { id = post.PostId }, post);

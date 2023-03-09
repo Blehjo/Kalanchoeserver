@@ -1,0 +1,25 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/blehjo/projects/KalanchoeAI/KalanchoeAI-Backend/wwwroot/ImageFiles/redbackground.avif",
+      "PackagePath": "staticwebassets/ImageFiles/redbackground.avif"
+    },
+    {
+      "Id": "obj/Release/net7.0/staticwebassets/msbuild.KalanchoeAI-Backend.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Release/net7.0/staticwebassets/msbuild.build.KalanchoeAI-Backend.props",
+      "PackagePath": "build\\KalanchoeAI-Backend.props"
+    },
+    {
+      "Id": "obj/Release/net7.0/staticwebassets/msbuild.buildMultiTargeting.KalanchoeAI-Backend.props",
+      "PackagePath": "buildMultiTargeting\\KalanchoeAI-Backend.props"
+    },
+    {
+      "Id": "obj/Release/net7.0/staticwebassets/msbuild.buildTransitive.KalanchoeAI-Backend.props",
+      "PackagePath": "buildTransitive\\KalanchoeAI-Backend.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

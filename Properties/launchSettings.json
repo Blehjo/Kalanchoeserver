@@ -20,7 +20,7 @@
     "https": {
       "commandName": "Project",
       "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7028;http://localhost:5063",
+      "applicationUrl": "https://kalanchoeai-server.azurewebsites.net;http://localhost:5063",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

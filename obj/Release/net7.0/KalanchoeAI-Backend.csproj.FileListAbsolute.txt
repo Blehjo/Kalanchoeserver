@@ -312,3 +312,4 @@
 /Users/blehjo/projects/KalanchoeAI/KalanchoeAI-Backend/obj/Release/net7.0/KalanchoeAI-Backend.pdb
 /Users/blehjo/projects/KalanchoeAI/KalanchoeAI-Backend/obj/Release/net7.0/KalanchoeAI-Backend.genruntimeconfig.cache
 /Users/blehjo/projects/KalanchoeAI/KalanchoeAI-Backend/obj/Release/net7.0/ref/KalanchoeAI-Backend.dll
+/Users/blehjo/projects/KalanchoeAI/KalanchoeAI-Backend/bin/Release/net7.0/KalanchoeAI-Backend.staticwebassets.runtime.json

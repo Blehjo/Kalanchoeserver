@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using KalanchoeAI_Backend.Data;
 using KalanchoeAI_Backend.Models;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.AspNetCore.Hosting;
 
 namespace KalanchoeAI_Backend.Controllers
 {
@@ -101,7 +103,18 @@ namespace KalanchoeAI_Backend.Controllers
           {
               return Problem("Entity set 'KalanchoeAIDatabaseContext.Saved'  is null.");
           }
-          saved.UserId = Int32.Parse(HttpContext.Request.Cookies["user"]);
+
+            if (saved.MediaLink != null)
+            {
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "_" + String.Format("{0:d}", (DateTime.Now.Ticks / 10) % 100000000) + saved.MediaLink.FileName);
+
+                using (Stream stream = new FileStream(path, FileMode.Create))
+                {
+                    saved.MediaLink.CopyTo(stream);
+                }
+            }
+
+            saved.UserId = Int32.Parse(HttpContext.Request.Cookies["user"]);
             _context.Saved.Add(saved);
             await _context.SaveChangesAsync();
 

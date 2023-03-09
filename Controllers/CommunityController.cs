@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using KalanchoeAI_Backend.Data;
 using KalanchoeAI_Backend.Models;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace KalanchoeAI_Backend.Controllers
 {
@@ -15,10 +17,12 @@ namespace KalanchoeAI_Backend.Controllers
     public class CommunityController : ControllerBase
     {
         private readonly KalanchoeAIDatabaseContext _context;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public CommunityController(KalanchoeAIDatabaseContext context)
+        public CommunityController(KalanchoeAIDatabaseContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
+            this._hostEnvironment = hostEnvironment;
         }
 
         // GET: api/Community
@@ -95,7 +99,7 @@ namespace KalanchoeAI_Backend.Controllers
         // POST: api/Community
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Community>> PostCommunity(Community community)
+        public async Task<ActionResult<Community>> PostCommunity([FromForm] Community community)
         {
           if (_context.Communities == null)
           {
@@ -103,7 +107,14 @@ namespace KalanchoeAI_Backend.Controllers
           }
 
             community.UserId = Int32.Parse(HttpContext.Request.Cookies["user"]);
+
+            if (community.ImageFile != null)
+            {
+                community.MediaLink = await SaveImage(community.ImageFile);
+            }
+            
             _context.Communities.Add(community);
+
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetCommunity", new { id = community.CommunityId }, community);
@@ -132,6 +143,27 @@ namespace KalanchoeAI_Backend.Controllers
         private bool CommunityExists(int id)
         {
             return (_context.Communities?.Any(e => e.CommunityId == id)).GetValueOrDefault();
+        }
+
+        [NonAction]
+        public async Task<string> SaveImage(IFormFile imageFile)
+        {
+            string imageName = new String(Path.GetFileNameWithoutExtension(imageFile.FileName).Take(10).ToArray()).Replace(' ', '-');
+            imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(imageFile.FileName);
+            var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "Images", imageName);
+            using (var fileStream = new FileStream(imagePath, FileMode.Create))
+            {
+                await imageFile.CopyToAsync(fileStream);
+            }
+            return imageName;
+        }
+
+        [NonAction]
+        public void DeleteImage(string imageName)
+        {
+            var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "Images", imageName);
+            if (System.IO.File.Exists(imagePath))
+                System.IO.File.Delete(imagePath);
         }
     }
 }

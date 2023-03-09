@@ -12,6 +12,7 @@ using KalanchoeAI_Backend.Helpers;
 using KalanchoeAI_Backend.Services;
 using KalanchoeAI_Backend.Authorization;
 using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
+using Microsoft.Extensions.FileProviders;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 

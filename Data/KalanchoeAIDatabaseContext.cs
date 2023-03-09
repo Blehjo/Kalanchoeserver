@@ -10,7 +10,8 @@ namespace KalanchoeAI_Backend.Data
 		public KalanchoeAIDatabaseContext(DbContextOptions<KalanchoeAIDatabaseContext> options)
                 : base(options)
 		{
-            Database.EnsureCreated();
+            //Database.EnsureCreated();
+            //Database.Migrate();
         }
 
 		public DbSet<User> Users { get; set; }
