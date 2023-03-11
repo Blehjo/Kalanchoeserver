@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "tWUQtc6OurEn2UxnfnP8XD/pV7hzCfyX86vuE0LfrHI=",
+  "Hash": "ZudijBpyl5cEcowkbkfCgELCUjbdkVQws9GLMdBCdJ4=",
   "Source": "KalanchoeAI-Backend",
   "BasePath": "_content/KalanchoeAI-Backend",
   "Mode": "Default",
@@ -15,23 +15,5 @@
       "Pattern": "**"
     }
   ],
-  "Assets": [
-    {
-      "Identity": "/Users/blehjo/projects/KalanchoeAI/KalanchoeAI-Backend/wwwroot/ImageFiles/redbackground.avif",
-      "SourceId": "KalanchoeAI-Backend",
-      "SourceType": "Discovered",
-      "ContentRoot": "/Users/blehjo/projects/KalanchoeAI/KalanchoeAI-Backend/wwwroot/",
-      "BasePath": "_content/KalanchoeAI-Backend",
-      "RelativePath": "ImageFiles/redbackground.avif",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/ImageFiles/redbackground.avif"
-    }
-  ]
+  "Assets": []
 }

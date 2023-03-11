@@ -67,6 +67,8 @@
     <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
     <None Remove="Microsoft.AspNetCore.Mvc.NewtonsoftJson" />
     <None Remove="Microsoft.EntityFrameworkCore.Tools" />
+    <None Remove="Images\StaticFiles\_DSC2706.JPG" />
+    <None Remove="Images\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -77,14 +79,12 @@
     <Folder Include="Authorization\" />
     <Folder Include="Models\Users\" />
     <Folder Include="wwwroot\" />
-    <Folder Include="wwwroot\Images\" />
+    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\" />
-    <Content Remove="wwwroot\Images\_DSC2706.JPG" />
-    <Content Remove="wwwroot\Images\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="wwwroot\Images\_DSC2706.JPG" />
+    <Content Include="Images\StaticFiles\_DSC2706.JPG" />
   </ItemGroup>
 </Project>

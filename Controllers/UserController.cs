@@ -19,10 +19,12 @@ namespace KalanchoeAI_Backend.Controllers
     public class UserController : ControllerBase
     {
         private readonly KalanchoeAIDatabaseContext _context;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public UserController(KalanchoeAIDatabaseContext context)
+        public UserController(KalanchoeAIDatabaseContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
+            this._hostEnvironment = hostEnvironment;
         }
 
         // GET: api/User
@@ -34,7 +36,15 @@ namespace KalanchoeAI_Backend.Controllers
           {
               return NotFound();
           }
-            return await _context.Users.ToListAsync();
+            return await _context.Users.Select(x => new User()
+            {
+                UserId = x.UserId,
+                Username = x.Username,
+                FirstName = x.FirstName,
+                About = x.About,
+                ProfileImage = x.ProfileImage,
+                ImageSource = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.ProfileImage)
+            }).ToListAsync();
         }
 
         // GET: api/User/5
@@ -52,6 +62,8 @@ namespace KalanchoeAI_Backend.Controllers
             {
                 return NotFound();
             }
+
+            user.ImageSource = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, user.ProfileImage);
 
             return user;
         }
@@ -92,19 +104,14 @@ namespace KalanchoeAI_Backend.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
-          if (_context.Users == null)
-          {
-              return Problem("Entity set 'KalanchoeAIDatabaseContext.Users'  is null.");
-          }
-
-            if (user.ProfileImage != null)
+            if (_context.Users == null)
             {
-                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "_" + String.Format("{0:d}", (DateTime.Now.Ticks / 10) % 100000000) + user.ProfileImage.FileName);
+                return Problem("Entity set 'KalanchoeAIDatabaseContext.Users'  is null.");
+            }
 
-                using (Stream stream = new FileStream(path, FileMode.Create))
-                {
-                    user.ProfileImage.CopyTo(stream);
-                }
+            if (user.ImageFile != null)
+            {
+                user.ProfileImage = await SaveImage(user.ImageFile);
             }
 
             _context.Users.Add(user);
@@ -122,7 +129,9 @@ namespace KalanchoeAI_Backend.Controllers
             {
                 return NotFound();
             }
+
             var user = await _context.Users.FindAsync(id);
+
             if (user == null)
             {
                 return NotFound();
@@ -137,6 +146,27 @@ namespace KalanchoeAI_Backend.Controllers
         private bool UserExists(int id)
         {
             return (_context.Users?.Any(e => e.UserId == id)).GetValueOrDefault();
+        }
+
+        [NonAction]
+        public async Task<string> SaveImage(IFormFile imageFile)
+        {
+            string imageName = new String(Path.GetFileNameWithoutExtension(imageFile.FileName).Take(10).ToArray()).Replace(' ', '-');
+            imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(imageFile.FileName);
+            var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "Images", imageName);
+            using (var fileStream = new FileStream(imagePath, FileMode.Create))
+            {
+                await imageFile.CopyToAsync(fileStream);
+            }
+            return imageName;
+        }
+
+        [NonAction]
+        public void DeleteImage(string imageName)
+        {
+            var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "Images", imageName);
+            if (System.IO.File.Exists(imagePath))
+                System.IO.File.Delete(imagePath);
         }
     }
 }

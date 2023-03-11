@@ -28,8 +28,13 @@ namespace KalanchoeAI_Backend.Models
 
         public string? About { get; set; }
 
+        public string? ProfileImage { get; set; }
+
         [NotMapped]
-        public IFormFile? ProfileImage { get; set; }
+        public IFormFile? ImageFile { get; set; }
+
+        [NotMapped]
+        public string? ImageSource { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;

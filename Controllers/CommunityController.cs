@@ -5,9 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Cors;
 using KalanchoeAI_Backend.Data;
 using KalanchoeAI_Backend.Models;
-using System.IO;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Hosting;
 
 namespace KalanchoeAI_Backend.Controllers
@@ -29,27 +30,37 @@ namespace KalanchoeAI_Backend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Community>>> GetCommunities()
         {
-          if (_context.Communities == null)
-          {
-              return NotFound();
-          }
-            return await _context.Communities.ToListAsync();
+            if (_context.Communities == null)
+            {
+                return NotFound();
+            }
+            
+            return await _context.Communities.Select(x => new Community() {
+                CommunityId = x.CommunityId,
+                GroupName = x.GroupName,
+                Description = x.Description,
+                DateCreated = x.DateCreated,
+                MediaLink = x.MediaLink,
+                ImageSource = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.MediaLink)}).ToListAsync();
         }
 
         // GET: api/Community/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Community>> GetCommunity(int id)
         {
-          if (_context.Communities == null)
-          {
-              return NotFound();
-          }
+            if (_context.Communities == null)
+            {
+                return NotFound();
+            }
+
             var community = await _context.Communities.FindAsync(id);
 
             if (community == null)
             {
                 return NotFound();
             }
+
+            community.ImageSource = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, community.MediaLink);
 
             return community;
         }
@@ -62,7 +73,15 @@ namespace KalanchoeAI_Backend.Controllers
                 return NotFound();
             }
 
-            return await _context.Communities.Where(c => c.UserId == id).ToListAsync();
+            return await _context.Communities.Where(c => c.UserId == id).Select(x => new Community()
+            {
+                CommunityId = x.CommunityId,
+                GroupName = x.GroupName,
+                Description = x.Description,
+                DateCreated = x.DateCreated,
+                MediaLink = x.MediaLink,
+                ImageSource = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.MediaLink)
+            }).ToListAsync();
         }
 
         // PUT: api/Community/5
@@ -101,10 +120,10 @@ namespace KalanchoeAI_Backend.Controllers
         [HttpPost]
         public async Task<ActionResult<Community>> PostCommunity([FromForm] Community community)
         {
-          if (_context.Communities == null)
-          {
-              return Problem("Entity set 'KalanchoeAIDatabaseContext.Communities'  is null.");
-          }
+            if (_context.Communities == null)
+            {
+                return Problem("Entity set 'KalanchoeAIDatabaseContext.Communities'  is null.");
+            }
 
             community.UserId = Int32.Parse(HttpContext.Request.Cookies["user"]);
 
@@ -155,6 +174,7 @@ namespace KalanchoeAI_Backend.Controllers
             {
                 await imageFile.CopyToAsync(fileStream);
             }
+
             return imageName;
         }
 

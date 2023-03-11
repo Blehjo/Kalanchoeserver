@@ -1,1 +1,1 @@
-{"ContentRoots":["/Users/blehjo/projects/KalanchoeAI/KalanchoeAI-Backend/wwwroot/"],"Root":{"Children":{"ImageFiles":{"Children":{"redbackground.avif":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"ImageFiles/redbackground.avif"},"Patterns":null}},"Asset":null,"Patterns":null}},"Asset":null,"Patterns":[{"ContentRootIndex":0,"Pattern":"**","Depth":0}]}}
+{"ContentRoots":["/Users/blehjo/projects/KalanchoeAI/KalanchoeAI-Backend/wwwroot/"],"Root":{"Children":null,"Asset":null,"Patterns":[{"ContentRootIndex":0,"Pattern":"**","Depth":0}]}}

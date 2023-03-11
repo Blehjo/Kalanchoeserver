@@ -1,8 +1,8 @@
 {
   "Files": [
     {
-      "Id": "/Users/blehjo/projects/KalanchoeAI/KalanchoeAI-Backend/wwwroot/ImageFiles/redbackground.avif",
-      "PackagePath": "staticwebassets/ImageFiles/redbackground.avif"
+      "Id": "/Users/blehjo/projects/KalanchoeAI/KalanchoeAI-Backend/wwwroot/Images/StaticFiles/_DSC2706.JPG",
+      "PackagePath": "staticwebassets/Images/StaticFiles/_DSC2706.JPG"
     },
     {
       "Id": "obj/Debug/net7.0/staticwebassets/msbuild.KalanchoeAI-Backend.Microsoft.AspNetCore.StaticWebAssets.props",
