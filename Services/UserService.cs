@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using BCrypt.Net;
 using KalanchoeAI_Backend.Authorization;
 using KalanchoeAI_Backend.Helpers;
 using KalanchoeAI_Backend.Models;
 using KalanchoeAI_Backend.Models.Users;
 using KalanchoeAI_Backend.Data;
+using Microsoft.AspNetCore.Mvc;
 
 namespace KalanchoeAI_Backend.Services
 {
@@ -23,15 +23,18 @@ namespace KalanchoeAI_Backend.Services
         private KalanchoeAIDatabaseContext _context;
         private IJwtUtils _jwtUtils;
         private readonly IMapper _mapper;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
         public UserService(
             KalanchoeAIDatabaseContext context,
             IJwtUtils jwtUtils,
-            IMapper mapper)
+            IMapper mapper,
+            IWebHostEnvironment hostEnvironment)
         {
             _context = context;
             _jwtUtils = jwtUtils;
             _mapper = mapper;
+            this._hostEnvironment = hostEnvironment;
         }
 
         public AuthenticateResponse Authenticate(AuthenticateRequest model)
@@ -110,6 +113,27 @@ namespace KalanchoeAI_Backend.Services
             var user = _context.Users.Find(id);
             if (user == null) throw new KeyNotFoundException("User not found");
             return user;
+        }
+
+        [NonAction]
+        public async Task<string> SaveImage(IFormFile imageFile)
+        {
+            string imageName = new String(Path.GetFileNameWithoutExtension(imageFile.FileName).Take(10).ToArray()).Replace(' ', '-');
+            imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(imageFile.FileName);
+            var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "Images", imageName);
+            using (var fileStream = new FileStream(imagePath, FileMode.Create))
+            {
+                await imageFile.CopyToAsync(fileStream);
+            }
+            return imageName;
+        }
+
+        [NonAction]
+        public void DeleteImage(string imageName)
+        {
+            var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "Images", imageName);
+            if (System.IO.File.Exists(imagePath))
+                System.IO.File.Delete(imagePath);
         }
     }
 }

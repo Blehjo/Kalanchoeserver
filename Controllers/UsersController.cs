@@ -73,16 +73,16 @@ namespace KalanchoeAI_Backend.Controllers
 
         [AllowAnonymous]
         [HttpPost("register")]
-        public async Task<ActionResult<User>> Register([FromBody] RegisterRequest model)
+        public async Task<ActionResult<User>> Register([FromForm] RegisterRequest model)
         {
-            _userService.Register(model);
-
-            AuthenticateRequest authenticateModel = new AuthenticateRequest();
-
             if (model.ImageFile != null)
             {
                 model.ProfileImage = await SaveImage(model.ImageFile);
             }
+
+            _userService.Register(model);
+
+            AuthenticateRequest authenticateModel = new AuthenticateRequest();
 
             authenticateModel.Username = model.Username;
             authenticateModel.Password = model.Password;

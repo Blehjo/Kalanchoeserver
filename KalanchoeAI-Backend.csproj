@@ -66,6 +66,7 @@
     <None Remove="Microsoft.EntityFrameworkCore.Tools" />
     <None Remove="Images\StaticFiles\_DSC2706.JPG" />
     <None Remove="Images\" />
+    <None Remove="Models\Users\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -74,6 +75,7 @@
     <Folder Include="Helpers\" />
     <Folder Include="wwwroot\" />
     <Folder Include="Images\" />
+    <Folder Include="Models\Users\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\" />
