@@ -8,6 +8,9 @@ using KalanchoeAI_Backend.Services;
 using KalanchoeAI_Backend.Models;
 using Microsoft.AspNetCore.Http;
 using Azure;
+using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using static OpenAI.GPT3.ObjectModels.SharedModels.IOpenAiModels;
 
 namespace KalanchoeAI_Backend.Controllers
 {
@@ -19,15 +22,19 @@ namespace KalanchoeAI_Backend.Controllers
         private IUserService _userService;
         private IMapper _mapper;
         private readonly AppSettings _appSettings;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
         public UsersController(
             IUserService userService,
             IMapper mapper,
-            IOptions<AppSettings> appSettings)
+            IOptions<AppSettings> appSettings,
+            IWebHostEnvironment hostEnvironment
+            )
         {
             _userService = userService;
             _mapper = mapper;
             _appSettings = appSettings.Value;
+            this._hostEnvironment = hostEnvironment;
         }
 
         [AllowAnonymous]
@@ -66,11 +73,16 @@ namespace KalanchoeAI_Backend.Controllers
 
         [AllowAnonymous]
         [HttpPost("register")]
-        public IActionResult Register([FromBody] RegisterRequest model)
+        public async Task<ActionResult<User>> Register([FromBody] RegisterRequest model)
         {
             _userService.Register(model);
 
             AuthenticateRequest authenticateModel = new AuthenticateRequest();
+
+            if (model.ImageFile != null)
+            {
+                model.ProfileImage = await SaveImage(model.ImageFile);
+            }
 
             authenticateModel.Username = model.Username;
             authenticateModel.Password = model.Password;
@@ -144,6 +156,27 @@ namespace KalanchoeAI_Backend.Controllers
         {
             _userService.Delete(id);
             return Ok(new { message = "User deleted successfully" });
+        }
+
+        [NonAction]
+        public async Task<string> SaveImage(IFormFile imageFile)
+        {
+            string imageName = new String(Path.GetFileNameWithoutExtension(imageFile.FileName).Take(10).ToArray()).Replace(' ', '-');
+            imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(imageFile.FileName);
+            var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "Images", imageName);
+            using (var fileStream = new FileStream(imagePath, FileMode.Create))
+            {
+                await imageFile.CopyToAsync(fileStream);
+            }
+            return imageName;
+        }
+
+        [NonAction]
+        public void DeleteImage(string imageName)
+        {
+            var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "Images", imageName);
+            if (System.IO.File.Exists(imagePath))
+                System.IO.File.Delete(imagePath);
         }
     }
 }

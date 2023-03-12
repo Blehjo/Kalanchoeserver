@@ -39,6 +39,7 @@ namespace KalanchoeAI_Backend.Controllers
                 Title = x.Title,
                 Link = x.Link,
                 MediaLink = x.MediaLink,
+                UserId = x.UserId,
                 DateCreated = x.DateCreated,
                 ImageSource = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.MediaLink)}).ToListAsync();
         }
@@ -79,6 +80,7 @@ namespace KalanchoeAI_Backend.Controllers
                 Title = x.Title,
                 Link = x.Link,
                 MediaLink = x.MediaLink,
+                UserId = x.UserId,
                 DateCreated = x.DateCreated,
                 ImageSource = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.MediaLink)
             }).ToListAsync();
@@ -118,7 +120,7 @@ namespace KalanchoeAI_Backend.Controllers
         // POST: api/SavedControllers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Saved>> PostSaved(Saved saved)
+        public async Task<ActionResult<Saved>> PostSaved([FromForm] Saved saved)
         {
             if (_context.Saved == null)
             {

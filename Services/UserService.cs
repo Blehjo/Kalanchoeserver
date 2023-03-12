@@ -58,7 +58,7 @@ namespace KalanchoeAI_Backend.Services
 
         public User GetById(int id)
         {
-            return getUser(id);
+            return GetUser(id);
         }
 
         public void Register(RegisterRequest model)
@@ -80,7 +80,7 @@ namespace KalanchoeAI_Backend.Services
 
         public void Update(int id, UpdateRequest model)
         {
-            var user = getUser(id);
+            var user = GetUser(id);
 
             // validate
             if (model.Username != user.Username && _context.Users.Any(x => x.Username == model.Username))
@@ -98,14 +98,14 @@ namespace KalanchoeAI_Backend.Services
 
         public void Delete(int id)
         {
-            var user = getUser(id);
+            var user = GetUser(id);
             _context.Users.Remove(user);
             _context.SaveChanges();
         }
 
         // helper methods
 
-        private User getUser(int id)
+        private User GetUser(int id)
         {
             var user = _context.Users.Find(id);
             if (user == null) throw new KeyNotFoundException("User not found");

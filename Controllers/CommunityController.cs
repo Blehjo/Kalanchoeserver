@@ -40,6 +40,7 @@ namespace KalanchoeAI_Backend.Controllers
                 GroupName = x.GroupName,
                 Description = x.Description,
                 DateCreated = x.DateCreated,
+                UserId = x.UserId,
                 MediaLink = x.MediaLink,
                 ImageSource = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.MediaLink)}).ToListAsync();
         }
@@ -79,6 +80,7 @@ namespace KalanchoeAI_Backend.Controllers
                 GroupName = x.GroupName,
                 Description = x.Description,
                 DateCreated = x.DateCreated,
+                UserId = x.UserId,
                 MediaLink = x.MediaLink,
                 ImageSource = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.MediaLink)
             }).ToListAsync();

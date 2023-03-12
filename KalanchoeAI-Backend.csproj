@@ -55,10 +55,7 @@
     <None Remove="Microsoft.VisualStudio.Web.CodeGeneration.Design" />
     <None Remove="Microsoft.EntityFrameworkCore.Sqlite" />
     <None Remove="Helpers\" />
-    <None Remove="Services\" />
-    <None Remove="Authorization\" />
     <None Remove="AutoMapper" />
-    <None Remove="Models\Users\" />
     <None Remove="BCrypt" />
     <None Remove="BCrypt.Net-Core" />
     <None Remove="BCrypt.Net" />
@@ -75,9 +72,6 @@
     <Folder Include="Data\" />
     <Folder Include="Models\" />
     <Folder Include="Helpers\" />
-    <Folder Include="Services\" />
-    <Folder Include="Authorization\" />
-    <Folder Include="Models\Users\" />
     <Folder Include="wwwroot\" />
     <Folder Include="Images\" />
   </ItemGroup>

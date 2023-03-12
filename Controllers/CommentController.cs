@@ -39,7 +39,9 @@ namespace KalanchoeAI_Backend.Controllers
                 CommentId = x.CommentId,
                 CommentValue = x.CommentValue,
                 DateCreated = x.DateCreated,
+                UserId = x.UserId,
                 MediaLink = x.MediaLink,
+                PostId = x.PostId,
                 ImageSource = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.MediaLink)}).ToListAsync();
         }
 
@@ -72,7 +74,17 @@ namespace KalanchoeAI_Backend.Controllers
             {
                 return NotFound();
             }
-            return await _context.Comments.Where(c => c.PostId == id).ToListAsync();
+
+            return await _context.Comments.Select(x => new Comment()
+            {
+                CommentId = x.CommentId,
+                CommentValue = x.CommentValue,
+                DateCreated = x.DateCreated,
+                UserId = x.UserId,
+                MediaLink = x.MediaLink,
+                PostId = x.PostId,
+                ImageSource = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.MediaLink)
+            }).Where(c => c.PostId == id).ToListAsync();
         }
 
         // PUT: api/Comment/5
@@ -109,7 +121,7 @@ namespace KalanchoeAI_Backend.Controllers
         // POST: api/Comment
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Comment>> PostComment(Comment comment)
+        public async Task<ActionResult<Comment>> PostComment([FromForm] Comment comment)
         {
             if (_context.Comments == null)
             {
@@ -120,6 +132,7 @@ namespace KalanchoeAI_Backend.Controllers
             {
                 comment.MediaLink = await SaveImage(comment.ImageFile);
             }
+
             comment.UserId = Int32.Parse(HttpContext.Request.Cookies["user"]);
 
             _context.Comments.Add(comment);

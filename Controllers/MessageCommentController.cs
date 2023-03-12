@@ -94,7 +94,7 @@ namespace KalanchoeAI_Backend.Controllers
         // POST: api/MessageComment
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<MessageComment>> PostMessageComment(MessageComment messageComment)
+        public async Task<ActionResult<MessageComment>> PostMessageComment([FromForm] MessageComment messageComment)
         {
             if (_context.MessageComments == null)
             {

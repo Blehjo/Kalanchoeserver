@@ -13,7 +13,6 @@ using KalanchoeAI_Backend.Helpers;
 
 namespace KalanchoeAI_Backend.Controllers
 {
-    [Authorization.Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class UserController : ControllerBase
@@ -28,14 +27,14 @@ namespace KalanchoeAI_Backend.Controllers
         }
 
         // GET: api/User
-        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-          if (_context.Users == null)
-          {
-              return NotFound();
-          }
+            if (_context.Users == null)
+            {
+                return NotFound();
+            }
+
             return await _context.Users.Select(x => new User()
             {
                 UserId = x.UserId,
@@ -48,7 +47,6 @@ namespace KalanchoeAI_Backend.Controllers
         }
 
         // GET: api/User/5
-        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
@@ -102,7 +100,7 @@ namespace KalanchoeAI_Backend.Controllers
         // POST: api/User
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<ActionResult<User>> PostUser([FromForm] User user)
         {
             if (_context.Users == null)
             {

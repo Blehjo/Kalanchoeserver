@@ -38,6 +38,7 @@ namespace KalanchoeAI_Backend.Controllers
             return await _context.ChannelComments.Select(x => new ChannelComment() {
                 ChannelCommentId = x.ChannelCommentId,
                 ChannelCommentValue = x.ChannelCommentValue,
+                UserId = x.UserId,
                 DateCreated = x.DateCreated,
                 MediaLink = x.MediaLink,
                 ImageSource = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.MediaLink)}).ToListAsync();
@@ -56,6 +57,7 @@ namespace KalanchoeAI_Backend.Controllers
             {
                 ChannelCommentId = x.ChannelCommentId,
                 ChannelCommentValue = x.ChannelCommentValue,
+                UserId = x.UserId,
                 DateCreated = x.DateCreated,
                 MediaLink = x.MediaLink,
                 ImageSource = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.MediaLink)
@@ -96,7 +98,7 @@ namespace KalanchoeAI_Backend.Controllers
         // POST: api/ChannelComment
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<ChannelComment>> PostChannelComment(ChannelComment channelComment)
+        public async Task<ActionResult<ChannelComment>> PostChannelComment([FromForm] ChannelComment channelComment)
         {
             if (_context.ChannelComments == null)
             {
@@ -104,6 +106,11 @@ namespace KalanchoeAI_Backend.Controllers
             }
 
             channelComment.UserId = Int32.Parse(HttpContext.Request.Cookies["user"]);
+
+            if (channelComment.ImageFile != null)
+            {
+                channelComment.MediaLink = await SaveImage(channelComment.ImageFile);
+            }
 
             _context.ChannelComments.Add(channelComment);
             
