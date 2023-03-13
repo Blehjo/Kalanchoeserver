@@ -57,7 +57,14 @@ namespace KalanchoeAI_Backend.Controllers
 
             messageComment.ImageSource = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, messageComment.MediaLink);
 
-            return await _context.MessageComments.Where(m => m.MessageId == id).ToListAsync();
+            return await _context.MessageComments.Where(m => m.MessageId == id).Select(x => new MessageComment()
+            {
+                MessageCommentId = x.MessageCommentId,
+                MessageValue = x.MessageValue,
+                DateCreated = x.DateCreated,
+                MediaLink = x.MediaLink,
+                ImageSource = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.MediaLink)
+            }).ToListAsync();
         }
 
         // PUT: api/MessageComment/5

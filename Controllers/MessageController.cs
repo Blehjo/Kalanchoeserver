@@ -95,14 +95,16 @@ namespace KalanchoeAI_Backend.Controllers
               return Problem("Entity set 'KalanchoeAIDatabaseContext.Messages'  is null.");
           }
 
-            var returnedMessage = await _context.Messages.FindAsync(message.MessageValue);
             var userId = Int32.Parse(Request.Cookies["user"]);
 
-            if (returnedMessage != null && returnedMessage.UserId == userId)
+            var returnedMessage = _context.Messages.Where(m => m.MessageValue == message.MessageValue && m.UserId == userId);
+
+            if (returnedMessage.Count() > 0)
             {
-                return returnedMessage;
+                return CreatedAtAction("GetMessage", returnedMessage);
             }
 
+            message.UserId = userId;
             _context.Messages.Add(message);
             await _context.SaveChangesAsync();
 
