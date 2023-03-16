@@ -25,4 +25,3 @@ namespace KalanchoeAI_Backend.Models
         public Message? Message { get; set; }
     }
 }
-
