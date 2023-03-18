@@ -1,7 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using KalanchoeAI_Backend.Models;
-using KalanchoeAI_Backend.Models.Users;
-using System.Reflection.Metadata;
 
 namespace KalanchoeAI_Backend.Data
 {
@@ -29,6 +27,7 @@ namespace KalanchoeAI_Backend.Data
         public DbSet<Panel> Panels { get; set; } 
         public DbSet<Note> Note { get; set; }
         public DbSet<Saved> Saved { get; set; }
+        public DbSet<AiComment> AiComments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

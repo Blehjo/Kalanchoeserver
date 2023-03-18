@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KalanchoeAI_Backend.Models
@@ -24,4 +22,3 @@ namespace KalanchoeAI_Backend.Models
         public Chat? Chat { get; set; }
 	}
 }
-

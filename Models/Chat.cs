@@ -18,5 +18,6 @@ namespace KalanchoeAI_Backend.Models
         public User? User { get; set; }
 
 		public ICollection<ChatComment>? ChatComments { get; set; }
+        public ICollection<AiComment>? AiComments { get; set; }
     }
 }

@@ -1,18 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OpenAI.GPT3;
 using OpenAI.GPT3.Managers;
 using OpenAI.GPT3.ObjectModels;
 using OpenAI.GPT3.ObjectModels.RequestModels;
-using OpenAI.GPT3.Extensions;
-using OpenAI.GPT3.Interfaces;
-using Azure;
-using Microsoft.Identity.Client;
-using KalanchoeAI_Backend.Models;
+
 
 namespace KalanchoeAI_Backend.Controllers
 {

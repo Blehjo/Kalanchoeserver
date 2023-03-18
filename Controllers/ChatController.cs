@@ -39,9 +39,21 @@ namespace KalanchoeAI_Backend.Controllers
             {
                 return NotFound();
             }
-            //var userId = Int32.Parse(HttpContext.Request.Cookies["user"]);
 
             return await _context.Chats.ToListAsync();
+        }
+
+        [HttpGet("user/chats")]
+        public async Task<ActionResult<IEnumerable<Chat>>> GetSingleUserChats()
+        {
+            if (_context.Chats == null)
+            {
+                return NotFound();
+            }
+
+            var userId = Int32.Parse(HttpContext.Request.Cookies["user"]);
+
+            return await _context.Chats.Where(c => c.UserId == userId).ToListAsync();
         }
 
         [HttpGet("user/{id}")]

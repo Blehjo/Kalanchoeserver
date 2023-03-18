@@ -17,6 +17,29 @@ namespace KalanchoeAIBackend.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.2");
 
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.AiComment", b =>
+                {
+                    b.Property<int>("AiCommentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ChatId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CommentValue")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("AiCommentId");
+
+                    b.HasIndex("ChatId");
+
+                    b.ToTable("AiComments");
+                });
+
             modelBuilder.Entity("KalanchoeAI_Backend.Models.Channel", b =>
                 {
                     b.Property<int>("ChannelId")
@@ -404,6 +427,17 @@ namespace KalanchoeAIBackend.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("KalanchoeAI_Backend.Models.AiComment", b =>
+                {
+                    b.HasOne("KalanchoeAI_Backend.Models.Chat", "Chat")
+                        .WithMany("AiComments")
+                        .HasForeignKey("ChatId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Chat");
+                });
+
             modelBuilder.Entity("KalanchoeAI_Backend.Models.Channel", b =>
                 {
                     b.HasOne("KalanchoeAI_Backend.Models.Community", "Community")
@@ -589,6 +623,8 @@ namespace KalanchoeAIBackend.Migrations
 
             modelBuilder.Entity("KalanchoeAI_Backend.Models.Chat", b =>
                 {
+                    b.Navigation("AiComments");
+
                     b.Navigation("ChatComments");
                 });
 
