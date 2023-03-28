@@ -16,4 +16,3 @@ namespace KalanchoeAI_Backend.Models
         public User? User { get; set; }
 	}
 }
-

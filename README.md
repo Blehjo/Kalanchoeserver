@@ -24,23 +24,23 @@
 
 ## Technologies Used
 
- <a target="_blank" rel="noopener noreferrer" href="https://vuejs.org/">
-    <img src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D" alt="Vue Badge" style="max-width: 100%;">
+ <a target="_blank" rel="noopener noreferrer" href="https://react.dev/">
+    <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" alt="React Badge" style="max-width: 100%;">
  </a>
- <a target="_blank" rel="noopener noreferrer" href="https://jestjs.io/docs/getting-started">
-    <img src="https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white" alt="Jest Badge" style="max-width: 100%;">
+ <a target="_blank" rel="noopener noreferrer" href="https://learn.microsoft.com/en-us/dotnet/csharp/">
+    <img src="https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white" alt="C# Badge" style="max-width: 100%;">
  </a>
- <a target="_blank" rel="noopener noreferrer" href="https://sass-lang.com/">
-    <img src="https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white" alt="Sass Badge" style="max-width: 100%;">
+ <a target="_blank" rel="noopener noreferrer" href="https://learn.microsoft.com/">
+    <img src="https://img.shields.io/badge/Microsoft-0078D4?style=for-the-badge&logo=microsoft&logoColor=white" alt="Microsoft Badge" style="max-width: 100%;">
  </a>
- <a target="_blank" rel="noopener noreferrer" href="https://www.netlify.com/">
-    <img src="https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white" alt="Netlify Badge" style="max-width: 100%;">
+ <a target="_blank" rel="noopener noreferrer" href="https://www.sqlite.com/">
+    <img src="https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white" alt="Sqlite Badge" style="max-width: 100%;">
  </a>
- <a target="_blank" rel="noopener noreferrer" href="https://www.figma.com/">
-    <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white" alt="Figma Badge" style="max-width: 100%;">
+ <a target="_blank" rel="noopener noreferrer" href="https://www.visualstudio.com/">
+    <img src="https://img.shields.io/badge/Visual%20Studio-5C2D91.svg?style=for-the-badge&logo=visual-studio&logoColor=white" alt="Visual Studio Badge" style="max-width: 100%;">
  </a>
- <a target="_blank" rel="noopener noreferrer" href="https://www.canva.com/">
-    <img src="https://img.shields.io/badge/Canva-%2300C4CC.svg?&style=for-the-badge&logo=Canva&logoColor=white" alt="Canva Badge" style="max-width: 100%;">
+ <a target="_blank" rel="noopener noreferrer" href="https://dotnet.microsoft.com/en-us//">
+    <img src="https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white" alt=".Net Badge" style="max-width: 100%;">
  </a>
 
 ## Images
@@ -85,8 +85,18 @@ Chats:
 
 Alternatively, search the application for chats created by other artists looking for answers and inspirations.
 
-<img style="width: 47%" src="./items/chats.png"  alt="kalanchoe dashboard">
-<img style="width: 47%" src="./items/singlechat.png"  alt="kalanchoe dashboard">
+<div align="center">
+   <table>
+   <tr>
+      <td>Chats</td>
+      <td>Single Chat</td>
+   </tr>
+   <tr>
+      <td style="width: 50%;"><img src="./items/chats.png" alt="kalanchoe chats"></td>
+      <td style="width: 50%;"><img src="./items/singlechat.png"  alt="kalanchoe single chat"></td>
+   </tr>
+   </table>
+</div>
 
 Channels:
 
@@ -96,8 +106,18 @@ Communities:
 
 Create an organization for like-minded individuals aspiring for the same goal.
 
-<img style="width: 47%" src="./items/createcommunity.png"  alt="kalanchoe dashboard">
-<img style="width: 47%" src="./items/community.png"  alt="kalanchoe dashboard">
+<div align="center">
+   <table>
+   <tr>
+      <td>Create Community</td>
+      <td>Community</td>
+   </tr>
+   <tr>
+      <td style="width: 50%;"><img src="./items/createcommunity.png"  alt="kalanchoe create community"></td>
+      <td style="width: 50%;"><img src="./items/community.png"  alt="kalanchoe community"></td>
+   </tr>
+   </table>
+</div>
 
 Dashboard:
 
@@ -107,13 +127,13 @@ Dilemmas:
 
 Start organizing your plan here with dilemmas. Dilemmas help break down your ultimate goals. You can also share them with the community and find help.
 
-<img style="width: 50%" src="./items/dilemmas.png"  alt="kalanchoe dashboard">
+<img src="./items/dilemmas.png"  alt="kalanchoe dilemmas">
 
 Messages: 
 
 Message your close friends with messages and take a break from speaking to your AI, Artoo.
 
-<img style="width: 47%" src="./items/messages.png"  alt="kalanchoe messages">
+<img src="./items/messages.png"  alt="kalanchoe messages">
 
 Notes: 
 
@@ -123,23 +143,75 @@ Posts:
 
 Share your masterpiece and current state with posts. Have fun!
 
-
-<img style="width: 47%" src="./items/posts.png"  alt="kalanchoe dashboard">
-<img style="width: 47%" src="./items/singlepost.png"  alt="kalanchoe dashboard">
+<div align="center">
+   <table>
+   <tr>
+      <td>Posts</td>
+      <td>Single Post</td>
+   </tr>
+   <tr>
+      <td style="width: 50%;"><img src="./items/posts.png"  alt="kalanchoe post"></td>
+      <td style="width: 50%;"><img src="./items/singlepost.png"  alt="kalanchoe single post"></td>
+   </tr>
+   </table>
+</div>
 
 
 ## Design:
 
 Other Pages: 
 
-<img style="width: 47%" src="./items/profiles.png"  alt="kalanchoe profiles">
-<img style="width: 47%" src="./items/userprofilechats.png"  alt="kalanchoe chats">
-<img style="width: 47%" src="./items/userprofilecommunities.png"  alt="kalanchoe communities">
-<img style="width: 47%" src="./items/userprofiledilemmas.png"  alt="kalanchoe dilemmas">
-<img style="width: 47%" src="./items/userprofileposts.png"  alt="kalanchoe posts">
-<img style="width: 47%" src="./items/studioblank.png"  alt="kalanchoe studio">
-<img style="width: 47%" src="./items/studiowtoolbar.png"  alt="kalanchoe studio with toolbar">
-<img style="width: 47%" src="./items/explore.png"  alt="kalanchoe explore">
+<div align="center">
+   <table>
+   <tr>
+      <td>User Profile</td>
+      <td>User Chats</td>
+   </tr>
+   <tr>
+      <td style="width: 50%;"><img src="./items/profiles.png"  alt="kalanchoe profiles"></td>
+      <td style="width: 50%;"><img src="./items/userprofilechats.png"  alt="kalanchoe chats"></td>
+   </tr>
+   </table>
+</div>
+
+<div align="center">
+   <table>
+   <tr>
+      <td>User Communities</td>
+      <td>User Dilemmas</td>
+   </tr>
+   <tr>
+      <td style="width: 50%;"><img src="./items/userprofilecommunities.png"  alt="kalanchoe communities"></td>
+      <td style="width: 50%;"><img src="./items/userprofiledilemmas.png"  alt="kalanchoe dilemmas"></td>
+   </tr>
+   </table>
+</div>
+
+<div align="center">
+   <table>
+   <tr>
+      <td>User Posts</td>
+      <td>Single Post</td>
+   </tr>
+   <tr>
+      <td style="width: 50%;"><img src="./items/userprofileposts.png"  alt="kalanchoe posts"></td>
+      <td style="width: 50%;"><img src="./items/studioblank.png"  alt="kalanchoe studio"></td>
+   </tr>
+   </table>
+</div>
+
+<div align="center">
+   <table>
+   <tr>
+      <td>Studio</td>
+      <td>Explore</td>
+   </tr>
+   <tr>
+      <td style="width: 50%;"><img src="./items/studiowtoolbar.png"  alt="kalanchoe studio with toolbar"></td>
+      <td style="width: 50%;"><img src="./items/explore.png"  alt="kalanchoe explore"></td>
+   </tr>
+   </table>
+</div>
 
 ## License: 
 
