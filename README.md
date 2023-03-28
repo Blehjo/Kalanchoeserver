@@ -1,6 +1,8 @@
 ﻿<div id="header" align="center">
   <a target="_blank" rel="noopener noreferrer" href="https://"><img style="object-fit: cover; width: 100px; height: 100px; border-radius: 1rem;" src="./items/logo.ico"/></a>
-  <h3>Kalanchoe is a web application designed with the help of OpenAI and Betalgo. Create your masterpiece with the help of Artoo or spot the next masterpiece in our community.</h3>
+  <h3>Kalanchoe is a web application designed with the help of OpenAI and Betalgo. Create your masterpiece with the help of Artoo or spot the next masterpiece in our community. </h3>
+
+[See it here.](https://kalanchoeai.azurewebsites.net)
 
   ---
 </div>
