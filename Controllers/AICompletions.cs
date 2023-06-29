@@ -23,7 +23,7 @@ namespace KalanchoeAI_Backend.Controllers
             var config = new ConfigurationBuilder()
                 .AddUserSecrets<Program>()
                 .Build();
-            string apiKey = "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";
+            string apiKey = openaiapikey;
 
             var openAiService = new OpenAIService(new OpenAiOptions()
             {
@@ -61,7 +61,7 @@ namespace KalanchoeAI_Backend.Controllers
             var config = new ConfigurationBuilder()
                 .AddUserSecrets<Program>()
                 .Build();
-            string apiKey = "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";
+            string apiKey = openaiapikey;
 
             var openAiService = new OpenAIService(new OpenAiOptions()
             {
@@ -90,7 +90,7 @@ namespace KalanchoeAI_Backend.Controllers
             var config = new ConfigurationBuilder()
                 .AddUserSecrets<Program>()
                 .Build();
-            string apiKey = "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";
+            string apiKey = openaiapikey;
 
             var openAiService = new OpenAIService(new OpenAiOptions()
             {
@@ -128,7 +128,7 @@ namespace KalanchoeAI_Backend.Controllers
                 .AddUserSecrets<Program>()
                 .Build();
 
-            string apiKey = "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";
+            string apiKey = openaiapikey;
 
             var openAiService = new OpenAIService(new OpenAiOptions()
             {
